@@ -4,7 +4,7 @@ import { Code2, ShoppingBag, Factory, Building2 } from 'lucide-react'
 import AnimatedSection, { AnimatedGrid, AnimatedItem } from '@/components/shared/AnimatedSection'
 import { audiences } from '@/lib/data/services'
 
-const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+const iconMap: Record<string, React.ElementType> = {
   Code2,
   ShoppingBag,
   Factory,

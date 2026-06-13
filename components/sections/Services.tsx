@@ -5,7 +5,7 @@ import AnimatedSection, { AnimatedGrid, AnimatedItem } from '@/components/shared
 import Badge from '@/components/ui/Badge'
 import Button from '@/components/ui/Button'
 
-const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+const iconMap: Record<string, React.ElementType> = {
   TrendingUp, Search, Globe, BarChart3, MessageSquare, Target, Layers, Users, Star,
 }
 
