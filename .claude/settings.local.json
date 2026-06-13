@@ -4,7 +4,9 @@
       "Bash(npx create-next-app@14 . --typescript --tailwind --eslint --app --no-src-dir --import-alias \"@/*\" --no-git)",
       "Bash(npm --version)",
       "Read(//usr/local/bin/**)",
-      "Read(//Users/rinavern/**)"
+      "Read(//Users/rinavern/**)",
+      "mcp__Claude_in_Chrome__navigate",
+      "mcp__Claude_in_Chrome__tabs_context_mcp"
     ]
   }
 }
