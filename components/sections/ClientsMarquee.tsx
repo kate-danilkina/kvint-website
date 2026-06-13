@@ -1,61 +1,41 @@
 'use client'
 
-// TODO: copy alfa-logo.jpeg and sber-logo.svg to /public/logos/
-
-const logoClients = [
-  { type: 'image' as const, src: '/logos/alfa-logo.jpeg', alt: 'Альфа-Банк' },
-  { type: 'image' as const, src: '/logos/sber-logo.svg', alt: 'Сбербанк' },
+const clients = [
+  'Сбер.Образование',
+  'Альфа',
+  'Эконад',
+  'Сантехника Онлайн',
+  'БалтФлот',
+  'HelloWorldSchool',
+  'Тёплого Хлеба',
+  'Буше',
+  'Sup.me',
+  'Зеленка',
 ]
 
-const textClients = ['ЭКОНАД', 'САНТЕХНИКА ОНЛАЙН', 'БАЛТФЛОТ', 'HELLOWORLDSCHOOL']
+const itemStyle: React.CSSProperties = {
+  fontSize: '13px',
+  letterSpacing: '0.1em',
+  color: 'rgba(255,255,255,0.45)',
+  fontFamily: 'var(--font-space-grotesk)',
+  fontWeight: 500,
+  textTransform: 'uppercase',
+  whiteSpace: 'nowrap',
+}
 
-const separator = (
-  <span
-    aria-hidden="true"
-    className="mx-6 inline-block w-px bg-white/15 h-4 align-middle flex-shrink-0"
-    style={{ display: 'inline-block' }}
-  />
-)
+const dotStyle: React.CSSProperties = {
+  ...itemStyle,
+  margin: '0 20px',
+  opacity: 0.3,
+}
 
 function MarqueeItems() {
   return (
     <>
-      {logoClients.map((c) => (
-        <span key={c.alt} className="inline-flex items-center flex-shrink-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={c.src}
-            alt={c.alt}
-            style={{
-              height: '28px',
-              width: 'auto',
-              filter: 'brightness(0) invert(1)',
-              opacity: 0.6,
-              display: 'inline-block',
-              verticalAlign: 'middle',
-              objectFit: 'contain',
-            }}
-          />
-          {separator}
-        </span>
-      ))}
-
-      {textClients.map((name, i) => (
-        <span key={name} className="inline-flex items-center flex-shrink-0">
-          <span
-            style={{
-              fontSize: '13px',
-              letterSpacing: '0.1em',
-              color: 'rgba(255,255,255,0.45)',
-              fontFamily: 'var(--font-space-grotesk)',
-              fontWeight: 500,
-              textTransform: 'uppercase',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {name}
-          </span>
-          {i < textClients.length - 1 && separator}
+      {clients.map((name, i) => (
+        <span key={`${name}-${i}`} style={{ display: 'inline-flex', alignItems: 'center' }}>
+          <span style={itemStyle}>{name}</span>
+          <span style={dotStyle} aria-hidden="true">·</span>
         </span>
       ))}
     </>
@@ -74,21 +54,15 @@ export default function ClientsMarquee() {
       }}
       aria-label="Наши клиенты"
     >
-      {/* Track is doubled so the loop is seamless: [items][items] */}
+      {/* Track doubled for seamless loop */}
       <div
         className="marquee-track"
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          width: 'max-content',
-        }}
+        style={{ display: 'flex', alignItems: 'center', width: 'max-content' }}
       >
-        {/* First copy */}
-        <span className="inline-flex items-center" style={{ paddingRight: '48px' }}>
+        <span style={{ display: 'inline-flex', alignItems: 'center', paddingRight: '40px' }}>
           <MarqueeItems />
         </span>
-        {/* Second copy — seamless continuation */}
-        <span className="inline-flex items-center" style={{ paddingRight: '48px' }}>
+        <span style={{ display: 'inline-flex', alignItems: 'center', paddingRight: '40px' }}>
           <MarqueeItems />
         </span>
       </div>
