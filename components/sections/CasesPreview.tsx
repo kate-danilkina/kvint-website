@@ -11,7 +11,7 @@ export default function CasesPreview() {
   const preview = cases.slice(0, 4)
 
   return (
-    <section className="py-20 lg:py-28 bg-bg-2/40">
+    <section className="py-16 md:py-20 bg-bg-2/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-14">
           <p className="eyebrow mb-4">Кейсы</p>

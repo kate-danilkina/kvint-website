@@ -11,7 +11,7 @@ export default function ContactSection() {
   const [tab, setTab] = useState<Tab>('project')
 
   return (
-    <section id="contact" className="py-20 lg:py-28 bg-bg-2/60">
+    <section id="contact" className="py-16 md:py-20 bg-bg-2/60">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-10">
           <p className="eyebrow mb-4">Контакт</p>
@@ -20,7 +20,7 @@ export default function ContactSection() {
             <span className="text-outline">работу?</span>
           </h2>
           <p className="text-muted">
-            Оставьте заявку — ответим в течение рабочего дня
+            Оставьте заявку — вернемся в течение 2 часов
           </p>
         </AnimatedSection>
 

@@ -5,7 +5,7 @@ import { Quote } from 'lucide-react'
 
 export default function Team() {
   return (
-    <section id="about" className="py-20 lg:py-28 bg-bg-2/40">
+    <section id="about" className="py-16 md:py-20 bg-bg-2/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-14">
           <p className="eyebrow mb-4">Команда</p>
@@ -49,8 +49,7 @@ export default function Team() {
               <div className="relative pl-4">
                 <Quote size={18} className="absolute -left-1 top-0 text-accent/30" />
                 <p className="text-muted text-sm leading-relaxed italic">
-                  «Я не строю конвейер. Каждый проект — это личная ответственность.
-                  Заходим как партнёры, а не подрядчики. Ваш маркетинг важен мне так же, как вам.»
+                  «Я не строю конвейер. Каждый проект — личная ответственность. Заходим как партнёры, а не подрядчики. Ваш маркетинг важен мне так же, как вам»
                 </p>
               </div>
             </div>
@@ -65,6 +64,8 @@ export default function Team() {
                 { initials: 'НК', name: 'Специалист по рекламе', role: 'Performance Lead', spec: 'Яндекс.Директ, VK, таргет' },
                 { initials: 'МВ', name: 'SEO-специалист', role: 'SEO Lead', spec: 'Техническое SEO, контент' },
                 { initials: 'ТО', name: 'SMM-менеджер', role: 'Content & SMM', spec: 'Стратегия, контент, посевы' },
+                { initials: 'МЭ', name: 'Марта Эйнар', role: 'Project Manager', spec: 'Координирует проекты, контролирует сроки и коммуникацию с клиентами' },
+                { initials: 'ДК', name: 'Дэниел Краус', role: 'Performance-специалист', spec: 'Настройка и оптимизация платного трафика, Яндекс.Директ, VK Ads' },
               ].map((m) => (
                 <div key={m.initials} className="glass-card p-4 flex items-center gap-4">
                   <div className="w-10 h-10 rounded-xl bg-bg-2 border border-white/10 flex items-center justify-center flex-shrink-0">

@@ -9,7 +9,6 @@ import { trackGoal } from '@/lib/utils'
 
 interface FormData {
   name: string
-  company: string
   contact: string
   message: string
 }
@@ -55,25 +54,16 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Input
-          id="name"
-          label="Имя"
-          placeholder="Иван Иванов"
-          error={errors.name?.message}
-          {...register('name', { required: 'Введите имя' })}
-        />
-        <Input
-          id="company"
-          label="Компания"
-          placeholder="ООО «Название»"
-          error={errors.company?.message}
-          {...register('company')}
-        />
-      </div>
+      <Input
+        id="name"
+        label="Имя"
+        placeholder="Как к вам обращаться"
+        error={errors.name?.message}
+        {...register('name', { required: 'Введите имя' })}
+      />
       <Input
         id="contact"
-        label="Телефон или Telegram"
+        label="Контакт для связи"
         placeholder="+7 (999) 000-00-00 или @username"
         error={errors.contact?.message}
         {...register('contact', { required: 'Введите контакт' })}

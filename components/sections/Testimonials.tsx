@@ -14,7 +14,7 @@ export default function Testimonials() {
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi])
 
   return (
-    <section className="py-20 lg:py-28">
+    <section className="py-16 md:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="flex items-end justify-between mb-10">
           <div>

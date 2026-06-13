@@ -12,8 +12,8 @@ export default function Footer() {
               КВИНТ
             </Link>
             <p className="mt-3 text-sm text-muted leading-relaxed">
-              Бутиковое маркетинговое агентство.<br />
-              Системный маркетинг для бизнеса.
+              Бутиковое маркетинговое агентство<br />
+              Системный маркетинг для бизнеса
             </p>
           </div>
 
