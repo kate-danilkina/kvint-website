@@ -147,8 +147,8 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.65 }}
               >
-                Маркетинг, который не сливает бюджет.{' '}
-                Приходим как партнёры — уходим когда система работает сама
+                Реклама не сливает бюджет. Приходим как партнёры —{' '}
+                уходим, когда система работает сама
               </motion.p>
 
               {/* Stats row */}
@@ -164,9 +164,9 @@ export default function Hero() {
                     className="font-sans font-extrabold text-text tabular-nums"
                     style={{ fontSize: 'clamp(36px, 4vw, 56px)', lineHeight: 1 }}
                   >
-                    {statsVisible ? count124 : 0}+
+                    {statsVisible ? count124 : 0}
                   </div>
-                  <div className="text-muted mt-1 text-sm">проектов</div>
+                  <div className="text-muted mt-1 text-sm">проекта</div>
                 </div>
 
                 <div style={{ whiteSpace: 'nowrap' }}>
@@ -258,7 +258,7 @@ export default function Hero() {
                   strokeWidth="1.5"
                   opacity="0.12"
                 >
-                  124+
+                  124
                 </text>
               </motion.svg>
             </div>
