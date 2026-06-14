@@ -23,15 +23,12 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="py-16 md:py-20 bg-bg-2/40">
+    <section className="py-16 bg-bg-2/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-14">
-          <p className="eyebrow mb-4">Что делаем</p>
-          <h2 className="section-title mb-4">
-            Полный спектр{' '}
-            <span className="text-outline">инструментов</span>
-          </h2>
-          <p className="text-muted max-w-xl mx-auto">
+        <AnimatedSection className="mb-14">
+          <p className="eyebrow mb-4">Инструменты под задачу</p>
+          <h2 className="section-title mb-4">Полный спектр инструментов</h2>
+          <p className="text-muted max-w-xl">
             Выбираем инструменты под задачу, а не под прайс. Всё в связке — не по отдельности
           </p>
         </AnimatedSection>
@@ -39,7 +36,7 @@ export default function Services() {
         {/* Flagship product */}
         <AnimatedSection className="mb-8">
           <div
-            className="glass-card p-6 sm:p-8 border-accent/20 relative overflow-hidden"
+            className="glass-card p-6 sm:p-8 relative overflow-hidden"
             style={{ borderColor: 'rgba(26,110,255,0.2)' }}
           >
             <div className="absolute top-0 left-0 w-1 h-full bg-accent rounded-l-2xl" />
@@ -68,13 +65,19 @@ export default function Services() {
           </div>
         </AnimatedSection>
 
-        {/* Services grid */}
+        {/* Services grid — solid bg cards */}
         <AnimatedGrid className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-10">
           {services.map((s) => {
             const Icon = iconMap[s.icon]
             return (
               <AnimatedItem key={s.id}>
-                <div className="glass-card glass-card-hover p-4 flex items-center gap-3">
+                <div
+                  className="p-4 flex items-center gap-3 rounded-2xl transition-all duration-200 hover:-translate-y-0.5"
+                  style={{
+                    background: '#12121A',
+                    borderTop: '1px solid rgba(255,255,255,0.08)',
+                  }}
+                >
                   <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
                     <Icon size={16} className="text-accent" />
                   </div>

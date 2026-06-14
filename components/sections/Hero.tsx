@@ -1,51 +1,107 @@
 'use client'
 
-import { useState, useRef } from 'react'
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
-import { ArrowDown, FileText } from 'lucide-react'
+import { useState, useRef, useEffect, useMemo } from 'react'
+import { motion, useScroll, useTransform, useReducedMotion, useInView } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import LeadMagnetPopup from '@/components/shared/LeadMagnetPopup'
 import { trackGoal } from '@/lib/utils'
 
+function useCountUp(to: number, duration = 1500, active = false) {
+  const [val, setVal] = useState(0)
+  useEffect(() => {
+    if (!active) return
+    let start: number | null = null
+    const step = (ts: number) => {
+      if (!start) start = ts
+      const progress = Math.min((ts - start) / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setVal(Math.floor(eased * to))
+      if (progress < 1) requestAnimationFrame(step)
+    }
+    requestAnimationFrame(step)
+  }, [active, to, duration])
+  return val
+}
+
+function AnimatedWord({
+  word,
+  startDelay,
+  className,
+}: {
+  word: string
+  startDelay: number
+  className?: string
+}) {
+  const reduced = useReducedMotion()
+  return (
+    <span className={`inline-block ${className ?? ''}`} style={{ whiteSpace: 'nowrap' }}>
+      {word.split('').map((ch, i) => (
+        <motion.span
+          key={i}
+          style={{ display: 'inline-block' }}
+          initial={reduced ? {} : { opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: startDelay + i * 0.02, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {ch}
+        </motion.span>
+      ))}
+    </span>
+  )
+}
+
+function GlitchWord({ word, startDelay }: { word: string; startDelay: number }) {
+  const reduced = useReducedMotion()
+  const [glitch, setGlitch] = useState(false)
+  const offsets = useMemo(() => word.split('').map(() => (Math.random() - 0.5) * 8), []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  return (
+    <span
+      className="text-outline inline-block"
+      style={{ whiteSpace: 'nowrap', cursor: 'default' }}
+      onMouseEnter={() => !reduced && setGlitch(true)}
+      onMouseLeave={() => setGlitch(false)}
+    >
+      {word.split('').map((ch, i) => (
+        <motion.span
+          key={i}
+          style={{ display: 'inline-block' }}
+          initial={reduced ? {} : { opacity: 0, y: 60 }}
+          animate={glitch ? { opacity: 1, y: offsets[i] } : { opacity: 1, y: 0 }}
+          transition={
+            glitch
+              ? { duration: 0.4, ease: 'easeInOut' }
+              : { duration: 0.5, delay: startDelay + i * 0.02, ease: [0.22, 1, 0.36, 1] }
+          }
+        >
+          {ch}
+        </motion.span>
+      ))}
+    </span>
+  )
+}
+
 export default function Hero() {
   const [popupOpen, setPopupOpen] = useState(false)
   const ref = useRef<HTMLElement>(null)
-  const reducedMotion = useReducedMotion()
+  const statsRef = useRef<HTMLDivElement>(null)
+  const reduced = useReducedMotion()
+
+  const statsVisible = useInView(statsRef, { once: true, margin: '-60px' })
+  const count120 = useCountUp(120, 1500, statsVisible)
+  const count8 = useCountUp(8, 1500, statsVisible)
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const y = useTransform(scrollYProgress, [0, 1], reducedMotion ? ['0%', '0%'] : ['0%', '30%'])
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
-
-  const wordVariants = {
-    hidden: { opacity: 0, y: 24 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
-    }),
-  }
-
-  const handleLeadMagnet = () => {
-    setPopupOpen(true)
-    trackGoal('lead_magnet_open')
-  }
+  const bgY = useTransform(scrollYProgress, [0, 1], reduced ? ['0%', '0%'] : ['0%', '25%'])
+  const fadeOut = useTransform(scrollYProgress, [0, 0.8], [1, 0])
 
   return (
     <>
-      <section
-        ref={ref}
-        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
-      >
-        {/* Parallax background */}
-        <motion.div
-          style={{ y }}
-          className="absolute inset-0 pointer-events-none"
-          aria-hidden="true"
-        >
-          {/* Gradient glow */}
-          <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-accent/5 blur-[120px]" />
-          <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-accent/3 blur-[100px]" />
-          {/* Grid */}
+      <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden pt-24 pb-32">
+        <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none" aria-hidden>
+          <div className="absolute top-0 left-0 w-[700px] h-[700px] rounded-full bg-accent/5 blur-[140px]" />
+          <div className="absolute bottom-1/3 right-1/4 w-[350px] h-[350px] rounded-full bg-accent/3 blur-[100px]" />
           <div
             className="absolute inset-0 opacity-[0.03]"
             style={{
@@ -57,117 +113,156 @@ export default function Hero() {
         </motion.div>
 
         <motion.div
-          style={{ opacity }}
-          className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+          style={{ opacity: fadeOut }}
+          className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         >
-          {/* Eyebrow */}
-          <motion.p
-            className="eyebrow mb-6"
-            initial={reducedMotion ? {} : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Маркетинговый штаб для бизнеса
-          </motion.p>
-
-          {/* H1 */}
-          <h1
-            className="font-sans font-bold leading-[1.05] mb-6"
-            style={{ fontSize: 'clamp(36px, 8vw, 96px)' }}
-          >
-            {['Внедряем', 'контролируемую'].map((word, i) => (
-              <motion.span
-                key={word}
-                custom={i}
-                initial={reducedMotion ? {} : 'hidden'}
-                animate="visible"
-                variants={wordVariants}
-                className="inline-block mr-[0.25em] text-text"
+          <div className="flex items-center gap-16">
+            {/* Left: content */}
+            <div className="w-full max-w-[680px]">
+              <motion.p
+                className="eyebrow mb-6"
+                initial={reduced ? {} : { opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
               >
-                {word}
-              </motion.span>
-            ))}
-            <motion.span
-              custom={2}
-              initial={reducedMotion ? {} : 'hidden'}
-              animate="visible"
-              variants={wordVariants}
-              className="inline-block text-outline"
-            >
-              систему
-            </motion.span>
-            <br />
-            {['маркетинга'].map((word, i) => (
-              <motion.span
-                key={word}
-                custom={i + 3}
-                initial={reducedMotion ? {} : 'hidden'}
-                animate="visible"
-                variants={wordVariants}
-                className="inline-block mr-[0.25em] text-text"
+                Маркетинговый штаб для бизнеса
+              </motion.p>
+
+              <h1
+                className="font-sans font-bold leading-[1.05] mb-6"
+                style={{ fontSize: 'clamp(36px, 6vw, 82px)' }}
               >
-                {word}
-              </motion.span>
-            ))}
-          </h1>
+                <AnimatedWord word="Внедряем" startDelay={0} className="text-text" />
+                {' '}
+                <AnimatedWord word="контролируемую" startDelay={0.17} className="text-text" />
+                {' '}
+                <GlitchWord word="систему" startDelay={0.45} />
+                <br />
+                <AnimatedWord word="маркетинга" startDelay={0.59} className="text-text" />
+              </h1>
 
-          {/* Subtitle */}
-          <motion.p
-            className="text-muted text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto mb-10"
-            initial={reducedMotion ? {} : { opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            Отвечаем за стабильный результат и сервис через полное погружение.
-            Каждый проект — под личным контролем фаундера
-          </motion.p>
+              <motion.p
+                className="text-muted text-lg leading-relaxed mb-10 max-w-xl"
+                initial={reduced ? {} : { opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.65 }}
+              >
+                Маркетинг, который не сливает бюджет.{' '}
+                Приходим как партнёры — уходим когда система работает сама
+              </motion.p>
 
-          {/* CTAs */}
-          <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            initial={reducedMotion ? {} : { opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.65 }}
-          >
-            <Button
-              variant="primary"
-              size="lg"
-              className="w-full sm:w-auto"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Обсудить проект
-            </Button>
-            <Button
-              variant="secondary"
-              size="lg"
-              className="w-full sm:w-auto"
-              onClick={() => document.getElementById('strategy')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Получить стратсессию
-            </Button>
-            <button
-              onClick={handleLeadMagnet}
-              className="text-sm text-muted hover:text-accent transition-colors underline underline-offset-4 flex items-center gap-1.5"
-            >
-              <FileText size={14} />
-              Лень листать → пришли презентацию
-            </button>
-          </motion.div>
+              {/* Stats row */}
+              <motion.div
+                ref={statsRef}
+                className="grid grid-cols-2 sm:grid-cols-3 gap-8 mb-10"
+                initial={reduced ? {} : { opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.75 }}
+              >
+                <div>
+                  <div
+                    className="font-sans font-extrabold text-text tabular-nums"
+                    style={{ fontSize: 'clamp(48px, 6vw, 72px)', lineHeight: 1 }}
+                  >
+                    {statsVisible ? count120 : 0}+
+                  </div>
+                  <div className="text-muted mt-1 text-sm">проектов</div>
+                </div>
 
-          {/* Scroll indicator */}
-          <motion.div
-            className="mt-16 flex justify-center"
-            initial={reducedMotion ? {} : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2 }}
-          >
-            <motion.div
-              animate={reducedMotion ? {} : { y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                <div>
+                  <div
+                    className="font-sans font-extrabold text-text tabular-nums"
+                    style={{ fontSize: 'clamp(48px, 6vw, 72px)', lineHeight: 1 }}
+                  >
+                    {statsVisible ? count8 : 0} лет
+                  </div>
+                  <div className="text-muted mt-1 text-sm">в маркетинге</div>
+                </div>
+
+                <div className="col-span-2 sm:col-span-1">
+                  <motion.div
+                    className="font-sans font-extrabold text-text"
+                    style={{ fontSize: 'clamp(30px, 3.5vw, 48px)', lineHeight: 1 }}
+                    initial={reduced ? {} : { opacity: 0 }}
+                    animate={statsVisible ? { opacity: 1 } : {}}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                  >
+                    от 80 000 ₽
+                  </motion.div>
+                  <div className="text-muted mt-1 text-sm">стоимость входа</div>
+                </div>
+              </motion.div>
+
+              {/* CTAs */}
+              <motion.div
+                className="flex flex-col sm:flex-row items-start gap-4"
+                initial={reduced ? {} : { opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.85 }}
+              >
+                <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Обсудить проект
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  onClick={() => document.getElementById('strategy')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Записаться на диагностику
+                </Button>
+              </motion.div>
+
+              <motion.div
+                className="mt-5"
+                initial={reduced ? {} : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.95 }}
+              >
+                <button
+                  onClick={() => { setPopupOpen(true); trackGoal('lead_magnet_open') }}
+                  className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-accent transition-colors duration-200"
+                >
+                  Получить презентацию агентства
+                  <ArrowRight size={13} />
+                </button>
+              </motion.div>
+            </div>
+
+            {/* Right: decorative outline number (desktop only) */}
+            <div
+              className="hidden lg:flex flex-1 items-center justify-center flex-shrink-0 select-none"
+              aria-hidden
             >
-              <ArrowDown size={20} className="text-muted/40" />
-            </motion.div>
-          </motion.div>
+              <motion.svg
+                viewBox="0 0 360 240"
+                width={340}
+                height={240}
+                initial={reduced ? {} : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.2, delay: 0.4 }}
+              >
+                <text
+                  x="50%"
+                  y="55%"
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                  fontFamily="Arial Black, sans-serif"
+                  fontWeight="900"
+                  fontSize="220"
+                  fill="none"
+                  stroke="#1A6EFF"
+                  strokeWidth="1.5"
+                  opacity="0.12"
+                >
+                  120
+                </text>
+              </motion.svg>
+            </div>
+          </div>
         </motion.div>
       </section>
 

@@ -108,12 +108,11 @@ export default function LeadMagnetPopup({ isOpen, onClose }: Props) {
                 </div>
               ) : (
                 <>
-                  <p className="eyebrow mb-3">Лид-магнит</p>
                   <h3 className="text-xl sm:text-2xl font-bold text-text mb-2">
-                    Пришлём презентацию — сразу
+                    Посмотрите, как мы работаем
                   </h3>
                   <p className="text-muted text-sm mb-6">
-                    Укажи email или Telegram — пришлём PDF-презентацию агентства
+                    Пришлём презентацию агентства — сразу на почту или в Telegram
                   </p>
 
                   {/* Type toggle */}

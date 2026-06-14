@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Check, AlertCircle, Send } from 'lucide-react'
+import { Check, AlertCircle, Send, ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
 import { trackGoal } from '@/lib/utils'
@@ -47,7 +48,13 @@ export default function ContactForm() {
           <Check size={32} className="text-accent" />
         </div>
         <h3 className="text-xl font-bold text-text mb-2">Заявка отправлена!</h3>
-        <p className="text-muted text-sm">Мы свяжемся с вами в течение рабочего дня.</p>
+        <p className="text-muted text-sm">
+          Спасибо — вернёмся в течение 2 часов.{' '}
+          Пока можно посмотреть наши{' '}
+          <Link href="/cases" className="text-accent hover:underline inline-flex items-center gap-0.5">
+            кейсы <ArrowRight size={12} />
+          </Link>
+        </p>
       </div>
     )
   }

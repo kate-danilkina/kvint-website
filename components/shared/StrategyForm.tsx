@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Check, AlertCircle, Send } from 'lucide-react'
+import { Check, AlertCircle, Send, ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
 import { trackGoal } from '@/lib/utils'
@@ -59,7 +60,13 @@ export default function StrategyForm() {
           <Check size={32} className="text-accent" />
         </div>
         <h3 className="text-xl font-bold text-text mb-2">Заявка отправлена!</h3>
-        <p className="text-muted text-sm">Мы свяжемся в течение рабочего дня для согласования времени.</p>
+        <p className="text-muted text-sm">
+          Спасибо — вернёмся в течение 2 часов.{' '}
+          Пока можно посмотреть наши{' '}
+          <Link href="/cases" className="text-accent hover:underline inline-flex items-center gap-0.5">
+            кейсы <ArrowRight size={12} />
+          </Link>
+        </p>
       </div>
     )
   }
@@ -82,37 +89,37 @@ export default function StrategyForm() {
       />
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="s-niche" className="text-sm font-medium text-muted font-grotesk">
+        <label htmlFor="s-niche" className="text-sm font-medium text-muted font-grotesk flex items-center gap-2">
           Ниша бизнеса
+          <span className="text-xs text-muted/50 font-normal">(необязательно)</span>
         </label>
         <select
           id="s-niche"
           className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none"
-          {...register('niche', { required: 'Выберите нишу' })}
+          {...register('niche')}
         >
-          <option value="" disabled>Выберите нишу</option>
+          <option value="">Выберите нишу</option>
           {niches.map((n) => (
             <option key={n} value={n} className="bg-bg-2">{n}</option>
           ))}
         </select>
-        {errors.niche && <p className="text-xs text-red-400 font-grotesk">{errors.niche.message}</p>}
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="s-budget" className="text-sm font-medium text-muted font-grotesk">
+        <label htmlFor="s-budget" className="text-sm font-medium text-muted font-grotesk flex items-center gap-2">
           Текущий маркетинговый бюджет
+          <span className="text-xs text-muted/50 font-normal">(необязательно)</span>
         </label>
         <select
           id="s-budget"
           className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none"
-          {...register('budget', { required: 'Выберите бюджет' })}
+          {...register('budget')}
         >
-          <option value="" disabled>Выберите диапазон</option>
+          <option value="">Выберите диапазон</option>
           {budgets.map((b) => (
             <option key={b} value={b} className="bg-bg-2">{b}</option>
           ))}
         </select>
-        {errors.budget && <p className="text-xs text-red-400 font-grotesk">{errors.budget.message}</p>}
       </div>
 
       {status === 'error' && (

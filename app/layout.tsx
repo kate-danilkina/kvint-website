@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Montserrat, Space_Grotesk } from 'next/font/google'
 import Script from 'next/script'
 import MessengerWidget from '@/components/shared/MessengerWidget'
+import CustomCursor from '@/components/shared/CustomCursor'
 import './globals.css'
 
 const montserrat = Montserrat({
@@ -94,6 +95,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="noise-overlay" aria-hidden="true" />
         {children}
         <MessengerWidget />
+        <CustomCursor />
       </body>
     </html>
   )
