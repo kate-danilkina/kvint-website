@@ -19,6 +19,12 @@ export default function ContactSection() {
           <p className="text-muted">
             Оставьте заявку — вернемся в течение 2 часов
           </p>
+          <a
+            href="tel:+79930798655"
+            className="inline-block mt-4 text-lg font-semibold text-text hover:text-accent transition-colors duration-200"
+          >
+            +7 993 079 86 55
+          </a>
         </AnimatedSection>
 
         <AnimatedSection delay={0.1}>

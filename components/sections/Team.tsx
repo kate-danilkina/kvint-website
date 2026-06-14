@@ -35,7 +35,7 @@ export default function Team() {
               <div className="grid grid-cols-3 gap-4 mb-6 p-4 bg-white/3 rounded-xl border border-white/5">
                 {[
                   { value: '8+', label: 'лет в маркетинге' },
-                  { value: '120+', label: 'проектов' },
+                  { value: '124+', label: 'проектов' },
                   { value: '100%', label: 'личный контроль' },
                 ].map((s) => (
                   <div key={s.label} className="text-center">

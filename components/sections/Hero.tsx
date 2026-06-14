@@ -89,7 +89,7 @@ export default function Hero() {
   const reduced = useReducedMotion()
 
   const statsVisible = useInView(statsRef, { once: true, margin: '-60px' })
-  const count120 = useCountUp(120, 1500, statsVisible)
+  const count124 = useCountUp(124, 1500, statsVisible)
   const count8 = useCountUp(8, 1500, statsVisible)
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
@@ -154,35 +154,35 @@ export default function Hero() {
               {/* Stats row */}
               <motion.div
                 ref={statsRef}
-                className="grid grid-cols-2 sm:grid-cols-3 gap-8 mb-10"
+                className="flex flex-row flex-wrap gap-x-12 gap-y-6 mb-10"
                 initial={reduced ? {} : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.75 }}
               >
-                <div>
+                <div style={{ whiteSpace: 'nowrap' }}>
                   <div
                     className="font-sans font-extrabold text-text tabular-nums"
-                    style={{ fontSize: 'clamp(48px, 6vw, 72px)', lineHeight: 1 }}
+                    style={{ fontSize: 'clamp(36px, 4vw, 56px)', lineHeight: 1 }}
                   >
-                    {statsVisible ? count120 : 0}+
+                    {statsVisible ? count124 : 0}+
                   </div>
                   <div className="text-muted mt-1 text-sm">проектов</div>
                 </div>
 
-                <div>
+                <div style={{ whiteSpace: 'nowrap' }}>
                   <div
                     className="font-sans font-extrabold text-text tabular-nums"
-                    style={{ fontSize: 'clamp(48px, 6vw, 72px)', lineHeight: 1 }}
+                    style={{ fontSize: 'clamp(36px, 4vw, 56px)', lineHeight: 1 }}
                   >
                     {statsVisible ? count8 : 0} лет
                   </div>
                   <div className="text-muted mt-1 text-sm">в маркетинге</div>
                 </div>
 
-                <div className="col-span-2 sm:col-span-1">
+                <div style={{ whiteSpace: 'nowrap' }}>
                   <motion.div
                     className="font-sans font-extrabold text-text"
-                    style={{ fontSize: 'clamp(30px, 3.5vw, 48px)', lineHeight: 1 }}
+                    style={{ fontSize: 'clamp(36px, 4vw, 56px)', lineHeight: 1 }}
                     initial={reduced ? {} : { opacity: 0 }}
                     animate={statsVisible ? { opacity: 1 } : {}}
                     transition={{ duration: 0.8, delay: 0.3 }}
@@ -238,8 +238,8 @@ export default function Hero() {
               aria-hidden
             >
               <motion.svg
-                viewBox="0 0 360 240"
-                width={340}
+                viewBox="0 0 480 240"
+                width={420}
                 height={240}
                 initial={reduced ? {} : { opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -252,13 +252,13 @@ export default function Hero() {
                   dominantBaseline="central"
                   fontFamily="Arial Black, sans-serif"
                   fontWeight="900"
-                  fontSize="220"
+                  fontSize="200"
                   fill="none"
                   stroke="#1A6EFF"
                   strokeWidth="1.5"
                   opacity="0.12"
                 >
-                  120
+                  124+
                 </text>
               </motion.svg>
             </div>

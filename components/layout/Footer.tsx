@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Mail, Send } from 'lucide-react'
+import { Mail, Send, Phone } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -53,6 +53,13 @@ export default function Footer() {
               >
                 <Send size={15} />
                 @kvint_agency
+              </a>
+              <a
+                href="tel:+79930798655"
+                className="inline-flex items-center gap-2 text-sm text-muted hover:text-accent transition-colors"
+              >
+                <Phone size={15} />
+                +7 993 079 86 55
               </a>
             </div>
           </div>

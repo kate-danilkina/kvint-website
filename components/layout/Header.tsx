@@ -56,7 +56,13 @@ export default function Header() {
           </nav>
 
           {/* CTA */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-4">
+            <a
+              href="tel:+79930798655"
+              className="text-sm text-muted hover:text-text transition-colors duration-200 font-grotesk"
+            >
+              +7 993 079 86 55
+            </a>
             <Button
               variant="primary"
               size="sm"
