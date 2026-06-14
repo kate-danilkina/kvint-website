@@ -4,16 +4,24 @@ import { sendTelegramNotification } from '@/lib/telegram'
 import { appendToSheet } from '@/lib/sheets'
 
 export async function POST(req: NextRequest) {
+  console.log('[send-form] handler fired')
+  console.log('[send-form] env check', {
+    hasTGToken: !!process.env.TELEGRAM_BOT_TOKEN,
+    hasChatId: !!process.env.TELEGRAM_CHAT_ID,
+    hasResend: !!process.env.RESEND_API_KEY,
+    toEmail: process.env.RESEND_TO_EMAIL,
+  })
+
   try {
     const body = await req.json()
     const { name, company, contact, message, niche, budget, formType } = body
+    console.log('[send-form] body', { name, formType, hasContact: !!contact })
 
     if (!name || !contact) {
       return NextResponse.json({ success: false, message: 'Заполните обязательные поля' }, { status: 400 })
     }
 
     const isStrategy = formType === 'strategy'
-
     const emoji = isStrategy ? '📅' : '📩'
     const tgText =
       `${emoji} <b>${isStrategy ? 'Заявка: Диагностика (10 000 ₽)' : 'Заявка: Обсудить проект'}</b>\n\n` +
@@ -25,22 +33,35 @@ export async function POST(req: NextRequest) {
       (message ? `\n💬 Задача:\n${message}\n` : '') +
       `\n🕐 ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}`
 
-    await Promise.allSettled([
-      sendFormNotification({ name, company, contact, message, niche, budget, formType }),
-      sendTelegramNotification(tgText),
-      appendToSheet([
-        new Date().toISOString(),
-        formType,
-        name,
-        contact,
-        company || '',
-        message || niche || '',
-      ]),
-    ])
+    // 1. Telegram first (primary notification)
+    try {
+      await sendTelegramNotification(tgText)
+    } catch (tgErr) {
+      console.error('[send-form] Telegram error:', tgErr)
+    }
+
+    // 2. Email notification
+    try {
+      await sendFormNotification({ name, company, contact, message, niche, budget, formType })
+      console.log('[send-form] email sent')
+    } catch (emailErr) {
+      console.error('[send-form] email error:', emailErr)
+    }
+
+    // 3. Sheets (non-critical, fire-and-forget)
+    appendToSheet([
+      new Date().toISOString(),
+      formType,
+      name,
+      contact,
+      company || '',
+      message || niche || '',
+    ]).catch((err) => console.error('[send-form] sheets error:', err))
 
     return NextResponse.json({ success: true, message: 'Заявка отправлена!' })
   } catch (error) {
-    console.error('send-form error:', error)
-    return NextResponse.json({ success: false, message: 'Ошибка сервера' }, { status: 500 })
+    const err = error as Error
+    console.error('[send-form] fatal error:', err)
+    return NextResponse.json({ success: false, error: err.message }, { status: 500 })
   }
 }

@@ -5,7 +5,7 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { MessageCircle, X, Send } from 'lucide-react'
 
 // REPLACE with real username/phone before deploying
-const TELEGRAM_URL = 'https://t.me/kate_danilkina'
+const TELEGRAM_URL = 'https://t.me/kvint_agency'
 const WHATSAPP_URL = 'https://wa.me/+79021848655'
 const MAX_URL = 'https://max.ru/REPLACE_USERNAME'
 

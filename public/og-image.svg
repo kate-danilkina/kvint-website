@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="centerGlow" cx="50%" cy="48%" r="45%">
+      <stop offset="0%" stop-color="#1A6EFF" stop-opacity="0.18"/>
+      <stop offset="60%" stop-color="#1A6EFF" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#0A0A0F" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cornerGlow1" cx="0%" cy="0%" r="60%">
+      <stop offset="0%" stop-color="#1A6EFF" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#0A0A0F" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="textGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="0 0 0 0 0.102  0 0 0 0 0.431  0 0 0 0 1  0 0 0 0.9 0"
+        result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="grid" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+      <line x1="80" y1="0" x2="80" y2="80" stroke="#1A6EFF" stroke-opacity="0.04" stroke-width="1"/>
+      <line x1="0" y1="80" x2="80" y2="80" stroke="#1A6EFF" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="1200" height="630" fill="#0A0A0F"/>
+
+  <!-- Subtle grid overlay -->
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Corner accent glow (top-left) -->
+  <rect width="1200" height="630" fill="url(#cornerGlow1)"/>
+
+  <!-- Central blue glow behind text -->
+  <ellipse cx="600" cy="295" rx="540" ry="220" fill="url(#centerGlow)"/>
+
+  <!-- КВИНТ — outline text with glow -->
+  <text
+    x="600"
+    y="300"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-family="Arial Black, Arial, sans-serif"
+    font-weight="900"
+    font-size="196"
+    fill="none"
+    stroke="#1A6EFF"
+    stroke-width="2.5"
+    paint-order="stroke"
+    letter-spacing="16"
+    filter="url(#textGlow)">КВИНТ</text>
+
+  <!-- Thin accent line -->
+  <line x1="480" y1="398" x2="720" y2="398" stroke="#1A6EFF" stroke-opacity="0.35" stroke-width="1"/>
+
+  <!-- Subtitle -->
+  <text
+    x="600"
+    y="438"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-family="Arial, sans-serif"
+    font-weight="400"
+    font-size="28"
+    fill="#F0F0F5"
+    fill-opacity="0.55"
+    letter-spacing="6">МАРКЕТИНГОВОЕ АГЕНТСТВО</text>
+
+  <!-- URL tag -->
+  <text
+    x="600"
+    y="560"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-family="Arial, sans-serif"
+    font-weight="400"
+    font-size="18"
+    fill="#1A6EFF"
+    fill-opacity="0.5"
+    letter-spacing="2">kvint.agency</text>
+</svg>

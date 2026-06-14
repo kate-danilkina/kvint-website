@@ -8,7 +8,18 @@
       "mcp__Claude_in_Chrome__navigate",
       "mcp__Claude_in_Chrome__tabs_context_mcp",
       "Bash(npm run *)",
-      "Bash(PATH=/usr/local/bin:__TRACKED_VAR__ npm run build)"
+      "Bash(PATH=/usr/local/bin:__TRACKED_VAR__ npm run build)",
+      "Bash(convert --version)",
+      "Bash(PATH=/usr/local/bin:__TRACKED_VAR__ node -e ' *)",
+      "Bash(PATH=/usr/local/bin:__TRACKED_VAR__ node -e 'require\\('\\\\''sharp'\\\\''\\)')",
+      "Bash(sips --help)",
+      "Bash(python3 -c \"from PIL import Image, ImageDraw, ImageFont; print\\('PIL OK'\\)\")",
+      "Bash(qlmanage -t -s 512 -o /tmp/ \"/Users/rinavern/Desktop/Сайт Квинт/public/icon.svg\")",
+      "Read(//private/tmp/**)",
+      "Bash(sips -z 512 512 /tmp/icon.svg.png --out \"/Users/rinavern/Desktop/Сайт Квинт/public/icon-512.png\")",
+      "Bash(sips -z 192 192 /tmp/icon.svg.png --out \"/Users/rinavern/Desktop/Сайт Квинт/public/icon-192.png\")",
+      "Bash(sips -z 180 180 /tmp/icon.svg.png --out \"/Users/rinavern/Desktop/Сайт Квинт/public/apple-touch-icon.png\")",
+      "Bash(cd \"/Users/рinavern/Desktop/Сайт Квинт\" && PATH=\"/usr/local/bin:$PATH\" npm run build 2>&1)"
     ]
   }
 }
