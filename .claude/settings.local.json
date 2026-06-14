@@ -19,7 +19,10 @@
       "Bash(sips -z 512 512 /tmp/icon.svg.png --out \"/Users/rinavern/Desktop/Сайт Квинт/public/icon-512.png\")",
       "Bash(sips -z 192 192 /tmp/icon.svg.png --out \"/Users/rinavern/Desktop/Сайт Квинт/public/icon-192.png\")",
       "Bash(sips -z 180 180 /tmp/icon.svg.png --out \"/Users/rinavern/Desktop/Сайт Квинт/public/apple-touch-icon.png\")",
-      "Bash(cd \"/Users/рinavern/Desktop/Сайт Квинт\" && PATH=\"/usr/local/bin:$PATH\" npm run build 2>&1)"
+      "Bash(cd \"/Users/рinavern/Desktop/Сайт Квинт\" && PATH=\"/usr/local/bin:$PATH\" npm run build 2>&1)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }
