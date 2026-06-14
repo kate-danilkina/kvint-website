@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { sendPresentationEmail } from '@/lib/email'
 import { sendTelegramNotification } from '@/lib/telegram'
 import { appendToSheet } from '@/lib/sheets'
 
@@ -8,8 +7,6 @@ export async function POST(req: NextRequest) {
   console.log('[send-presentation] env check', {
     hasTGToken: !!process.env.TELEGRAM_BOT_TOKEN,
     hasChatId: !!process.env.TELEGRAM_CHAT_ID,
-    hasResend: !!process.env.RESEND_API_KEY,
-    toEmail: process.env.RESEND_TO_EMAIL,
   })
 
   try {
@@ -40,24 +37,14 @@ export async function POST(req: NextRequest) {
       `Контакт: <code>${contact}</code>\n` +
       `Дата: ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}`
 
-    // 1. Telegram first (primary notification)
+    // Telegram notification
     try {
       await sendTelegramNotification(tgText)
     } catch (tgErr) {
       console.error('[send-presentation] Telegram error:', tgErr)
     }
 
-    // 2. Email (only for email type)
-    if (type === 'email') {
-      try {
-        await sendPresentationEmail(contact)
-        console.log('[send-presentation] presentation email sent to', contact)
-      } catch (emailErr) {
-        console.error('[send-presentation] email error:', emailErr)
-      }
-    }
-
-    // 3. Sheets (non-critical, fire-and-forget)
+    // Sheets (non-critical, fire-and-forget)
     appendToSheet([
       new Date().toISOString(),
       'lead_magnet',
@@ -69,7 +56,7 @@ export async function POST(req: NextRequest) {
 
     const message =
       type === 'email'
-        ? 'Презентация отправлена на ваш email!'
+        ? 'Напишите нам @kvint_agency в Telegram — пришлём сразу!'
         : 'Напишите нам @kvint_agency в Telegram — пришлём сразу!'
 
     return NextResponse.json({ success: true, message })

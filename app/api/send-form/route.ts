@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { sendFormNotification } from '@/lib/email'
 import { sendTelegramNotification } from '@/lib/telegram'
 import { appendToSheet } from '@/lib/sheets'
 
@@ -8,8 +7,6 @@ export async function POST(req: NextRequest) {
   console.log('[send-form] env check', {
     hasTGToken: !!process.env.TELEGRAM_BOT_TOKEN,
     hasChatId: !!process.env.TELEGRAM_CHAT_ID,
-    hasResend: !!process.env.RESEND_API_KEY,
-    toEmail: process.env.RESEND_TO_EMAIL,
   })
 
   try {
@@ -33,22 +30,14 @@ export async function POST(req: NextRequest) {
       (message ? `\n💬 Задача:\n${message}\n` : '') +
       `\n🕐 ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}`
 
-    // 1. Telegram first (primary notification)
+    // 1. Telegram notification
     try {
       await sendTelegramNotification(tgText)
     } catch (tgErr) {
       console.error('[send-form] Telegram error:', tgErr)
     }
 
-    // 2. Email notification
-    try {
-      await sendFormNotification({ name, company, contact, message, niche, budget, formType })
-      console.log('[send-form] email sent')
-    } catch (emailErr) {
-      console.error('[send-form] email error:', emailErr)
-    }
-
-    // 3. Sheets (non-critical, fire-and-forget)
+    // 2. Sheets (non-critical, fire-and-forget)
     appendToSheet([
       new Date().toISOString(),
       formType,
