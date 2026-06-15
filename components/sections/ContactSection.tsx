@@ -25,6 +25,23 @@ export default function ContactSection() {
           >
             +7 993 079 86 55
           </a>
+          {/* Social proof */}
+          <div className="flex items-center justify-center gap-3 mt-5">
+            <div className="flex -space-x-2">
+              {['АМ', 'КС', 'ДВ'].map((initials) => (
+                <div
+                  key={initials}
+                  className="w-8 h-8 rounded-full border-2 border-bg-2 flex items-center justify-center text-[10px] font-bold text-white"
+                  style={{ background: 'linear-gradient(135deg, #1A6EFF, #0044CC)' }}
+                >
+                  {initials}
+                </div>
+              ))}
+            </div>
+            <p className="text-xs text-muted">
+              <span className="text-text font-semibold">124 проекта</span> · ответ за 2 часа · с 2016 года
+            </p>
+          </div>
         </AnimatedSection>
 
         <AnimatedSection delay={0.1}>

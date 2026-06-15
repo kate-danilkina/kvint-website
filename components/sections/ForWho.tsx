@@ -2,6 +2,7 @@
 
 import { Code2, ShoppingBag, Factory, Building2 } from 'lucide-react'
 import AnimatedSection, { AnimatedGrid, AnimatedItem } from '@/components/shared/AnimatedSection'
+import TiltCard from '@/components/shared/TiltCard'
 import { audiences } from '@/lib/data/services'
 
 const iconMap: Record<string, React.ElementType> = {
@@ -25,18 +26,20 @@ export default function ForWho() {
             const Icon = iconMap[a.icon]
             return (
               <AnimatedItem key={a.id}>
-                <div
-                  className="glass-card glass-card-hover p-6 h-full flex flex-col gap-4"
-                  style={{ borderLeft: '2px solid #1A6EFF' }}
-                >
-                  <div className="w-10 h-10 rounded-xl bg-accent/15 flex items-center justify-center">
-                    <Icon size={20} className="text-accent" />
+                <TiltCard className="h-full" maxTilt={6}>
+                  <div
+                    className="glass-card glass-card-hover p-6 h-full flex flex-col gap-4"
+                    style={{ borderLeft: '2px solid #1A6EFF' }}
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-accent/15 flex items-center justify-center">
+                      <Icon size={20} className="text-accent" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-text mb-1">{a.title}</h3>
+                      <p className="text-sm text-muted">{a.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-text mb-1">{a.title}</h3>
-                    <p className="text-sm text-muted">{a.description}</p>
-                  </div>
-                </div>
+                </TiltCard>
               </AnimatedItem>
             )
           })}

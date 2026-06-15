@@ -22,7 +22,11 @@
       "Bash(cd \"/Users/рinavern/Desktop/Сайт Квинт\" && PATH=\"/usr/local/bin:$PATH\" npm run build 2>&1)",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(python3 /Users/rinavern/.claude/skills/ui-ux-pro-max/scripts/search.py \"B2B marketing agency premium dark conversion landing\" --design-system -p \"KVINT Agency\" -f markdown)",
+      "Bash(python3 /Users/rinavern/.claude/skills/ui-ux-pro-max/scripts/search.py \"landing page conversion hero CTA social proof\" --domain landing -n 8)",
+      "mcp__visualize__read_me",
+      "mcp__visualize__show_widget"
     ]
   }
 }

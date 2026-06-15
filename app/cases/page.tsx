@@ -8,9 +8,9 @@ import AnimatedSection, { AnimatedGrid, AnimatedItem } from '@/components/shared
 import { cases } from '@/lib/data/cases'
 
 export const metadata: Metadata = {
-  title: 'Кейсы — результаты клиентов Квинт',
+  title: 'Кейсы агентства Квинт — результаты в IT, финтех, B2B и EdTech',
   description:
-    'Реальные результаты: рост лидов, конверсий и продаж для IT B2B, ритейла, производства и недвижимости. Цифры, которые говорят за себя.',
+    'Реальные кейсы маркетингового агентства Квинт: рост лидов, вывод продуктов на рынок, стратегии для IT-стартапов и B2B компаний по всей России.',
   openGraph: {
     title: 'Кейсы — Квинт',
     description: 'Реальные результаты наших клиентов.',

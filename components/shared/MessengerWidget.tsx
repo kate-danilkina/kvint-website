@@ -44,6 +44,7 @@ const messengers = [
 export default function MessengerWidget() {
   const [open, setOpen] = useState(false)
   const [bounced, setBounced] = useState(false)
+  const [showPing, setShowPing] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const reducedMotion = useReducedMotion()
 
@@ -53,6 +54,21 @@ export default function MessengerWidget() {
     const t = setTimeout(() => setBounced(true), 2000)
     return () => clearTimeout(t)
   }, [reducedMotion])
+
+  // Ping every 8s (first after 5s)
+  useEffect(() => {
+    if (reducedMotion) return
+    const first = setTimeout(() => {
+      setShowPing(true)
+      setTimeout(() => setShowPing(false), 1200)
+    }, 5000)
+    const interval = setInterval(() => {
+      if (open) return
+      setShowPing(true)
+      setTimeout(() => setShowPing(false), 1200)
+    }, 8000)
+    return () => { clearTimeout(first); clearInterval(interval) }
+  }, [reducedMotion, open])
 
   // Click-outside to collapse
   useEffect(() => {
@@ -157,6 +173,14 @@ export default function MessengerWidget() {
           </div>
         )}
       </AnimatePresence>
+
+      {/* Ping ring */}
+      {showPing && !open && (
+        <span
+          className="absolute inset-0 rounded-full border-2 border-accent animate-ping"
+          aria-hidden
+        />
+      )}
 
       {/* Main toggle button */}
       <motion.button

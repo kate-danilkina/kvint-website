@@ -1,18 +1,35 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import AnimatedSection from '@/components/shared/AnimatedSection'
 import { comparisonRows } from '@/lib/data/services'
-import { X, Check } from 'lucide-react'
+import { X } from 'lucide-react'
 
-function ComparisonRow({ row, last }: { row: typeof comparisonRows[0]; last: boolean }) {
-  const [hovered, setHovered] = useState(false)
+function AnimatedCheck({ delay }: { delay: number }) {
+  const ref = useRef<SVGSVGElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-40px' })
 
   return (
+    <svg ref={ref} width="14" height="14" viewBox="0 0 14 14" fill="none" className="mt-0.5 flex-shrink-0">
+      <motion.path
+        d="M2 7l3.5 3.5L12 3"
+        stroke="#1A6EFF"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={inView ? { pathLength: 1, opacity: 1 } : {}}
+        transition={{ duration: 0.4, delay, ease: 'easeOut' }}
+      />
+    </svg>
+  )
+}
+
+function ComparisonRow({ row, index, last }: { row: typeof comparisonRows[0]; index: number; last: boolean }) {
+  return (
     <div
-      className={`grid grid-cols-3 px-4 sm:px-6 py-4 items-start gap-3 ${!last ? 'border-b border-white/5' : ''}`}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      className={`grid grid-cols-3 px-4 sm:px-6 py-4 items-start gap-3 group/row transition-colors duration-150 hover:bg-white/[0.02] ${!last ? 'border-b border-white/5' : ''}`}
     >
       <div className="text-sm text-muted font-grotesk font-medium">{row.feature}</div>
       <div className="flex items-start gap-2 text-sm text-muted/60">
@@ -20,14 +37,10 @@ function ComparisonRow({ row, last }: { row: typeof comparisonRows[0]; last: boo
         <span>{row.competitor}</span>
       </div>
       <div
-        className="flex items-start gap-2 text-sm text-text transition-all duration-200"
-        style={{
-          boxShadow: hovered ? 'inset 3px 0 0 #1A6EFF' : 'inset 3px 0 0 transparent',
-          paddingLeft: 8,
-          marginLeft: -8,
-        }}
+        className="flex items-start gap-2 text-sm text-text transition-all duration-200 group-hover/row:[box-shadow:inset_3px_0_0_#1A6EFF]"
+        style={{ paddingLeft: 8, marginLeft: -8 }}
       >
-        <Check size={14} className="text-accent mt-0.5 flex-shrink-0" />
+        <AnimatedCheck delay={index * 0.08} />
         <span>{row.kvint}</span>
       </div>
     </div>
@@ -47,20 +60,23 @@ export default function Comparison() {
         </AnimatedSection>
 
         <AnimatedSection delay={0.15}>
-          <div className="glass-card overflow-hidden">
-            <div className="grid grid-cols-3 px-4 sm:px-6 py-3 border-b border-white/5">
-              <div className="text-xs text-muted font-grotesk uppercase tracking-wider" />
-              <div className="text-xs text-muted font-grotesk uppercase tracking-wider text-center">
-                Другие
+          {/* overflow-x-auto для мобильного скролла */}
+          <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
+            <div className="glass-card overflow-hidden min-w-[560px]">
+              <div className="grid grid-cols-3 px-4 sm:px-6 py-3 border-b border-white/5">
+                <div className="text-xs text-muted font-grotesk uppercase tracking-wider" />
+                <div className="text-xs text-muted font-grotesk uppercase tracking-wider text-center">
+                  Другие
+                </div>
+                <div className="text-xs font-grotesk uppercase tracking-wider text-center text-accent">
+                  Квинт
+                </div>
               </div>
-              <div className="text-xs font-grotesk uppercase tracking-wider text-center text-accent">
-                Квинт
-              </div>
-            </div>
 
-            {comparisonRows.map((row, i) => (
-              <ComparisonRow key={row.feature} row={row} last={i === comparisonRows.length - 1} />
-            ))}
+              {comparisonRows.map((row, i) => (
+                <ComparisonRow key={row.feature} row={row} index={i} last={i === comparisonRows.length - 1} />
+              ))}
+            </div>
           </div>
         </AnimatedSection>
       </div>

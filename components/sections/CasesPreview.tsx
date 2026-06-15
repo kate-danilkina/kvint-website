@@ -70,22 +70,29 @@ export default function CasesPreview() {
                   {/* Hover sweep line */}
                   <div className="absolute top-0 left-0 right-0 h-[1px] bg-accent origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
 
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-bg/90 backdrop-blur-sm flex flex-col items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10 p-6">
+                    <div className="font-extrabold text-accent tabular-nums text-center" style={{ fontSize: 'clamp(40px, 6vw, 60px)', lineHeight: 1 }}>
+                      {c.mainMetric}
+                    </div>
+                    <p className="text-sm text-muted text-center">{c.metricLabel}</p>
+                    <p className="text-xs text-muted/60 text-center font-grotesk">{c.metricSecondary}</p>
+                    <p className="text-sm text-text/70 text-center mt-2 leading-snug line-clamp-2">{c.task}</p>
+                    <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-accent border border-accent/30 px-3 py-1.5 rounded-lg">
+                      Читать кейс <ArrowRight size={12} />
+                    </span>
+                  </div>
+
                   <div className="flex items-center justify-between">
                     <Badge variant="accent">{c.tag}</Badge>
-                    <ArrowRight
-                      size={15}
-                      className="text-muted group-hover:text-accent group-hover:translate-x-1 transition-all duration-200"
-                    />
+                    <ArrowRight size={15} className="text-muted group-hover:text-accent transition-all duration-200" />
                   </div>
 
                   <div>
                     <h3 className="font-semibold text-text mb-2 group-hover:text-accent transition-colors duration-200">
                       {c.title}
                     </h3>
-                    <div
-                      className="font-bold text-accent tabular-nums"
-                      style={{ fontSize: 'clamp(32px, 5vw, 48px)', lineHeight: 1 }}
-                    >
+                    <div className="font-bold text-accent tabular-nums" style={{ fontSize: 'clamp(32px, 5vw, 48px)', lineHeight: 1 }}>
                       {c.mainMetric}
                     </div>
                     <p className="text-sm text-muted mt-0.5">{c.metricLabel}</p>

@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, useReducedMotion, useInView } from 'fr
 import { ArrowRight } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import LeadMagnetPopup from '@/components/shared/LeadMagnetPopup'
+import MagneticButton from '@/components/shared/MagneticButton'
 import { trackGoal } from '@/lib/utils'
 
 function useCountUp(to: number, duration = 1500, active = false) {
@@ -93,12 +94,13 @@ export default function Hero() {
   const count8 = useCountUp(8, 1500, statsVisible)
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
+  const { scrollY } = useScroll()
   const bgY = useTransform(scrollYProgress, [0, 1], reduced ? ['0%', '0%'] : ['0%', '25%'])
-  const fadeOut = useTransform(scrollYProgress, [0, 0.8], [1, 0])
+  const fadeOut = useTransform(scrollY, reduced ? [0, 0] : [300, 700], [1, 0])
 
   return (
     <>
-      <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden pt-24 pb-32">
+      <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden pt-20 pb-16 sm:pt-24 sm:pb-32">
         <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none" aria-hidden>
           <div className="absolute top-0 left-0 w-[700px] h-[700px] rounded-full bg-accent/5 blur-[140px]" />
           <div className="absolute bottom-1/3 right-1/4 w-[350px] h-[350px] rounded-full bg-accent/3 blur-[100px]" />
@@ -130,7 +132,7 @@ export default function Hero() {
 
               <h1
                 className="font-sans font-bold leading-[1.05] mb-6"
-                style={{ fontSize: 'clamp(36px, 6vw, 82px)' }}
+                style={{ fontSize: 'clamp(32px, 6vw, 82px)' }}
               >
                 <AnimatedWord word="Внедряем" startDelay={0} className="text-text" />
                 {' '}
@@ -179,18 +181,6 @@ export default function Hero() {
                   <div className="text-muted mt-1 text-sm">в маркетинге</div>
                 </div>
 
-                <div style={{ whiteSpace: 'nowrap' }}>
-                  <motion.div
-                    className="font-sans font-extrabold text-text"
-                    style={{ fontSize: 'clamp(36px, 4vw, 56px)', lineHeight: 1 }}
-                    initial={reduced ? {} : { opacity: 0 }}
-                    animate={statsVisible ? { opacity: 1 } : {}}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                  >
-                    от 80 000 ₽
-                  </motion.div>
-                  <div className="text-muted mt-1 text-sm">стоимость входа</div>
-                </div>
               </motion.div>
 
               {/* CTAs */}
@@ -200,13 +190,15 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.85 }}
               >
-                <Button
-                  variant="primary"
-                  size="lg"
-                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                >
-                  Обсудить проект
-                </Button>
+                <MagneticButton>
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  >
+                    Обсудить проект
+                  </Button>
+                </MagneticButton>
                 <Button
                   variant="secondary"
                   size="lg"
