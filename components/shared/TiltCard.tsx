@@ -14,6 +14,11 @@ export default function TiltCard({ children, className, maxTilt = 8 }: Props) {
   const ref = useRef<HTMLDivElement>(null)
   const reduced = useReducedMotion()
 
+  const handleEnter = useCallback(() => {
+    if (reduced || !ref.current) return
+    ref.current.style.willChange = 'transform'
+  }, [reduced])
+
   const handleMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (reduced || !ref.current) return
     const rect = ref.current.getBoundingClientRect()
@@ -25,15 +30,17 @@ export default function TiltCard({ children, className, maxTilt = 8 }: Props) {
   const handleLeave = useCallback(() => {
     if (!ref.current) return
     ref.current.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg) translateZ(0px)'
+    ref.current.style.willChange = 'auto'
   }, [])
 
   return (
     <div
       ref={ref}
       className={cn(className)}
+      onMouseEnter={handleEnter}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      style={{ transition: 'transform 0.2s ease-out', willChange: 'transform' }}
+      style={{ transition: 'transform 0.2s ease-out' }}
     >
       {children}
     </div>

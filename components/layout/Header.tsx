@@ -93,7 +93,7 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-bg/95 backdrop-blur-2xl flex flex-col items-center justify-center gap-8 md:hidden"
+            className="fixed inset-0 z-[60] bg-bg/95 backdrop-blur-2xl flex flex-col items-center justify-center gap-8 md:hidden"
           >
             <nav className="flex flex-col items-center gap-6">
               {navLinks.map((link, i) => (

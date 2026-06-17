@@ -78,7 +78,7 @@ export default function CasesPreview() {
                     <p className="text-sm text-muted text-center">{c.metricLabel}</p>
                     <p className="text-xs text-muted/60 text-center font-grotesk">{c.metricSecondary}</p>
                     <p className="text-sm text-text/70 text-center mt-2 leading-snug line-clamp-2">{c.task}</p>
-                    <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-accent border border-accent/30 px-3 py-1.5 rounded-lg">
+                    <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-accent border border-accent/30 px-3 py-2.5 min-h-[44px] rounded-lg">
                       Читать кейс <ArrowRight size={12} />
                     </span>
                   </div>
@@ -104,6 +104,8 @@ export default function CasesPreview() {
                       <Badge key={tag} variant="muted">{tag}</Badge>
                     ))}
                   </div>
+                  {/* Mobile: task description always visible (hover overlay not triggered on touch) */}
+                  <p className="sm:hidden text-xs text-muted/70 leading-snug line-clamp-2 -mt-1">{c.task}</p>
                 </div>
               </Link>
             </AnimatedItem>

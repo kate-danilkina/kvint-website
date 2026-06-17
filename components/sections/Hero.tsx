@@ -128,7 +128,7 @@ export default function Hero() {
 
               <h1
                 className="font-sans font-bold leading-[1.05] mb-6"
-                style={{ fontSize: 'clamp(32px, 6vw, 82px)' }}
+                style={{ fontSize: 'clamp(36px, 6vw, 82px)' }}
               >
                 <AnimatedWord word="Внедряем" startDelay={0} className="text-text" />
                 {' '}
@@ -181,23 +181,27 @@ export default function Hero() {
 
               {/* CTAs */}
               <motion.div
-                className="flex flex-col sm:flex-row items-start gap-4"
+                className="flex flex-col sm:flex-row items-stretch sm:items-start gap-4"
                 initial={reduced ? {} : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.85 }}
               >
-                <MagneticButton>
-                  <Button
-                    variant="primary"
-                    size="lg"
-                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  >
-                    Обсудить проект
-                  </Button>
-                </MagneticButton>
+                <div className="w-full sm:w-auto">
+                  <MagneticButton>
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      fullWidth
+                      onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                    >
+                      Обсудить проект
+                    </Button>
+                  </MagneticButton>
+                </div>
                 <Button
                   variant="secondary"
                   size="lg"
+                  className="w-full sm:w-auto"
                   onClick={() => document.getElementById('strategy')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   Записаться на диагностику

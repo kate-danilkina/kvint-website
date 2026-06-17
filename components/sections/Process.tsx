@@ -13,7 +13,7 @@ export default function Process() {
   const reduced = useReducedMotion()
 
   return (
-    <section className="py-32">
+    <section className="py-16 lg:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="mb-16">
           <p className="eyebrow mb-4">От хаоса к системе</p>
@@ -35,7 +35,7 @@ export default function Process() {
             />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-6">
             {processSteps.map((step, i) => (
               <motion.div
                 key={step.number}

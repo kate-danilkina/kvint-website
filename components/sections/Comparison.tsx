@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
 import AnimatedSection from '@/components/shared/AnimatedSection'
 import { comparisonRows } from '@/lib/data/services'
 import { X } from 'lucide-react'
@@ -9,6 +9,7 @@ import { X } from 'lucide-react'
 function AnimatedCheck({ delay }: { delay: number }) {
   const ref = useRef<SVGSVGElement>(null)
   const inView = useInView(ref, { once: true, margin: '-40px' })
+  const reduced = useReducedMotion()
 
   return (
     <svg ref={ref} width="14" height="14" viewBox="0 0 14 14" fill="none" className="mt-0.5 flex-shrink-0">
@@ -18,9 +19,9 @@ function AnimatedCheck({ delay }: { delay: number }) {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        initial={{ pathLength: 0, opacity: 0 }}
+        initial={reduced ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
         animate={inView ? { pathLength: 1, opacity: 1 } : {}}
-        transition={{ duration: 0.4, delay, ease: 'easeOut' }}
+        transition={reduced ? { duration: 0 } : { duration: 0.4, delay, ease: 'easeOut' }}
       />
     </svg>
   )
@@ -60,24 +61,28 @@ export default function Comparison() {
         </AnimatedSection>
 
         <AnimatedSection delay={0.15}>
-          {/* overflow-x-auto для мобильного скролла */}
-          <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
-            <div className="glass-card overflow-hidden min-w-[560px]">
-              <div className="grid grid-cols-3 px-4 sm:px-6 py-3 border-b border-white/5">
-                <div className="text-xs text-muted font-grotesk uppercase tracking-wider" />
-                <div className="text-xs text-muted font-grotesk uppercase tracking-wider text-center">
-                  Другие
+          <div className="relative">
+            {/* Right gradient fade — scroll hint on mobile */}
+            <div className="sm:hidden absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-bg to-transparent pointer-events-none z-10" aria-hidden />
+            <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
+              <div className="glass-card overflow-hidden min-w-[560px]">
+                <div className="grid grid-cols-3 px-4 sm:px-6 py-3 border-b border-white/5">
+                  <div className="text-xs text-muted font-grotesk uppercase tracking-wider" />
+                  <div className="text-xs text-muted font-grotesk uppercase tracking-wider text-center">
+                    Другие
+                  </div>
+                  <div className="text-xs font-grotesk uppercase tracking-wider text-center text-accent">
+                    Квинт
+                  </div>
                 </div>
-                <div className="text-xs font-grotesk uppercase tracking-wider text-center text-accent">
-                  Квинт
-                </div>
-              </div>
 
-              {comparisonRows.map((row, i) => (
-                <ComparisonRow key={row.feature} row={row} index={i} last={i === comparisonRows.length - 1} />
-              ))}
+                {comparisonRows.map((row, i) => (
+                  <ComparisonRow key={row.feature} row={row} index={i} last={i === comparisonRows.length - 1} />
+                ))}
+              </div>
             </div>
           </div>
+          <p className="sm:hidden text-xs text-muted/50 text-center mt-3 font-grotesk tracking-wide">← прокрутите →</p>
         </AnimatedSection>
       </div>
     </section>

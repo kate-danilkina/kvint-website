@@ -50,7 +50,7 @@ export default function ContactSection() {
             <button
               id="contact-tab-project"
               onClick={() => setTab('project')}
-              className={`flex-1 py-2.5 px-4 rounded-lg text-sm font-medium transition-all duration-200 ${
+              className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all duration-200 min-h-[44px] ${
                 tab === 'project'
                   ? 'bg-accent text-white shadow-lg'
                   : 'text-muted hover:text-text'
@@ -61,7 +61,7 @@ export default function ContactSection() {
             <button
               id="strategy"
               onClick={() => setTab('strategy')}
-              className={`flex-1 py-2.5 px-4 rounded-lg text-sm font-medium transition-all duration-200 ${
+              className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all duration-200 min-h-[44px] ${
                 tab === 'strategy'
                   ? 'bg-accent text-white shadow-lg'
                   : 'text-muted hover:text-text'

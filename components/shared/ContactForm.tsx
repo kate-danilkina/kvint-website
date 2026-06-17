@@ -32,9 +32,13 @@ export default function ContactForm() {
     register,
     handleSubmit,
     trigger,
+    watch,
     formState: { errors },
     reset,
   } = useForm<FormData>()
+
+  const watchName = watch('name', '')
+  const watchContact = watch('contact', '')
 
   const goNext = async () => {
     const fields: (keyof FormData)[] = step === 1 ? ['name', 'contact'] : ['message']
@@ -116,6 +120,7 @@ export default function ContactForm() {
                 id="name"
                 label="Как вас зовут?"
                 placeholder="Имя или название компании"
+                autoComplete="name"
                 error={errors.name?.message}
                 {...register('name', {
                   required: 'Введите имя',
@@ -127,6 +132,7 @@ export default function ContactForm() {
                 id="contact"
                 label="Как с вами связаться?"
                 placeholder="+7 (999) 000-00-00 или @username"
+                autoComplete="tel"
                 error={errors.contact?.message}
                 {...register('contact', {
                   required: 'Введите контакт',
@@ -156,7 +162,7 @@ export default function ContactForm() {
                 </label>
                 <textarea
                   id="message"
-                  rows={5}
+                  rows={3}
                   placeholder="Что хотите улучшить? Какая сейчас ситуация? Любой формат..."
                   className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-text placeholder:text-muted focus:outline-none focus:border-accent/60 focus:bg-white/[0.07] transition-all duration-200 text-base resize-none"
                   {...register('message')}
@@ -178,10 +184,18 @@ export default function ContactForm() {
             >
               <div className="p-4 rounded-xl bg-white/[0.03] border border-white/8 space-y-2">
                 <p className="text-xs text-muted font-grotesk uppercase tracking-wider mb-3">Ваша заявка</p>
-                <div className="flex gap-2 text-sm">
-                  <span className="text-muted w-20 flex-shrink-0">Контакт:</span>
-                  <span className="text-text font-medium" />
-                </div>
+                {watchName && (
+                  <div className="flex gap-2 text-sm">
+                    <span className="text-muted w-20 flex-shrink-0">Имя:</span>
+                    <span className="text-text font-medium">{watchName}</span>
+                  </div>
+                )}
+                {watchContact && (
+                  <div className="flex gap-2 text-sm">
+                    <span className="text-muted w-20 flex-shrink-0">Контакт:</span>
+                    <span className="text-text font-medium">{watchContact}</span>
+                  </div>
+                )}
               </div>
               <p className="text-sm text-muted leading-relaxed">
                 Всё готово! Нажмите кнопку ниже — мы ответим в течение 2 часов в рабочее время.

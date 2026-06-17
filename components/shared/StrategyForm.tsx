@@ -77,6 +77,7 @@ export default function StrategyForm() {
         id="s-name"
         label="Имя"
         placeholder="Иван Иванов"
+        autoComplete="name"
         error={errors.name?.message}
         {...register('name', {
           required: 'Введите имя',
@@ -86,8 +87,9 @@ export default function StrategyForm() {
       />
       <Input
         id="s-contact"
-        label="Телефон"
-        placeholder="+7 (999) 000-00-00"
+        label="Телефон или @username"
+        placeholder="+7 (999) 000-00-00 или @username"
+        autoComplete="tel"
         error={errors.contact?.message}
         {...register('contact', {
           required: 'Введите контакт',
@@ -101,7 +103,7 @@ export default function StrategyForm() {
       <div className="flex flex-col gap-1.5">
         <label htmlFor="s-niche" className="text-sm font-medium text-muted font-grotesk flex items-center gap-2">
           Ниша бизнеса
-          <span className="text-xs text-muted/50 font-normal">(необязательно)</span>
+          <span className="text-xs text-muted/70 font-normal">(необязательно)</span>
         </label>
         <select
           id="s-niche"
@@ -118,7 +120,7 @@ export default function StrategyForm() {
       <div className="flex flex-col gap-1.5">
         <label htmlFor="s-budget" className="text-sm font-medium text-muted font-grotesk flex items-center gap-2">
           Текущий маркетинговый бюджет
-          <span className="text-xs text-muted/50 font-normal">(необязательно)</span>
+          <span className="text-xs text-muted/70 font-normal">(необязательно)</span>
         </label>
         <select
           id="s-budget"
