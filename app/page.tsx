@@ -8,7 +8,6 @@ import Services from '@/components/sections/Services'
 import Process from '@/components/sections/Process'
 import CasesPreview from '@/components/sections/CasesPreview'
 import Testimonials from '@/components/sections/Testimonials'
-import LeadMagnetDivider from '@/components/sections/LeadMagnetDivider'
 import Comparison from '@/components/sections/Comparison'
 import Team from '@/components/sections/Team'
 import MainCTA from '@/components/sections/MainCTA'
@@ -32,7 +31,6 @@ export default function Home() {
         <Process />
         <CasesPreview />
         <Testimonials />
-        <LeadMagnetDivider />
         <Comparison />
         <Team />
         <MainCTA />

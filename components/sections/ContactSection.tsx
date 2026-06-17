@@ -39,7 +39,7 @@ export default function ContactSection() {
               ))}
             </div>
             <p className="text-xs text-muted">
-              <span className="text-text font-semibold">124 проекта</span> · ответ за 2 часа · с 2016 года
+              <span className="text-text font-semibold">124 проекта</span> · ответ за 2 часа
             </p>
           </div>
         </AnimatedSection>

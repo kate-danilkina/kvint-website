@@ -1,11 +1,8 @@
 'use client'
 
-import { useState } from 'react'
 import { Check } from 'lucide-react'
 import AnimatedSection from '@/components/shared/AnimatedSection'
 import Button from '@/components/ui/Button'
-import LeadMagnetPopup from '@/components/shared/LeadMagnetPopup'
-import { trackGoal } from '@/lib/utils'
 
 const diagnosticItems = [
   'Разбор текущих ошибок в рекламе, сайте и воронке продаж',
@@ -16,8 +13,6 @@ const diagnosticItems = [
 ]
 
 export default function MainCTA() {
-  const [popupOpen, setPopupOpen] = useState(false)
-
   return (
     <>
       <section className="py-24 relative overflow-hidden">
@@ -104,21 +99,8 @@ export default function MainCTA() {
             </div>
           </AnimatedSection>
 
-          <AnimatedSection delay={0.25} className="text-center">
-            <button
-              onClick={() => {
-                setPopupOpen(true)
-                trackGoal('lead_magnet_open')
-              }}
-              className="text-sm text-muted hover:text-accent transition-colors underline underline-offset-4"
-            >
-              Или просто получи презентацию на почту
-            </button>
-          </AnimatedSection>
         </div>
       </section>
-
-      <LeadMagnetPopup isOpen={popupOpen} onClose={() => setPopupOpen(false)} />
     </>
   )
 }

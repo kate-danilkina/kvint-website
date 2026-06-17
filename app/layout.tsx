@@ -4,7 +4,6 @@ import Script from 'next/script'
 import MessengerWidget from '@/components/shared/MessengerWidget'
 import CustomCursor from '@/components/shared/CustomCursor'
 import StickyCTA from '@/components/shared/StickyCTA'
-import ScrollLeadMagnet from '@/components/shared/ScrollLeadMagnet'
 import './globals.css'
 
 const montserrat = Montserrat({
@@ -99,7 +98,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <MessengerWidget />
         <CustomCursor />
         <StickyCTA />
-        <ScrollLeadMagnet />
       </body>
     </html>
   )

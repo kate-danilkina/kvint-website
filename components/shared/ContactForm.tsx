@@ -117,14 +117,24 @@ export default function ContactForm() {
                 label="Как вас зовут?"
                 placeholder="Имя или название компании"
                 error={errors.name?.message}
-                {...register('name', { required: 'Введите имя' })}
+                {...register('name', {
+                  required: 'Введите имя',
+                  minLength: { value: 2, message: 'Минимум 2 символа' },
+                  pattern: { value: /^[а-яёА-ЯЁa-zA-Z\s-]+$/, message: 'Только буквы' },
+                })}
               />
               <Input
                 id="contact"
                 label="Как с вами связаться?"
                 placeholder="+7 (999) 000-00-00 или @username"
                 error={errors.contact?.message}
-                {...register('contact', { required: 'Введите контакт' })}
+                {...register('contact', {
+                  required: 'Введите контакт',
+                  pattern: {
+                    value: /^(\+?[0-9\s\-()]{10,15}|@[\w]{3,})$/,
+                    message: 'Введите телефон или @username',
+                  },
+                })}
               />
             </motion.div>
           )}

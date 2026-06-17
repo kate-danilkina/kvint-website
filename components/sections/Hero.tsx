@@ -2,11 +2,8 @@
 
 import { useState, useRef, useEffect, useMemo } from 'react'
 import { motion, useScroll, useTransform, useReducedMotion, useInView } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
 import Button from '@/components/ui/Button'
-import LeadMagnetPopup from '@/components/shared/LeadMagnetPopup'
 import MagneticButton from '@/components/shared/MagneticButton'
-import { trackGoal } from '@/lib/utils'
 
 function useCountUp(to: number, duration = 1500, active = false) {
   const [val, setVal] = useState(0)
@@ -84,7 +81,6 @@ function GlitchWord({ word, startDelay }: { word: string; startDelay: number }) 
 }
 
 export default function Hero() {
-  const [popupOpen, setPopupOpen] = useState(false)
   const ref = useRef<HTMLElement>(null)
   const statsRef = useRef<HTMLDivElement>(null)
   const reduced = useReducedMotion()
@@ -208,20 +204,6 @@ export default function Hero() {
                 </Button>
               </motion.div>
 
-              <motion.div
-                className="mt-5"
-                initial={reduced ? {} : { opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.95 }}
-              >
-                <button
-                  onClick={() => { setPopupOpen(true); trackGoal('lead_magnet_open') }}
-                  className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-accent transition-colors duration-200"
-                >
-                  Получить презентацию агентства
-                  <ArrowRight size={13} />
-                </button>
-              </motion.div>
             </div>
 
             {/* Right: decorative outline number (desktop only) */}
@@ -257,8 +239,6 @@ export default function Hero() {
           </div>
         </motion.div>
       </section>
-
-      <LeadMagnetPopup isOpen={popupOpen} onClose={() => setPopupOpen(false)} />
     </>
   )
 }
