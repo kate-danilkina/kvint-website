@@ -79,9 +79,9 @@ export default function LeadMagnetPopup({ isOpen, onClose }: Props) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.92, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 400 }}
-            className="fixed z-[101] inset-x-4 bottom-0 sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:w-full sm:max-w-md bottom-sheet"
+            className="fixed z-[101] inset-x-4 bottom-0 pb-safe sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:w-full sm:max-w-md"
           >
-            <div className="glass-card p-6 sm:p-8 relative">
+            <div className="glass-card p-6 sm:p-8 pb-24 sm:pb-8 relative">
               {/* Close */}
               <button
                 onClick={handleClose}
