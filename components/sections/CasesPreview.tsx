@@ -12,7 +12,7 @@ export default function CasesPreview() {
   const grid = rest.slice(0, 2)
 
   return (
-    <section className="py-20 bg-bg-2/40">
+    <section className="py-20 bg-bg-2/40 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="mb-14">
           <p className="eyebrow mb-4">Результаты, которые можно проверить</p>
@@ -21,9 +21,9 @@ export default function CasesPreview() {
 
         {/* Featured case */}
         <AnimatedSection className="mb-5">
-          <Link href={`/cases/${featured.slug}`} className="group block">
+          <Link href={`/cases/${featured.slug}`} className="group block w-full">
             <div
-              className="relative overflow-hidden rounded-2xl border border-white/10 p-8 sm:p-10 min-h-[320px] flex flex-col justify-between transition-all duration-300 group-hover:border-white/20 group-hover:-translate-y-1"
+              className="relative overflow-hidden rounded-2xl border border-white/10 p-6 sm:p-10 min-h-[280px] sm:min-h-[320px] flex flex-col justify-between transition-all duration-300 group-hover:border-white/20 group-hover:-translate-y-1 w-full"
               style={{ background: 'rgba(255,255,255,0.04)' }}
             >
               {/* Hover sweep line */}
@@ -37,13 +37,13 @@ export default function CasesPreview() {
                 />
               </div>
 
-              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-                <div className="max-w-xl">
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 min-w-0">
+                <div className="max-w-xl min-w-0">
                   <Badge variant="muted" className="mb-3">{featured.tag}</Badge>
-                  <h3 className="font-bold text-text text-xl sm:text-2xl mb-2 group-hover:text-accent transition-colors duration-200">
+                  <h3 className="font-bold text-text text-xl sm:text-2xl mb-2 group-hover:text-accent transition-colors duration-200 break-words">
                     {featured.title}
                   </h3>
-                  <p className="text-muted text-sm">{featured.task}</p>
+                  <p className="text-muted text-sm break-words">{featured.task}</p>
                 </div>
 
                 <div className="flex-shrink-0">
@@ -61,12 +61,12 @@ export default function CasesPreview() {
           </Link>
         </AnimatedSection>
 
-        {/* Secondary cases — 2-col grid */}
+        {/* Secondary cases — single col on mobile, 2-col on sm+ */}
         <AnimatedGrid className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
           {grid.map((c) => (
             <AnimatedItem key={c.slug}>
-              <Link href={`/cases/${c.slug}`} className="group block h-full">
-                <div className="relative overflow-hidden glass-card glass-card-hover p-6 h-full flex flex-col gap-4">
+              <Link href={`/cases/${c.slug}`} className="group block h-full w-full">
+                <div className="relative overflow-hidden glass-card glass-card-hover p-6 h-full flex flex-col gap-4 min-w-0">
                   {/* Hover sweep line */}
                   <div className="absolute top-0 left-0 right-0 h-[1px] bg-accent origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
 

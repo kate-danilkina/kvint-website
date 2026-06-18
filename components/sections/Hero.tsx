@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useMemo } from 'react'
 import { motion, useScroll, useTransform, useReducedMotion, useInView } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import MagneticButton from '@/components/shared/MagneticButton'
+import { useIsMobile } from '@/lib/hooks/useIsMobile'
 
 function useCountUp(to: number, duration = 1500, active = false) {
   const [val, setVal] = useState(0)
@@ -32,6 +33,23 @@ function AnimatedWord({
   className?: string
 }) {
   const reduced = useReducedMotion()
+  const isMobile = useIsMobile()
+
+  // Mobile: fade the whole word, no character-by-character
+  if (isMobile) {
+    return (
+      <motion.span
+        className={`inline-block ${className ?? ''}`}
+        style={{ whiteSpace: 'nowrap' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4, delay: startDelay * 0.4, ease: [0.22, 1, 0.36, 1] }}
+      >
+        {word}
+      </motion.span>
+    )
+  }
+
   return (
     <span className={`inline-block ${className ?? ''}`} style={{ whiteSpace: 'nowrap' }}>
       {word.split('').map((ch, i) => (
@@ -51,8 +69,24 @@ function AnimatedWord({
 
 function GlitchWord({ word, startDelay }: { word: string; startDelay: number }) {
   const reduced = useReducedMotion()
+  const isMobile = useIsMobile()
   const [glitch, setGlitch] = useState(false)
   const offsets = useMemo(() => word.split('').map(() => (Math.random() - 0.5) * 8), []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Mobile: simple fade, no glitch
+  if (isMobile) {
+    return (
+      <motion.span
+        className="text-outline inline-block"
+        style={{ whiteSpace: 'nowrap' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4, delay: startDelay * 0.4, ease: [0.22, 1, 0.36, 1] }}
+      >
+        {word}
+      </motion.span>
+    )
+  }
 
   return (
     <span
@@ -84,6 +118,7 @@ export default function Hero() {
   const ref = useRef<HTMLElement>(null)
   const statsRef = useRef<HTMLDivElement>(null)
   const reduced = useReducedMotion()
+  const isMobile = useIsMobile()
 
   const statsVisible = useInView(statsRef, { once: true, margin: '-60px' })
   const count124 = useCountUp(124, 1500, statsVisible)
@@ -93,6 +128,9 @@ export default function Hero() {
   const { scrollY } = useScroll()
   const bgY = useTransform(scrollYProgress, [0, 1], reduced ? ['0%', '0%'] : ['0%', '25%'])
   const fadeOut = useTransform(scrollY, reduced ? [0, 0] : [300, 700], [1, 0])
+
+  // On mobile: no y offsets in initial state, shorter delays
+  const noY = reduced || isMobile
 
   return (
     <>
@@ -119,9 +157,9 @@ export default function Hero() {
             <div className="w-full max-w-[680px]">
               <motion.p
                 className="eyebrow mb-6"
-                initial={reduced ? {} : { opacity: 0, y: 16 }}
+                initial={noY ? { opacity: 0 } : { opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: isMobile ? 0.35 : 0.5 }}
               >
                 Маркетинговый штаб для бизнеса
               </motion.p>
@@ -141,9 +179,9 @@ export default function Hero() {
 
               <motion.p
                 className="text-muted text-lg leading-relaxed mb-10 max-w-xl"
-                initial={reduced ? {} : { opacity: 0, y: 20 }}
+                initial={noY ? { opacity: 0 } : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.65 }}
+                transition={{ duration: isMobile ? 0.35 : 0.6, delay: isMobile ? 0.2 : 0.65 }}
               >
                 Реклама не сливает бюджет. Приходим как партнёры —{' '}
                 уходим, когда система работает сама
@@ -153,9 +191,9 @@ export default function Hero() {
               <motion.div
                 ref={statsRef}
                 className="flex flex-row flex-wrap gap-x-12 gap-y-6 mb-10"
-                initial={reduced ? {} : { opacity: 0, y: 20 }}
+                initial={noY ? { opacity: 0 } : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.75 }}
+                transition={{ duration: isMobile ? 0.35 : 0.6, delay: isMobile ? 0.25 : 0.75 }}
               >
                 <div style={{ whiteSpace: 'nowrap' }}>
                   <div
@@ -182,9 +220,9 @@ export default function Hero() {
               {/* CTAs */}
               <motion.div
                 className="flex flex-col sm:flex-row items-stretch sm:items-start gap-4"
-                initial={reduced ? {} : { opacity: 0, y: 20 }}
+                initial={noY ? { opacity: 0 } : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.85 }}
+                transition={{ duration: isMobile ? 0.35 : 0.6, delay: isMobile ? 0.3 : 0.85 }}
               >
                 <div className="w-full sm:w-auto">
                   <MagneticButton>

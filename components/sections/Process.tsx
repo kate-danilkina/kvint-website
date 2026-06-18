@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
 import AnimatedSection from '@/components/shared/AnimatedSection'
 import { processSteps } from '@/lib/data/services'
+import { useIsMobile } from '@/lib/hooks/useIsMobile'
 
 export default function Process() {
   const ref = useRef<HTMLDivElement>(null)
@@ -11,6 +12,7 @@ export default function Process() {
   const inView = useInView(ref, { once: true, margin: '-60px' })
   const lineInView = useInView(lineRef, { once: true, margin: '-60px' })
   const reduced = useReducedMotion()
+  const isMobile = useIsMobile()
 
   return (
     <section className="py-16 lg:py-32">
@@ -39,9 +41,13 @@ export default function Process() {
             {processSteps.map((step, i) => (
               <motion.div
                 key={step.number}
-                initial={reduced ? {} : { opacity: 0, y: 40 }}
+                initial={reduced ? {} : (isMobile ? { opacity: 0 } : { opacity: 0, y: 40 })}
                 animate={inView || reduced ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.55, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                transition={{
+                  duration: isMobile ? 0.3 : 0.55,
+                  delay: isMobile ? 0 : i * 0.15,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
                 className="relative flex flex-col gap-4"
               >
                 {/* Decorative background step number */}

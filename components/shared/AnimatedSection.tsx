@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
+import { useIsMobile } from '@/lib/hooks/useIsMobile'
 
 interface Props {
   children: React.ReactNode
@@ -19,17 +20,42 @@ export const fadeUpVariants = {
   },
 }
 
+const fadeMobileVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.35 } },
+}
+
 export const staggerContainer = {
   hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.1 },
-  },
+  visible: { transition: { staggerChildren: 0.1 } },
+}
+
+const staggerMobileContainer = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.04 } },
 }
 
 export default function AnimatedSection({ children, className = '', delay = 0 }: Props) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   const reducedMotion = useReducedMotion()
+  const isMobile = useIsMobile()
+
+  const variants = reducedMotion
+    ? { hidden: {}, visible: {} }
+    : isMobile
+    ? {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { duration: 0.35, delay: delay > 0 ? delay * 0.4 : 0 } },
+      }
+    : {
+        hidden: { opacity: 0, y: 40 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay },
+        },
+      }
 
   return (
     <motion.div
@@ -37,14 +63,7 @@ export default function AnimatedSection({ children, className = '', delay = 0 }:
       className={className}
       initial={reducedMotion ? 'visible' : 'hidden'}
       animate={inView || reducedMotion ? 'visible' : 'hidden'}
-      variants={{
-        hidden: { opacity: 0, y: 40 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay },
-        },
-      }}
+      variants={variants}
     >
       {children}
     </motion.div>
@@ -61,6 +80,13 @@ export function AnimatedGrid({
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
   const reducedMotion = useReducedMotion()
+  const isMobile = useIsMobile()
+
+  const variants = reducedMotion
+    ? { hidden: {}, visible: {} }
+    : isMobile
+    ? staggerMobileContainer
+    : staggerContainer
 
   return (
     <motion.div
@@ -68,7 +94,7 @@ export function AnimatedGrid({
       className={className}
       initial={reducedMotion ? 'visible' : 'hidden'}
       animate={inView || reducedMotion ? 'visible' : 'hidden'}
-      variants={staggerContainer}
+      variants={variants}
     >
       {children}
     </motion.div>
@@ -82,8 +108,17 @@ export function AnimatedItem({
   children: React.ReactNode
   className?: string
 }) {
+  const reducedMotion = useReducedMotion()
+  const isMobile = useIsMobile()
+
+  const variants = reducedMotion
+    ? { hidden: {}, visible: {} }
+    : isMobile
+    ? fadeMobileVariants
+    : fadeUpVariants
+
   return (
-    <motion.div className={className} variants={fadeUpVariants}>
+    <motion.div className={className} variants={variants}>
       {children}
     </motion.div>
   )

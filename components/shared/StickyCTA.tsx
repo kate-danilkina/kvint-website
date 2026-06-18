@@ -23,12 +23,20 @@ export default function StickyCTA() {
     <AnimatePresence>
       {visible && (
         <motion.div
+          // Use x as a Framer-managed value so it composes correctly with the y spring
+          // (Tailwind -translate-x-1/2 conflicts with Framer's transform pipeline)
           initial={reduced ? {} : { y: 72, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={reduced ? {} : { y: 72, opacity: 0 }}
           transition={{ type: 'spring', damping: 26, stiffness: 320 }}
-          className="fixed left-1/2 -translate-x-1/2 z-40 pointer-events-auto"
-          style={{ bottom: 'calc(env(safe-area-inset-bottom, 0px) + 24px)' }}
+          style={{
+            position: 'fixed',
+            left: '50%',
+            x: '-50%',
+            zIndex: 40,
+            pointerEvents: 'auto',
+            bottom: 'calc(env(safe-area-inset-bottom, 0px) + 24px)',
+          }}
         >
           <div className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-bg/90 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] whitespace-nowrap">
             <a
