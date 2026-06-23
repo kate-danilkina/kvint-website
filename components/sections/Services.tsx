@@ -1,12 +1,13 @@
 'use client'
 
-import { TrendingUp, Search, Globe, BarChart3, MessageSquare, Target, Layers, Users, Zap, Star } from 'lucide-react'
+import { TrendingUp, Search, Globe, BarChart3, MessageSquare, Target, Layers, Users, Zap, Star, Microscope, Megaphone, Brain, Award, Monitor } from 'lucide-react'
 import AnimatedSection, { AnimatedGrid, AnimatedItem } from '@/components/shared/AnimatedSection'
 import Badge from '@/components/ui/Badge'
 import Button from '@/components/ui/Button'
 
 const iconMap: Record<string, React.ElementType> = {
   TrendingUp, Search, Globe, BarChart3, MessageSquare, Target, Layers, Users, Star,
+  Microscope, Megaphone, Brain, Award, Monitor,
 }
 
 const services = [
@@ -19,6 +20,11 @@ const services = [
   { id: 'brandformance', label: 'Brandformance', icon: 'Layers' },
   { id: 'influence', label: 'Инфлюенс-маркетинг', icon: 'Users' },
   { id: 'personal-brand', label: 'Управление личным брендом', icon: 'Star' },
+  { id: 'research', label: 'Исследование ЦА и конкурентов', icon: 'Microscope' },
+  { id: 'comms-strategy', label: 'Коммуникационная стратегия', icon: 'Megaphone' },
+  { id: 'strategic-sessions', label: 'Стратегические сессии', icon: 'Brain' },
+  { id: 'hr-branding', label: 'HR-брендинг', icon: 'Award' },
+  { id: 'presentations', label: 'Презентации', icon: 'Monitor' },
 ]
 
 export default function Services() {

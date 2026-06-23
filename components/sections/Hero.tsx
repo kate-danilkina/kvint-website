@@ -8,19 +8,30 @@ import { useIsMobile } from '@/lib/hooks/useIsMobile'
 
 function useCountUp(to: number, duration = 1500, active = false) {
   const [val, setVal] = useState(0)
+  const [done, setDone] = useState(false)
   useEffect(() => {
     if (!active) return
+    setDone(false)
     let start: number | null = null
     const step = (ts: number) => {
       if (!start) start = ts
       const progress = Math.min((ts - start) / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setVal(Math.floor(eased * to))
-      if (progress < 1) requestAnimationFrame(step)
+      // ease-out-expo with overshoot: peaks ~105% at t=0.85, snaps back to 100%
+      const eased =
+        progress < 0.85
+          ? (1 - Math.pow(2, -10 * (progress / 0.85))) * 1.05
+          : 1.05 - ((progress - 0.85) / 0.15) * 0.05
+      setVal(Math.round(eased * to))
+      if (progress < 1) {
+        requestAnimationFrame(step)
+      } else {
+        setVal(to)
+        setDone(true)
+      }
     }
     requestAnimationFrame(step)
   }, [active, to, duration])
-  return val
+  return { val, done }
 }
 
 function AnimatedWord({
@@ -115,29 +126,39 @@ function GlitchWord({ word, startDelay }: { word: string; startDelay: number }) 
 }
 
 export default function Hero() {
-  const ref = useRef<HTMLElement>(null)
   const statsRef = useRef<HTMLDivElement>(null)
   const reduced = useReducedMotion()
   const isMobile = useIsMobile()
 
   const statsVisible = useInView(statsRef, { once: true, margin: '-60px' })
-  const count124 = useCountUp(124, 1500, statsVisible)
-  const count8 = useCountUp(8, 1500, statsVisible)
+  const { val: count124, done: done124 } = useCountUp(124, 1500, statsVisible)
+  const { val: count8, done: done8 } = useCountUp(8, 1500, statsVisible)
 
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const { scrollY } = useScroll()
-  const bgY = useTransform(scrollYProgress, [0, 1], reduced ? ['0%', '0%'] : ['0%', '25%'])
   const fadeOut = useTransform(scrollY, reduced ? [0, 0] : [300, 700], [1, 0])
+
+  // Parallax layers — disabled for reduced-motion and mobile (performance)
+  const noParallax = reduced || isMobile
+  const yBackground = useTransform(scrollY, [0, 500], noParallax ? [0, 0] : [0, 100])
+  const yMidground = useTransform(scrollY, [0, 500], noParallax ? [0, 0] : [0, 200])
+  const yForeground = useTransform(scrollY, [0, 500], noParallax ? [0, 0] : [0, 50])
 
   // On mobile: no y offsets in initial state, shorter delays
   const noY = reduced || isMobile
 
   return (
     <>
-      <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden pt-20 pb-16 sm:pt-24 sm:pb-32">
-        <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none" aria-hidden>
-          <div className="absolute top-0 left-0 w-[700px] h-[700px] rounded-full bg-accent/5 blur-[140px]" />
-          <div className="absolute bottom-1/3 right-1/4 w-[350px] h-[350px] rounded-full bg-accent/3 blur-[100px]" />
+      <section className="relative min-h-screen flex items-center overflow-hidden pt-20 pb-16 sm:pt-24 sm:pb-32">
+        {/* Background parallax layers at different scroll speeds */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden>
+          <motion.div
+            style={{ y: yBackground }}
+            className="absolute top-0 left-0 w-[700px] h-[700px] rounded-full bg-accent/5 blur-[140px]"
+          />
+          <motion.div
+            style={{ y: yMidground }}
+            className="absolute bottom-1/3 right-1/4 w-[350px] h-[350px] rounded-full bg-accent/3 blur-[100px]"
+          />
           <div
             className="absolute inset-0 opacity-[0.03]"
             style={{
@@ -146,7 +167,7 @@ export default function Hero() {
               backgroundSize: '80px 80px',
             }}
           />
-        </motion.div>
+        </div>
 
         <motion.div
           style={{ opacity: fadeOut }}
@@ -196,22 +217,26 @@ export default function Hero() {
                 transition={{ duration: isMobile ? 0.35 : 0.6, delay: isMobile ? 0.25 : 0.75 }}
               >
                 <div style={{ whiteSpace: 'nowrap' }}>
-                  <div
+                  <motion.div
                     className="font-sans font-extrabold text-text tabular-nums"
                     style={{ fontSize: 'clamp(36px, 4vw, 56px)', lineHeight: 1 }}
+                    animate={done124 ? { scale: [1, 1.05, 1] } : {}}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                   >
                     {statsVisible ? count124 : 0}
-                  </div>
+                  </motion.div>
                   <div className="text-muted mt-1 text-sm">проекта</div>
                 </div>
 
                 <div style={{ whiteSpace: 'nowrap' }}>
-                  <div
+                  <motion.div
                     className="font-sans font-extrabold text-text tabular-nums"
                     style={{ fontSize: 'clamp(36px, 4vw, 56px)', lineHeight: 1 }}
+                    animate={done8 ? { scale: [1, 1.05, 1] } : {}}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                   >
                     {statsVisible ? count8 : 0} лет
-                  </div>
+                  </motion.div>
                   <div className="text-muted mt-1 text-sm">в маркетинге</div>
                 </div>
 
@@ -257,6 +282,7 @@ export default function Hero() {
                 viewBox="0 0 480 240"
                 width={420}
                 height={240}
+                style={{ y: yForeground }}
                 initial={reduced ? {} : { opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1.2, delay: 0.4 }}
