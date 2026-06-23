@@ -86,6 +86,21 @@ body {
     width: 100%;
   }
 
+  .nav-link:focus-visible {
+    outline: 2px solid rgba(26, 110, 255, 0.55);
+    outline-offset: 4px;
+    border-radius: 3px;
+    color: var(--color-text);
+  }
+
+  .nav-link.nav-active {
+    color: var(--color-text);
+  }
+
+  .nav-link.nav-active::after {
+    width: 100%;
+  }
+
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-white transition-all duration-200;
     background: var(--color-accent);

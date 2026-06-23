@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import Button from '@/components/ui/Button'
@@ -15,6 +16,7 @@ const navLinks = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20)
@@ -48,11 +50,18 @@ export default function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="nav-link text-sm font-medium">
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = !link.href.startsWith('/#') && pathname === link.href
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`nav-link text-sm font-medium${isActive ? ' nav-active' : ''}`}
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
           </nav>
 
           {/* CTA */}

@@ -105,16 +105,21 @@ export default function StrategyForm() {
           Ниша бизнеса
           <span className="text-xs text-muted/70 font-normal">(необязательно)</span>
         </label>
-        <select
-          id="s-niche"
-          className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none"
-          {...register('niche')}
-        >
-          <option value="">Выберите нишу</option>
-          {niches.map((n) => (
-            <option key={n} value={n} className="bg-bg-2">{n}</option>
-          ))}
-        </select>
+        <div className="relative">
+          <select
+            id="s-niche"
+            className="w-full px-4 py-3 pr-10 rounded-xl bg-white/5 border border-white/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none cursor-pointer"
+            {...register('niche')}
+          >
+            <option value="">Выберите нишу</option>
+            {niches.map((n) => (
+              <option key={n} value={n} className="bg-bg-2">{n}</option>
+            ))}
+          </select>
+          <svg className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
       </div>
 
       <div className="flex flex-col gap-1.5">
@@ -122,16 +127,21 @@ export default function StrategyForm() {
           Текущий маркетинговый бюджет
           <span className="text-xs text-muted/70 font-normal">(необязательно)</span>
         </label>
-        <select
-          id="s-budget"
-          className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none"
-          {...register('budget')}
-        >
-          <option value="">Выберите диапазон</option>
-          {budgets.map((b) => (
-            <option key={b} value={b} className="bg-bg-2">{b}</option>
-          ))}
-        </select>
+        <div className="relative">
+          <select
+            id="s-budget"
+            className="w-full px-4 py-3 pr-10 rounded-xl bg-white/5 border border-white/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none cursor-pointer"
+            {...register('budget')}
+          >
+            <option value="">Выберите диапазон</option>
+            {budgets.map((b) => (
+              <option key={b} value={b} className="bg-bg-2">{b}</option>
+            ))}
+          </select>
+          <svg className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
       </div>
 
       {status === 'error' && (

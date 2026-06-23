@@ -27,7 +27,7 @@ export default function ContactSection() {
           </a>
           {/* Social proof */}
           <div className="flex items-center justify-center gap-3 mt-5">
-            <div className="flex -space-x-2">
+            <div className="flex -space-x-2" aria-hidden="true">
               {['АМ', 'КС', 'ДВ'].map((initials) => (
                 <div
                   key={initials}

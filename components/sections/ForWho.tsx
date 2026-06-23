@@ -14,7 +14,7 @@ const iconMap: Record<string, React.ElementType> = {
 
 export default function ForWho() {
   return (
-    <section className="py-24">
+    <section className="py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="mb-14">
           <p className="eyebrow mb-4">Работаем там, где высока цена ошибки</p>

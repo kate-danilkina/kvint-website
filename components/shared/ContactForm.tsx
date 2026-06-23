@@ -103,7 +103,7 @@ export default function ContactForm() {
       <p className="text-xs text-muted font-grotesk">Шаг {step} из {STEPS}</p>
 
       {/* Step content */}
-      <div className="overflow-hidden relative min-h-[160px]">
+      <div className="overflow-hidden relative min-h-[160px]" aria-live="polite" aria-atomic="true">
         <AnimatePresence mode="wait" custom={dir}>
           {step === 1 && (
             <motion.div
@@ -217,7 +217,7 @@ export default function ContactForm() {
           <button
             type="button"
             onClick={goBack}
-            className="flex items-center gap-1.5 px-4 py-3 rounded-xl border border-white/15 text-muted hover:text-text hover:border-white/30 transition-all duration-200 text-sm font-medium"
+            className="flex items-center gap-1.5 px-4 py-3 min-h-[44px] rounded-xl border border-white/15 text-muted hover:text-text hover:border-white/30 transition-all duration-200 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
           >
             <ArrowLeft size={15} />
             Назад

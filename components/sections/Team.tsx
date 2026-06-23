@@ -5,7 +5,7 @@ import { Quote } from 'lucide-react'
 
 export default function Team() {
   return (
-    <section id="about" className="py-32 bg-bg-2/40">
+    <section id="about" className="py-16 lg:py-32 bg-bg-2/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-14">
           <p className="eyebrow mb-4">Команда</p>

@@ -186,6 +186,7 @@ export default function MessengerWidget() {
         whileHover={reducedMotion ? {} : { scale: 1.08 }}
         whileTap={reducedMotion ? {} : { scale: 0.95 }}
         aria-label={open ? 'Закрыть мессенджеры' : 'Написать нам'}
+        className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
         style={{
           width: 56,
           height: 56,

@@ -33,7 +33,7 @@ function ComparisonRow({ row, index, last }: { row: typeof comparisonRows[0]; in
       className={`grid grid-cols-3 px-4 sm:px-6 py-4 items-start gap-3 group/row transition-colors duration-150 hover:bg-white/[0.02] ${!last ? 'border-b border-white/5' : ''}`}
     >
       <div className="text-sm text-muted font-grotesk font-medium">{row.feature}</div>
-      <div className="flex items-start gap-2 text-sm text-muted/60">
+      <div className="flex items-start gap-2 text-sm text-muted/80">
         <X size={14} className="text-red-500/50 mt-0.5 flex-shrink-0" />
         <span>{row.competitor}</span>
       </div>
@@ -50,7 +50,7 @@ function ComparisonRow({ row, index, last }: { row: typeof comparisonRows[0]; in
 
 export default function Comparison() {
   return (
-    <section className="py-24">
+    <section className="py-16 lg:py-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-14">
           <p className="eyebrow mb-4">Отличие</p>

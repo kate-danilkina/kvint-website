@@ -148,7 +148,7 @@ export default function Hero() {
 
   return (
     <>
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-20 pb-16 sm:pt-24 sm:pb-32">
+      <section className="relative min-h-[100dvh] flex items-center overflow-hidden pt-20 pb-16 sm:pt-24 sm:pb-32">
         {/* Background parallax layers at different scroll speeds */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden>
           <motion.div

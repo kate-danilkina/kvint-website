@@ -15,7 +15,7 @@ const diagnosticItems = [
 export default function MainCTA() {
   return (
     <>
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-16 lg:py-24 relative overflow-hidden">
         {/* Background glow */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden>
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-accent/8 blur-[120px] rounded-full" />
