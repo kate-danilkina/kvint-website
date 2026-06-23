@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { sendFormNotification } from '@/lib/email'
 import { sendTelegramNotification } from '@/lib/telegram'
 import { appendToSheet } from '@/lib/sheets'
 
 export async function POST(req: NextRequest) {
   console.log('[send-form] handler fired')
   console.log('[send-form] env check', {
+    hasResend: !!process.env.RESEND_API_KEY,
     hasTGToken: !!process.env.TELEGRAM_BOT_TOKEN,
     hasChatId: !!process.env.TELEGRAM_CHAT_ID,
   })
@@ -18,6 +20,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: false, message: 'Заполните обязательные поля' }, { status: 400 })
     }
 
+    // 1. Email — primary notification channel
+    try {
+      await sendFormNotification({ name, company, contact, message, niche, budget, formType })
+      console.log('[send-form] email sent')
+    } catch (emailErr) {
+      console.error('[send-form] email error:', emailErr)
+    }
+
+    // 2. Telegram — secondary, best-effort
     const isStrategy = formType === 'strategy'
     const emoji = isStrategy ? '📅' : '📩'
     const tgText =
@@ -30,14 +41,14 @@ export async function POST(req: NextRequest) {
       (message ? `\n💬 Задача:\n${message}\n` : '') +
       `\n🕐 ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}`
 
-    // 1. Telegram notification
     try {
       await sendTelegramNotification(tgText)
+      console.log('[send-form] telegram sent')
     } catch (tgErr) {
       console.error('[send-form] Telegram error:', tgErr)
     }
 
-    // 2. Sheets (non-critical, fire-and-forget)
+    // 3. Sheets — fire-and-forget
     appendToSheet([
       new Date().toISOString(),
       formType,
