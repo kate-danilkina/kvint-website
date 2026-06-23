@@ -1,9 +1,5 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-const FROM = process.env.RESEND_FROM_EMAIL || 'noreply@kvint.agency'
-const TO = process.env.RESEND_TO_EMAIL || 'hello@kvint.agency'
-
 export async function sendFormNotification(data: {
   name: string
   company?: string
@@ -13,6 +9,10 @@ export async function sendFormNotification(data: {
   budget?: string
   formType: 'project' | 'strategy'
 }) {
+  const resend = new Resend(process.env.RESEND_API_KEY)
+  const FROM = process.env.RESEND_FROM_EMAIL || 'noreply@kvint.agency'
+  const TO = process.env.RESEND_TO_EMAIL || 'hello@kvint.agency'
+
   const subject =
     data.formType === 'project'
       ? `Новая заявка «Обсудить проект» от ${data.name}`
