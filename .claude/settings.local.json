@@ -26,7 +26,9 @@
       "Bash(python3 /Users/rinavern/.claude/skills/ui-ux-pro-max/scripts/search.py \"B2B marketing agency premium dark conversion landing\" --design-system -p \"KVINT Agency\" -f markdown)",
       "Bash(python3 /Users/rinavern/.claude/skills/ui-ux-pro-max/scripts/search.py \"landing page conversion hero CTA social proof\" --domain landing -n 8)",
       "mcp__visualize__read_me",
-      "mcp__visualize__show_widget"
+      "mcp__visualize__show_widget",
+      "Bash(npm install *)",
+      "Bash(node -e \"require\\('resend'\\); console.log\\('resend ok'\\)\")"
     ]
   }
 }
