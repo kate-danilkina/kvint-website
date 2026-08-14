@@ -52,7 +52,7 @@ export default function MainCTA() {
                   </div>
                   <div className="flex-shrink-0 text-right sm:text-right">
                     <span className="text-xs text-muted/60 font-grotesk block">Стоимость</span>
-                    <span className="text-3xl font-bold text-accent font-grotesk">10 000 ₽</span>
+                    <span className="text-3xl font-bold text-text font-grotesk">10 000 ₽</span>
                   </div>
                 </div>
 

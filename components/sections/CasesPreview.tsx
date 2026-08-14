@@ -12,7 +12,7 @@ export default function CasesPreview() {
   const grid = rest.slice(0, 2)
 
   return (
-    <section className="py-20 bg-bg-2/40 overflow-hidden">
+    <section className="py-20 bg-bg-2/70 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="mb-14">
           <p className="eyebrow mb-4">Результаты, которые можно проверить</p>

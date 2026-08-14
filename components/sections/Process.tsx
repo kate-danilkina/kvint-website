@@ -65,7 +65,7 @@ export default function Process() {
                       fontWeight="900"
                       fontSize="160"
                       fill="none"
-                      stroke="rgba(26,110,255,0.05)"
+                      stroke="rgba(26,110,255,0.08)"
                       strokeWidth="1"
                     >
                       {step.number}

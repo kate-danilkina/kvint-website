@@ -16,14 +16,14 @@ export default function Testimonials() {
         <div>
           {testimonials.map((t, i) => (
             <AnimatedSection key={i} delay={i * 0.08}>
-              <div className="py-8">
-                <Quote size={18} className="text-accent/30 mb-4" />
+              <div className="py-8 pl-5 border-l border-white/[0.07]">
+                <Quote size={20} className="text-accent/55 mb-4" />
                 <p className="text-text/80 text-base sm:text-lg leading-relaxed mb-6 max-w-3xl">
                   {t.text}
                 </p>
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
-                    <span className="text-xs font-bold text-accent">{t.name.charAt(0)}</span>
+                  <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-sm font-bold text-accent">{t.name.charAt(0)}</span>
                   </div>
                   <div>
                     <span className="text-sm font-semibold text-text">{t.name}</span>

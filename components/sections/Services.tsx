@@ -1,20 +1,19 @@
 'use client'
 
-import { TrendingUp, Search, Globe, BarChart3, MessageSquare, Target, Layers, Users, Zap, Star, Microscope, Megaphone, Brain, Award, Monitor } from 'lucide-react'
+import { TrendingUp, Search, Globe, MessageSquare, Target, Layers, Users, Zap, Star, Microscope, Megaphone, Brain, Monitor } from 'lucide-react'
 import AnimatedSection, { AnimatedGrid, AnimatedItem } from '@/components/shared/AnimatedSection'
 import Badge from '@/components/ui/Badge'
 import Button from '@/components/ui/Button'
 
 const iconMap: Record<string, React.ElementType> = {
-  TrendingUp, Search, Globe, BarChart3, MessageSquare, Target, Layers, Users, Star,
-  Microscope, Megaphone, Brain, Award, Monitor,
+  TrendingUp, Search, Globe, MessageSquare, Target, Layers, Users, Star,
+  Microscope, Megaphone, Brain, Monitor,
 }
 
 const services = [
   { id: 'performance', label: 'Performance-маркетинг', icon: 'TrendingUp' },
   { id: 'seo', label: 'SEO', icon: 'Search' },
   { id: 'web', label: 'Разработка сайтов', icon: 'Globe' },
-  { id: 'analytics', label: 'Сквозная аналитика', icon: 'BarChart3' },
   { id: 'smm', label: 'SMM', icon: 'MessageSquare' },
   { id: 'strategy', label: 'Стратегия и аудит', icon: 'Target' },
   { id: 'brandformance', label: 'Brandformance', icon: 'Layers' },
@@ -23,13 +22,12 @@ const services = [
   { id: 'research', label: 'Исследование ЦА и конкурентов', icon: 'Microscope' },
   { id: 'comms-strategy', label: 'Коммуникационная стратегия', icon: 'Megaphone' },
   { id: 'strategic-sessions', label: 'Стратегические сессии', icon: 'Brain' },
-  { id: 'hr-branding', label: 'HR-брендинг', icon: 'Award' },
   { id: 'presentations', label: 'Презентации', icon: 'Monitor' },
 ]
 
 export default function Services() {
   return (
-    <section className="py-16 bg-bg-2/40">
+    <section className="py-16 bg-bg-2/70">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="mb-14">
           <p className="eyebrow mb-4">Инструменты под задачу</p>
@@ -85,7 +83,7 @@ export default function Services() {
                   }}
                 >
                   <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                    <Icon size={16} className="text-accent" />
+                    <Icon size={16} className="text-muted" />
                   </div>
                   <span className="text-sm font-medium text-text">{s.label}</span>
                 </div>

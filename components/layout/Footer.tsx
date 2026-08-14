@@ -69,9 +69,6 @@ export default function Footer() {
           <p className="text-xs text-muted font-grotesk">
             © {new Date().getFullYear()} Квинт. Все права защищены.
           </p>
-          <p className="text-xs text-muted/50 font-grotesk">
-            Маркетинг, который работает
-          </p>
         </div>
       </div>
     </footer>

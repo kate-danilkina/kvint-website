@@ -17,10 +17,7 @@ function useCountUp(to: number, duration = 1500, active = false) {
       if (!start) start = ts
       const progress = Math.min((ts - start) / duration, 1)
       // ease-out-expo with overshoot: peaks ~105% at t=0.85, snaps back to 100%
-      const eased =
-        progress < 0.85
-          ? (1 - Math.pow(2, -10 * (progress / 0.85))) * 1.05
-          : 1.05 - ((progress - 0.85) / 0.15) * 0.05
+      const eased = 1 - Math.pow(2, -10 * progress)
       setVal(Math.round(eased * to))
       if (progress < 1) {
         requestAnimationFrame(step)
@@ -131,7 +128,7 @@ export default function Hero() {
   const isMobile = useIsMobile()
 
   const statsVisible = useInView(statsRef, { once: true, margin: '-60px' })
-  const { val: count124, done: done124 } = useCountUp(124, 1500, statsVisible)
+  const { val: count124, done: done124 } = useCountUp(125, 1500, statsVisible)
   const { val: count8, done: done8 } = useCountUp(8, 1500, statsVisible)
 
   const { scrollY } = useScroll()
@@ -191,9 +188,9 @@ export default function Hero() {
               >
                 <AnimatedWord word="Внедряем" startDelay={0} className="text-text" />
                 {' '}
-                <AnimatedWord word="контролируемую" startDelay={0.17} className="text-text" />
+                <GlitchWord word="контролируемую" startDelay={0.17} />
                 {' '}
-                <GlitchWord word="систему" startDelay={0.45} />
+                <AnimatedWord word="систему" startDelay={0.45} className="text-text" />
                 <br />
                 <AnimatedWord word="маркетинга" startDelay={0.59} className="text-text" />
               </h1>
@@ -300,7 +297,7 @@ export default function Hero() {
                   strokeWidth="1.5"
                   opacity="0.12"
                 >
-                  124
+                  125
                 </text>
               </motion.svg>
             </div>
