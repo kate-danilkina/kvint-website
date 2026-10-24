@@ -7,13 +7,14 @@ import Link from 'next/link'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
 import ConsentCheckbox from '@/components/shared/ConsentCheckbox'
-import { trackGoal } from '@/lib/utils'
+import { trackGoal, LEAD_SOURCES } from '@/lib/utils'
 
 interface FormData {
   name: string
   contact: string
   niche: string
   budget: string
+  source: string
   consent: boolean
 }
 
@@ -28,7 +29,12 @@ const niches = [
 
 const budgets = ['до 50 000 ₽', '50 000 – 150 000 ₽', '150 000 ₽ и выше']
 
-export default function StrategyForm() {
+interface Props {
+  /** Prefix for element ids, so the form can be rendered twice on a page (contact section + lead panel) */
+  idPrefix?: string
+}
+
+export default function StrategyForm({ idPrefix = '' }: Props = {}) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   const {
@@ -76,7 +82,7 @@ export default function StrategyForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <Input
-        id="s-name"
+        id={`${idPrefix}s-name`}
         label="Имя"
         placeholder="Иван Иванов"
         autoComplete="name"
@@ -88,7 +94,7 @@ export default function StrategyForm() {
         })}
       />
       <Input
-        id="s-contact"
+        id={`${idPrefix}s-contact`}
         label="Телефон или @username"
         placeholder="+7 (999) 000-00-00 или @username"
         autoComplete="tel"
@@ -103,13 +109,13 @@ export default function StrategyForm() {
       />
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="s-niche" className="text-sm font-medium text-muted font-mono flex items-center gap-2">
+        <label htmlFor={`${idPrefix}s-niche`} className="text-sm font-medium text-muted font-mono flex items-center gap-2">
           Ниша бизнеса
           <span className="text-xs text-muted/70 font-normal">(необязательно)</span>
         </label>
         <div className="relative">
           <select
-            id="s-niche"
+            id={`${idPrefix}s-niche`}
             className="w-full px-4 py-3 pr-10 rounded-xl bg-white/5 border border-white/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none cursor-pointer"
             {...register('niche')}
           >
@@ -125,13 +131,13 @@ export default function StrategyForm() {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="s-budget" className="text-sm font-medium text-muted font-mono flex items-center gap-2">
+        <label htmlFor={`${idPrefix}s-budget`} className="text-sm font-medium text-muted font-mono flex items-center gap-2">
           Текущий маркетинговый бюджет
           <span className="text-xs text-muted/70 font-normal">(необязательно)</span>
         </label>
         <div className="relative">
           <select
-            id="s-budget"
+            id={`${idPrefix}s-budget`}
             className="w-full px-4 py-3 pr-10 rounded-xl bg-white/5 border border-white/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none cursor-pointer"
             {...register('budget')}
           >
@@ -146,8 +152,30 @@ export default function StrategyForm() {
         </div>
       </div>
 
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor={`${idPrefix}s-source`} className="text-sm font-medium text-muted font-mono flex items-center gap-2">
+          Откуда узнали о нас
+          <span className="text-xs text-muted/70 font-normal">(необязательно)</span>
+        </label>
+        <div className="relative">
+          <select
+            id={`${idPrefix}s-source`}
+            className="w-full px-4 py-3 pr-10 rounded-xl bg-white/5 border border-white/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none cursor-pointer"
+            {...register('source')}
+          >
+            <option value="">Выберите вариант</option>
+            {LEAD_SOURCES.map((o) => (
+              <option key={o} value={o} className="bg-bg-2">{o}</option>
+            ))}
+          </select>
+          <svg className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
+      </div>
+
       <ConsentCheckbox
-        id="consent-strategy"
+        id={`${idPrefix}consent-strategy`}
         error={errors.consent?.message}
         {...register('consent', { required: 'Нужно согласие, чтобы мы могли связаться с вами' })}
       />

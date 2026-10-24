@@ -3,6 +3,7 @@
 import { Check } from 'lucide-react'
 import Button, { buttonClass } from '@/components/ui/Button'
 import { openContact, TELEGRAM_URL } from '@/lib/utils'
+import SectionHeading from '@/components/shared/SectionHeading'
 
 const diagnosticItems = [
   'Разбор ошибок в рекламе, на сайте и в воронке продаж',
@@ -20,10 +21,10 @@ const estimate = [
 
 export default function MainCTA() {
   return (
-    <section className="py-20 lg:py-28 bg-bg-2">
+    <section className="py-fluid-2xl border-t border-white/[0.06]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <p className="eyebrow mb-4">Разбор с основательницей</p>
-        <h2 className="section-title mb-12 max-w-3xl">Посчитаем, во сколько вам обходится одна заявка</h2>
+        <SectionHeading className="section-title mb-fluid-l max-w-3xl">Посчитаем, во сколько вам обходится одна заявка</SectionHeading>
 
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-10 lg:gap-16 items-start">
           {/* What's included */}
@@ -42,7 +43,7 @@ export default function MainCTA() {
           </div>
 
           {/* Estimate */}
-          <div className="rounded-xl border border-white/10 bg-bg font-mono text-sm">
+          <div className="rounded-xl border border-white/10 bg-bg-2 font-mono text-sm">
             <div className="px-5 py-3 border-b border-white/[0.08] text-xs text-muted">СМЕТА</div>
             <dl>
               {estimate.map((row) => (

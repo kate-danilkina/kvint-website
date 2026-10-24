@@ -69,7 +69,7 @@ export default function Header() {
           <div className="hidden md:flex items-center gap-4">
             <a
               href={PHONE_HREF}
-              className="text-sm text-muted hover:text-text transition-colors duration-200 font-mono"
+              className="nav-link text-sm font-mono"
             >
               {PHONE}
             </a>

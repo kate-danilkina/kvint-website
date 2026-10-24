@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import ContactForm from '@/components/shared/ContactForm'
 import StrategyForm from '@/components/shared/StrategyForm'
+import SectionHeading from '@/components/shared/SectionHeading'
 import { PHONE, PHONE_HREF, type ContactTab } from '@/lib/utils'
 
 const tabs: { id: ContactTab; label: string }[] = [
@@ -18,10 +19,10 @@ export default function ContactSection() {
     const onTab = (e: Event) => setTab((e as CustomEvent<ContactTab>).detail)
     window.addEventListener('kvint:contact-tab', onTab)
 
-    // Arriving from another page via /#strategy or /#contact
+    // Arriving from another page via /#contact (/#strategy opens the lead panel instead, see LeadPanel)
     const hash = window.location.hash
-    if (hash === '#strategy' || hash === '#contact') {
-      setTab(hash === '#strategy' ? 'strategy' : 'project')
+    if (hash === '#contact') {
+      setTab('project')
       // Wait for Next's own scroll restoration after navigation, then jump to the form
       const t = setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'instant' }), 150)
       return () => {
@@ -33,14 +34,14 @@ export default function ContactSection() {
   }, [])
 
   return (
-    <section id="contact" className="py-20 lg:py-28 scroll-mt-16">
+    <section id="contact" className="py-fluid-2xl scroll-mt-16 border-t border-white/[0.06]">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-10">
+        <div className="mb-fluid-l">
           <p className="eyebrow mb-4">Ответим за 2 часа в рабочее время</p>
-          <h2 className="section-title mb-4">Оставить заявку</h2>
+          <SectionHeading className="section-title mb-4">Оставить заявку</SectionHeading>
           <p className="text-muted">
             Выберите формат: разбор за 10 000 ₽ или обсуждение проекта. Можно позвонить:{' '}
-            <a href={PHONE_HREF} className="text-text font-mono whitespace-nowrap hover:text-accent transition-colors">
+            <a href={PHONE_HREF} className="link-underline text-text font-mono whitespace-nowrap">
               {PHONE}
             </a>
           </p>

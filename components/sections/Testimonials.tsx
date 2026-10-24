@@ -3,13 +3,14 @@
 import { Quote } from 'lucide-react'
 import AnimatedSection from '@/components/shared/AnimatedSection'
 import { testimonials } from '@/lib/data/services'
+import SectionHeading from '@/components/shared/SectionHeading'
 
 export default function Testimonials() {
   return (
-    <section className="py-20 lg:py-24">
+    <section className="py-fluid-2xl border-t border-white/[0.06]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="mb-12">
-          <h2 className="section-title">Что говорят клиенты</h2>
+        <AnimatedSection className="mb-fluid-l">
+          <SectionHeading className="section-title">Что говорят клиенты</SectionHeading>
         </AnimatedSection>
 
         <div>

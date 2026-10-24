@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { processSteps } from '@/lib/data/services'
+import SectionHeading from '@/components/shared/SectionHeading'
 
 // Each stage keeps fewer hypotheses than the one before — the bar narrows to show it
 const widths = [100, 76, 54, 38]
@@ -13,10 +14,10 @@ export default function Process() {
   const reduced = useReducedMotion()
 
   return (
-    <section className="py-20 lg:py-28 bg-paper text-ink">
+    <section className="py-fluid-2xl bg-paper text-ink">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="section-title !text-ink mb-3">Как работаем после разбора</h2>
-        <p className="text-ink-muted text-lg mb-14 max-w-xl">На каждом этапе отсекаем то, что не окупается</p>
+        <SectionHeading className="section-title !text-ink mb-3">Как работаем после разбора</SectionHeading>
+        <p className="text-ink-muted text-lg mb-fluid-l max-w-xl">На каждом этапе отсекаем то, что не окупается</p>
 
         <ol ref={ref} className="flex flex-col">
           {processSteps.map((step, i) => (

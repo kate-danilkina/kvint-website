@@ -3,6 +3,7 @@ import { Onest, JetBrains_Mono } from 'next/font/google'
 import Script from 'next/script'
 import MessengerWidget from '@/components/shared/MessengerWidget'
 import StickyCTA from '@/components/shared/StickyCTA'
+import LeadPanel from '@/components/shared/LeadPanel'
 import './globals.css'
 
 const onest = Onest({
@@ -99,6 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <MessengerWidget />
         <StickyCTA />
+        <LeadPanel />
       </body>
     </html>
   )

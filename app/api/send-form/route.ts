@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { sendFormNotification } from '@/lib/email'
 import { sendTelegramNotification } from '@/lib/telegram'
 import { appendToSheet } from '@/lib/sheets'
+import { LEAD_SOURCES } from '@/lib/utils'
 
 export async function POST(req: NextRequest) {
   console.log('[send-form] handler fired')
@@ -14,6 +15,11 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
     const { name, company, contact, message, niche, budget, formType } = body
+    // Optional «Откуда узнали о нас»: only accept known options (value is inserted into HTML/Telegram markup)
+    const source: string | undefined = (LEAD_SOURCES as readonly string[]).includes(body.source) ? body.source : undefined
+    const sourceLine = source ? `Откуда узнали: ${source}` : ''
+    // Email and Sheets have no dedicated column, so the answer travels inside the free-text field
+    const messageWithSource = [message, sourceLine].filter(Boolean).join(' · ') || undefined
     console.log('[send-form] body', { name, formType, hasContact: !!contact })
 
     if (!name || !contact) {
@@ -22,7 +28,7 @@ export async function POST(req: NextRequest) {
 
     // 1. Email — primary notification channel
     try {
-      await sendFormNotification({ name, company, contact, message, niche, budget, formType })
+      await sendFormNotification({ name, company, contact, message: messageWithSource, niche, budget, formType })
       console.log('[send-form] email sent')
     } catch (emailErr) {
       console.error('[send-form] email error:', emailErr)
@@ -38,6 +44,7 @@ export async function POST(req: NextRequest) {
       `📱 Контакт: ${contact}\n` +
       (niche ? `🎯 Ниша: ${niche}\n` : '') +
       (budget ? `💰 Бюджет: ${budget}\n` : '') +
+      (source ? `🧭 Откуда узнали: ${source}\n` : '') +
       (message ? `\n💬 Задача:\n${message}\n` : '') +
       `\n🕐 ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}`
 
@@ -55,7 +62,7 @@ export async function POST(req: NextRequest) {
       name,
       contact,
       company || '',
-      message || niche || '',
+      [message || niche, sourceLine].filter(Boolean).join(' · '),
     ]).catch((err) => console.error('[send-form] sheets error:', err))
 
     return NextResponse.json({ success: true, message: 'Заявка отправлена!' })

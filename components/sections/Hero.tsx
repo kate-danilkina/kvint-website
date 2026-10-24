@@ -42,7 +42,7 @@ export default function Hero() {
   const yReport = useTransform(scrollY, [0, 500], reduced || isMobile ? [0, 0] : [0, 40])
 
   return (
-    <section className="relative min-h-[100dvh] flex items-center pt-28 pb-20 sm:pt-32 sm:pb-28">
+    <section className="relative min-h-[100dvh] flex items-center pt-[calc(5rem+var(--space-xl))] pb-fluid-3xl">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] items-center gap-14 lg:gap-16">
           {/* Left: offer */}
@@ -52,9 +52,7 @@ export default function Hero() {
             </p>
 
             <h1
-              className="font-sans font-bold leading-[1.02] tracking-[-0.03em] mb-7 text-text"
-              style={{ fontSize: 'clamp(38px, 6vw, 80px)' }}
-             
+              className="font-sans font-extrabold text-step-6 leading-[1.02] tracking-[-0.04em] mb-7 text-text"
             >
               Внедряем <span className="text-outline">контролируемую</span> систему
               <br />

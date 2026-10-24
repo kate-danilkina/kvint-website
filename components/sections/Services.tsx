@@ -1,12 +1,13 @@
 import Badge from '@/components/ui/Badge'
 import { services } from '@/lib/data/services'
+import SectionHeading from '@/components/shared/SectionHeading'
 
 export default function Services() {
   return (
-    <section className="py-16 lg:py-20">
+    <section className="py-fluid-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="section-title mb-3">Что делаем</h2>
-        <p className="text-muted max-w-xl mb-10">
+        <SectionHeading className="section-title mb-3">Что делаем</SectionHeading>
+        <p className="text-muted max-w-xl mb-fluid-l">
           Сначала смотрим, где теряются деньги, потом выбираем каналы. Иногда это Telegram Ads, иногда SEO.
         </p>
 

@@ -11,6 +11,26 @@
   --color-text-muted: #888899;
   --color-border: rgba(255, 255, 255, 0.06);
   --color-white: #FFFFFF;
+
+  /* Fluid type scale (utopia-style): 375px → 1440px viewport.
+     min: 16px base, ratio 1.16 · max: 18px base, ratio 1.27 */
+  --step--1: clamp(0.8621rem, 0.8537rem + 0.0357vw, 0.8858rem); /* 13.8 → 14.2px */
+  --step-0: clamp(1rem, 0.9560rem + 0.1878vw, 1.125rem);         /* 16 → 18px */
+  --step-1: clamp(1.16rem, 1.0654rem + 0.4038vw, 1.4287rem);     /* 18.6 → 22.9px */
+  --step-2: clamp(1.3456rem, 1.1805rem + 0.7045vw, 1.8145rem);   /* 21.5 → 29px */
+  --step-3: clamp(1.5609rem, 1.2991rem + 1.117vw, 2.3044rem);    /* 25 → 36.9px */
+  --step-4: clamp(1.8106rem, 1.4177rem + 1.6766vw, 2.9266rem);   /* 29 → 46.8px */
+  --step-5: clamp(2.1003rem, 1.5312rem + 2.4285vw, 3.7168rem);   /* 33.6 → 59.5px */
+  --step-6: clamp(2.4364rem, 1.6322rem + 3.4313vw, 4.7204rem);   /* 39 → 75.5px */
+
+  /* Fluid space scale, same viewport range */
+  --space-xs: clamp(0.5rem, 0.412rem + 0.3756vw, 0.75rem);   /* 8 → 12px */
+  --space-s: clamp(1rem, 0.912rem + 0.3756vw, 1.25rem);      /* 16 → 20px */
+  --space-m: clamp(1.5rem, 1.3239rem + 0.7512vw, 2rem);      /* 24 → 32px */
+  --space-l: clamp(2rem, 1.6479rem + 1.5023vw, 3rem);        /* 32 → 48px */
+  --space-xl: clamp(3rem, 2.2958rem + 3.0047vw, 5rem);       /* 48 → 80px  — dense lists/tables */
+  --space-2xl: clamp(4rem, 2.9437rem + 4.507vw, 7rem);       /* 64 → 112px — regular sections */
+  --space-3xl: clamp(5rem, 3.2394rem + 7.5117vw, 10rem);     /* 80 → 160px — hero, cases */
 }
 
 * {
@@ -27,6 +47,7 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans), sans-serif;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -64,23 +85,41 @@ body {
     transition: color 0.2s ease;
   }
 
-  .nav-link::after {
+  /* Underline grows from the left on hover, shrinks back to the left on leave */
+  .nav-link::after,
+  .link-underline::after {
     content: '';
     position: absolute;
     bottom: -2px;
     left: 0;
-    width: 0;
+    width: 100%;
     height: 1px;
     background: var(--color-accent);
-    transition: width 0.25s ease;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .nav-link:hover {
     color: var(--color-text);
   }
 
-  .nav-link:hover::after {
-    width: 100%;
+  .nav-link:hover::after,
+  .nav-link:focus-visible::after,
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  /* Reusable text-link underline; colour/size come from the element's own classes */
+  .link-underline {
+    position: relative;
+  }
+
+  .link-underline:focus-visible {
+    outline: 2px solid rgba(26, 110, 255, 0.55);
+    outline-offset: 4px;
+    border-radius: 3px;
   }
 
   .nav-link:focus-visible {
@@ -95,7 +134,7 @@ body {
   }
 
   .nav-link.nav-active::after {
-    width: 100%;
+    transform: scaleX(1);
   }
 
   .btn-primary {
@@ -131,11 +170,20 @@ body {
 
   .section-title {
     font-family: var(--font-sans), sans-serif;
-    font-weight: 700;
-    font-size: clamp(30px, 5vw, 56px);
-    line-height: 1.05;
-    letter-spacing: -0.025em;
+    font-weight: 800;
+    font-size: var(--step-5);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
     color: var(--color-text);
+  }
+
+  /* Mask for SectionHeading: clips the line while it slides up into place.
+     Small bottom padding keeps descenders (у, д, р) from being cut off. */
+  .heading-mask {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.08em;
+    margin-bottom: -0.08em;
   }
 
 }

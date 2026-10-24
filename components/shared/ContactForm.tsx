@@ -8,12 +8,13 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
 import ConsentCheckbox from '@/components/shared/ConsentCheckbox'
-import { trackGoal } from '@/lib/utils'
+import { trackGoal, LEAD_SOURCES } from '@/lib/utils'
 
 interface FormData {
   name: string
   contact: string
   message: string
+  source: string
   consent: boolean
 }
 
@@ -25,7 +26,12 @@ const stepVariants = {
   exit: (dir: number) => ({ x: dir > 0 ? -40 : 40, opacity: 0 }),
 }
 
-export default function ContactForm() {
+interface Props {
+  /** Prefix for element ids, so the form can be rendered twice on a page (contact section + lead panel) */
+  idPrefix?: string
+}
+
+export default function ContactForm({ idPrefix = '' }: Props = {}) {
   const [step, setStep] = useState(1)
   const [dir, setDir] = useState(1)
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
@@ -43,7 +49,7 @@ export default function ContactForm() {
   const watchContact = watch('contact', '')
 
   const goNext = async () => {
-    const fields: (keyof FormData)[] = step === 1 ? ['name', 'contact'] : ['message']
+    const fields: (keyof FormData)[] = step === 1 ? ['name', 'contact'] : ['message', 'source']
     const valid = await trigger(fields)
     if (!valid) return
     setDir(1)
@@ -119,7 +125,7 @@ export default function ContactForm() {
               className="flex flex-col gap-4"
             >
               <Input
-                id="name"
+                id={`${idPrefix}name`}
                 label="Как вас зовут?"
                 placeholder="Имя или название компании"
                 autoComplete="name"
@@ -131,7 +137,7 @@ export default function ContactForm() {
                 })}
               />
               <Input
-                id="contact"
+                id={`${idPrefix}contact`}
                 label="Как с вами связаться?"
                 placeholder="+7 (999) 000-00-00 или @username"
                 autoComplete="tel"
@@ -159,16 +165,37 @@ export default function ContactForm() {
               className="flex flex-col gap-4"
             >
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="message" className="text-sm font-medium text-muted font-mono">
+                <label htmlFor={`${idPrefix}message`} className="text-sm font-medium text-muted font-mono">
                   Расскажите о задаче
                 </label>
                 <textarea
-                  id="message"
+                  id={`${idPrefix}message`}
                   rows={3}
                   placeholder="Что хотите улучшить? Какая сейчас ситуация? Любой формат..."
                   className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-text placeholder:text-muted focus:outline-none focus:border-accent/60 focus:bg-white/[0.07] transition-all duration-200 text-base resize-none"
                   {...register('message')}
                 />
+              </div>
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor={`${idPrefix}p-source`} className="text-sm font-medium text-muted font-mono flex items-center gap-2">
+                  Откуда узнали о нас
+                  <span className="text-xs text-muted/70 font-normal">(необязательно)</span>
+                </label>
+                <div className="relative">
+                  <select
+                    id={`${idPrefix}p-source`}
+                    className="w-full px-4 py-3 pr-10 rounded-xl bg-white/5 border border-white/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none cursor-pointer"
+                    {...register('source')}
+                  >
+                    <option value="">Выберите вариант</option>
+                    {LEAD_SOURCES.map((o) => (
+                      <option key={o} value={o} className="bg-bg-2">{o}</option>
+                    ))}
+                  </select>
+                  <svg className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
               </div>
             </motion.div>
           )}
@@ -203,7 +230,7 @@ export default function ContactForm() {
                 Ответим в течение 2 часов в рабочее время.
               </p>
               <ConsentCheckbox
-                id="consent-project"
+                id={`${idPrefix}consent-project`}
                 error={errors.consent?.message}
                 {...register('consent', { required: 'Нужно согласие, чтобы мы могли связаться с вами' })}
               />

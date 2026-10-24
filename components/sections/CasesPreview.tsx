@@ -2,19 +2,20 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import Badge from '@/components/ui/Badge'
 import { cases } from '@/lib/data/cases'
+import SectionHeading from '@/components/shared/SectionHeading'
 
 export default function CasesPreview() {
   return (
-    <section className="py-24 lg:py-32 bg-bg-2">
+    <section className="py-fluid-3xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
           <div>
-            <h2 className="section-title mb-3">Кейсы</h2>
+            <SectionHeading className="section-title mb-3">Кейсы</SectionHeading>
             <p className="text-muted max-w-xl">Что было до нас, что сделали и какие цифры получили</p>
           </div>
           <Link
             href="/cases"
-            className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-text transition-colors font-mono"
+            className="link-underline inline-flex items-center gap-1.5 text-sm text-muted hover:text-text transition-colors font-mono"
           >
             Все кейсы <ArrowRight size={14} />
           </Link>
@@ -23,7 +24,7 @@ export default function CasesPreview() {
         <div className="flex flex-col gap-5">
           {cases.map((c) => (
             <Link key={c.slug} href={`/cases/${c.slug}`} className="group block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50">
-              <article className="rounded-xl border border-white/10 bg-bg transition-colors duration-200 group-hover:border-white/25">
+              <article className="rounded-xl border border-white/10 bg-bg-2 transition-colors duration-200 group-hover:border-white/25">
                 <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-8 p-6 sm:p-8">
                   <div className="min-w-0">
                     <div className="flex items-center gap-3 mb-4">
