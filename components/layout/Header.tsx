@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import Button from '@/components/ui/Button'
+import { openContact, PHONE, PHONE_HREF } from '@/lib/utils'
 
 const navLinks = [
   { href: '/cases', label: 'Кейсы' },
@@ -67,19 +68,13 @@ export default function Header() {
           {/* CTA */}
           <div className="hidden md:flex items-center gap-4">
             <a
-              href="tel:+79930798655"
-              className="text-sm text-muted hover:text-text transition-colors duration-200 font-grotesk"
+              href={PHONE_HREF}
+              className="text-sm text-muted hover:text-text transition-colors duration-200 font-mono"
             >
-              +7 993 079 86 55
+              {PHONE}
             </a>
-            <Button
-              variant="primary"
-              size="sm"
-              onClick={() => {
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-              }}
-            >
-              Обсудить проект
+            <Button variant="primary" size="sm" onClick={() => openContact('strategy')}>
+              Записаться на разбор
             </Button>
           </div>
 
@@ -135,12 +130,10 @@ export default function Header() {
                 fullWidth
                 onClick={() => {
                   setMenuOpen(false)
-                  setTimeout(() => {
-                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-                  }, 300)
+                  setTimeout(() => openContact('strategy'), 300)
                 }}
               >
-                Обсудить проект
+                Записаться на разбор
               </Button>
             </motion.div>
           </motion.div>

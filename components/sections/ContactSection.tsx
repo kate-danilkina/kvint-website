@@ -1,80 +1,72 @@
 'use client'
 
-import { useState } from 'react'
-import AnimatedSection from '@/components/shared/AnimatedSection'
+import { useEffect, useState } from 'react'
 import ContactForm from '@/components/shared/ContactForm'
 import StrategyForm from '@/components/shared/StrategyForm'
+import { PHONE, PHONE_HREF, type ContactTab } from '@/lib/utils'
 
-type Tab = 'project' | 'strategy'
+const tabs: { id: ContactTab; label: string }[] = [
+  { id: 'strategy', label: 'Разбор · 10 000 ₽' },
+  { id: 'project', label: 'Обсудить проект' },
+]
 
 export default function ContactSection() {
-  const [tab, setTab] = useState<Tab>('project')
+  const [tab, setTab] = useState<ContactTab>('strategy')
+
+  useEffect(() => {
+    // CTA buttons elsewhere on the page switch the tab via openContact()
+    const onTab = (e: Event) => setTab((e as CustomEvent<ContactTab>).detail)
+    window.addEventListener('kvint:contact-tab', onTab)
+
+    // Arriving from another page via /#strategy or /#contact
+    const hash = window.location.hash
+    if (hash === '#strategy' || hash === '#contact') {
+      setTab(hash === '#strategy' ? 'strategy' : 'project')
+      // Wait for Next's own scroll restoration after navigation, then jump to the form
+      const t = setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'instant' }), 150)
+      return () => {
+        clearTimeout(t)
+        window.removeEventListener('kvint:contact-tab', onTab)
+      }
+    }
+    return () => window.removeEventListener('kvint:contact-tab', onTab)
+  }, [])
 
   return (
-    <section id="contact" className="py-20 bg-bg-2/60">
+    <section id="contact" className="py-20 lg:py-28 scroll-mt-16">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-10">
-          <p className="eyebrow mb-4">Первый шаг</p>
-          <h2 className="section-title mb-4">Начнём работу?</h2>
+        <div className="mb-10">
+          <p className="eyebrow mb-4">Ответим за 2 часа в рабочее время</p>
+          <h2 className="section-title mb-4">Оставить заявку</h2>
           <p className="text-muted">
-            Оставьте заявку — вернемся в течение 2 часов
+            Выберите формат: разбор за 10 000 ₽ или обсуждение проекта. Можно позвонить:{' '}
+            <a href={PHONE_HREF} className="text-text font-mono whitespace-nowrap hover:text-accent transition-colors">
+              {PHONE}
+            </a>
           </p>
-          <a
-            href="tel:+79930798655"
-            className="inline-block mt-4 text-lg font-semibold text-text hover:text-accent transition-colors duration-200"
-          >
-            +7 993 079 86 55
-          </a>
-          {/* Social proof */}
-          <div className="flex items-center justify-center gap-3 mt-5">
-            <div className="flex -space-x-2" aria-hidden="true">
-              {['АМ', 'КС', 'ДВ'].map((initials) => (
-                <div
-                  key={initials}
-                  className="w-8 h-8 rounded-full border-2 border-bg-2 flex items-center justify-center text-[10px] font-bold text-white"
-                  style={{ background: 'linear-gradient(135deg, #1A6EFF, #0044CC)' }}
-                >
-                  {initials}
-                </div>
-              ))}
-            </div>
-            <p className="text-xs text-muted">
-              <span className="text-text font-semibold">124 проекта</span> · ответ за 2 часа
-            </p>
-          </div>
-        </AnimatedSection>
+        </div>
 
-        <AnimatedSection delay={0.1}>
-          {/* Tab toggle */}
-          <div className="flex gap-2 mb-8 p-1 bg-white/5 rounded-xl">
+        <div role="tablist" aria-label="Формат заявки" className="flex gap-1 mb-6 p-1 bg-white/5 rounded-xl">
+          {tabs.map((t) => (
             <button
-              id="contact-tab-project"
-              onClick={() => setTab('project')}
-              className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all duration-200 min-h-[44px] ${
-                tab === 'project'
-                  ? 'bg-accent text-white shadow-lg'
-                  : 'text-muted hover:text-text'
+              key={t.id}
+              role="tab"
+              id={`contact-tab-${t.id}`}
+              aria-selected={tab === t.id}
+              aria-controls="contact-panel"
+              onClick={() => setTab(t.id)}
+              className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-colors duration-200 min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${
+                tab === t.id ? 'bg-accent text-white' : 'text-muted hover:text-text'
               }`}
             >
-              Обсудить проект
+              {t.label}
             </button>
-            <button
-              id="strategy"
-              onClick={() => setTab('strategy')}
-              className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all duration-200 min-h-[44px] ${
-                tab === 'strategy'
-                  ? 'bg-accent text-white shadow-lg'
-                  : 'text-muted hover:text-text'
-              }`}
-            >
-              Диагностика · 10 000 ₽
-            </button>
-          </div>
+          ))}
+        </div>
 
-          <div className="glass-card p-6 sm:p-8">
-            {tab === 'project' ? <ContactForm /> : <StrategyForm />}
-          </div>
-        </AnimatedSection>
+        <div id="contact-panel" role="tabpanel" aria-labelledby={`contact-tab-${tab}`} className="glass-card p-6 sm:p-8">
+          {tab === 'strategy' ? <StrategyForm /> : <ContactForm />}
+        </div>
       </div>
     </section>
   )

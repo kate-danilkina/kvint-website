@@ -22,8 +22,8 @@ type ButtonProps = AsButton | AsLink
 const styles = {
   base: 'inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 disabled:opacity-50 disabled:cursor-not-allowed',
   variants: {
-    primary: 'bg-accent text-white hover:scale-[1.02] hover:shadow-[0_0_24px_rgba(26,110,255,0.4)]',
-    secondary: 'border border-white/25 text-text hover:border-accent hover:text-accent hover:scale-[1.02]',
+    primary: 'bg-accent text-white hover:bg-[#3A82FF] active:bg-[#155CDB]',
+    secondary: 'border border-white/25 text-text hover:border-white/60 hover:bg-white/[0.03]',
     ghost: 'text-muted hover:text-text hover:bg-white/5',
   },
   sizes: {
@@ -31,6 +31,15 @@ const styles = {
     md: 'px-6 py-3 text-base',
     lg: 'px-8 py-4 text-lg',
   },
+}
+
+/** Button look for elements that can't use <Button>, e.g. external links. */
+export function buttonClass(
+  variant: keyof typeof styles.variants = 'primary',
+  size: keyof typeof styles.sizes = 'md',
+  className?: string
+) {
+  return cn(styles.base, styles.variants[variant], styles.sizes[size], className)
 }
 
 const Button = forwardRef<HTMLButtonElement, AsButton>(

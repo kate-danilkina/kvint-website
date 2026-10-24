@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import { Mail, Send, Phone } from 'lucide-react'
+import { PHONE, PHONE_HREF, TELEGRAM_URL } from '@/lib/utils'
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-bg">
+    <footer className="border-t border-white/10 bg-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16 mb-10">
           {/* Brand */}
@@ -12,8 +13,9 @@ export default function Footer() {
               КВИНТ
             </Link>
             <p className="mt-3 text-sm text-muted leading-relaxed">
-              Бутиковое маркетинговое агентство<br />
-              Системный маркетинг для бизнеса
+              Бутиковое маркетинговое агентство
+              <br />
+              IT B2B, премиум-ритейл, производство, недвижимость
             </p>
           </div>
 
@@ -40,35 +42,35 @@ export default function Footer() {
             <div className="flex flex-col gap-3">
               <a
                 href="mailto:hello@kvint.agency"
-                className="inline-flex items-center gap-2 text-sm text-muted hover:text-accent transition-colors"
+                className="inline-flex items-center gap-2 text-sm text-muted hover:text-text transition-colors"
               >
                 <Mail size={15} />
                 hello@kvint.agency
               </a>
               <a
-                href="https://t.me/kvint_agency"
+                href={TELEGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-muted hover:text-accent transition-colors"
+                className="inline-flex items-center gap-2 text-sm text-muted hover:text-text transition-colors"
               >
                 <Send size={15} />
                 @kvint_agency
               </a>
-              <a
-                href="tel:+79930798655"
-                className="inline-flex items-center gap-2 text-sm text-muted hover:text-accent transition-colors"
-              >
+              <a href={PHONE_HREF} className="inline-flex items-center gap-2 text-sm text-muted hover:text-text transition-colors">
                 <Phone size={15} />
-                +7 993 079 86 55
+                {PHONE}
               </a>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-muted font-grotesk">
-            © {new Date().getFullYear()} Квинт. Все права защищены.
+        <div className="border-t border-white/10 pt-6 flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-xs text-muted font-mono">
+          <p>
+            © {new Date().getFullYear()} Квинт · ИП Данилкина Екатерина Денисовна · ИНН 631607801908 · ОГРНИП 326632700136276
           </p>
+          <Link href="/privacy" className="hover:text-text transition-colors">
+            Политика конфиденциальности
+          </Link>
         </div>
       </div>
     </footer>

@@ -26,7 +26,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: c.title,
       description: c.description,
-      images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
     },
   }
 }
@@ -38,7 +37,7 @@ export default function CasePage({ params }: Props) {
   return (
     <>
       <Header />
-      <main className="pt-24 pb-20">
+      <main id="main-content" className="pt-28 pb-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Back */}
           <AnimatedSection className="mb-8">
@@ -55,7 +54,7 @@ export default function CasePage({ params }: Props) {
           <AnimatedSection className="mb-10">
             <div className="flex items-center gap-3 mb-5">
               <Badge variant="accent">{c.tag}</Badge>
-              <span className="text-xs text-muted font-grotesk">
+              <span className="text-xs text-muted font-mono">
                 {new Date(c.date).toLocaleDateString('ru-RU', { year: 'numeric', month: 'long' })}
               </span>
             </div>
@@ -65,12 +64,12 @@ export default function CasePage({ params }: Props) {
 
           {/* Hero metric */}
           <AnimatedSection delay={0.1} className="glass-card p-6 sm:p-10 mb-8 text-center">
-            <div className="text-6xl sm:text-7xl font-bold text-accent font-grotesk mb-2">
+            <div className="text-6xl sm:text-7xl font-bold text-up font-mono mb-2">
               {c.mainMetric}
             </div>
             <p className="text-muted">{c.metricLabel}</p>
             {c.metricSecondary && (
-              <p className="text-sm text-muted/60 mt-1 font-grotesk">{c.metricSecondary}</p>
+              <p className="text-sm text-muted/60 mt-1 font-mono">{c.metricSecondary}</p>
             )}
           </AnimatedSection>
 
@@ -78,7 +77,7 @@ export default function CasePage({ params }: Props) {
           <AnimatedSection delay={0.15} className="grid grid-cols-3 gap-4 mb-10">
             {c.results.map((r) => (
               <div key={r.label} className="glass-card p-4 text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-text font-grotesk mb-1">{r.value}</div>
+                <div className="text-2xl sm:text-3xl font-bold text-text font-mono mb-1">{r.value}</div>
                 <div className="text-xs text-muted">{r.label}</div>
               </div>
             ))}

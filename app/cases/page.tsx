@@ -8,45 +8,24 @@ import AnimatedSection, { AnimatedGrid, AnimatedItem } from '@/components/shared
 import { cases } from '@/lib/data/cases'
 
 export const metadata: Metadata = {
-  title: 'Кейсы агентства Квинт — результаты в IT, финтех, B2B и EdTech',
+  title: 'Кейсы агентства Квинт — IT B2B и B2B-запуски',
   description:
-    'Реальные кейсы маркетингового агентства Квинт: рост лидов, вывод продуктов на рынок, стратегии для IT-стартапов и B2B компаний по всей России.',
+    'Кейсы маркетингового агентства Квинт: что было до нас, что сделали и какие цифры получили. Конверсия AI-стартапа ×6, 220 регистраций на B2B-вебинар за 7 дней.',
   openGraph: {
     title: 'Кейсы — Квинт',
-    description: 'Реальные результаты наших клиентов.',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
+    description: 'Что было до нас, что сделали и какие цифры получили.',
   },
 }
-
-const niches = ['Все', ...Array.from(new Set(cases.map((c) => c.tag)))]
 
 export default function CasesPage() {
   return (
     <>
       <Header />
-      <main className="pt-24 pb-20">
+      <main id="main-content" className="pt-28 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="mb-14">
-            <p className="eyebrow mb-4">Кейсы</p>
-            <h1 className="section-title mb-4">
-              Результаты, за которые{' '}
-              <span className="text-outline">отвечаем</span>
-            </h1>
-            <p className="text-muted max-w-xl">
-              Реальные проекты, реальные цифры. Без накруток и выбранных периодов.
-            </p>
-          </AnimatedSection>
-
-          {/* Filter chips */}
-          <AnimatedSection delay={0.1} className="flex flex-wrap gap-2 mb-10">
-            {niches.map((n) => (
-              <span
-                key={n}
-                className="px-3 py-1.5 rounded-lg text-sm font-grotesk font-medium border border-white/10 text-muted hover:border-accent/40 hover:text-accent transition-all duration-200 cursor-pointer"
-              >
-                {n}
-              </span>
-            ))}
+            <h1 className="section-title mb-4">Кейсы</h1>
+            <p className="text-muted max-w-xl">Что было до нас, что сделали и какие цифры получили</p>
           </AnimatedSection>
 
           <AnimatedGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5">
@@ -70,16 +49,16 @@ export default function CasesPage() {
 
                     <div>
                       <div className="flex items-baseline gap-2">
-                        <span className="text-4xl font-bold text-accent font-grotesk">{c.mainMetric}</span>
+                        <span className="text-4xl font-bold text-up font-mono">{c.mainMetric}</span>
                         <span className="text-sm text-muted">{c.metricLabel}</span>
                       </div>
-                      <p className="text-xs text-muted/60 mt-0.5 font-grotesk">{c.metricSecondary}</p>
+                      <p className="text-xs text-muted/60 mt-0.5 font-mono">{c.metricSecondary}</p>
                     </div>
 
                     <div className="grid grid-cols-3 gap-3 pt-4 border-t border-white/5">
                       {c.results.map((r) => (
                         <div key={r.label}>
-                          <div className="text-sm font-bold text-text font-grotesk">{r.value}</div>
+                          <div className="text-sm font-bold text-text font-mono">{r.value}</div>
                           <div className="text-xs text-muted mt-0.5">{r.label}</div>
                         </div>
                       ))}

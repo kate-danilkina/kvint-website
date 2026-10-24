@@ -1,106 +1,72 @@
 'use client'
 
 import { Check } from 'lucide-react'
-import AnimatedSection from '@/components/shared/AnimatedSection'
-import Button from '@/components/ui/Button'
+import Button, { buttonClass } from '@/components/ui/Button'
+import { openContact, TELEGRAM_URL } from '@/lib/utils'
 
 const diagnosticItems = [
-  'Разбор текущих ошибок в рекламе, сайте и воронке продаж',
-  'Просчёт реальной стоимости лида и окупаемости вложений',
-  'Пошаговый план выхода из просадки или масштабирования',
-  '3–5 точек роста, которые можно внедрить прямо сейчас',
+  'Разбор ошибок в рекламе, на сайте и в воронке продаж',
+  'Расчёт реальной стоимости заявки и окупаемости вложений',
+  'Пошаговый план: как выйти из просадки или масштабироваться',
+  '3–5 точек роста, которые можно внедрить сразу',
   'Честный вердикт: окупаем 3–5× — берёмся. Нет — скажем прямо',
+]
+
+const estimate = [
+  { label: 'Формат', value: 'созвон, 60 минут' },
+  { label: 'Ведёт', value: 'Екатерина Данилкина' },
+  { label: 'На выходе', value: 'план и вердикт' },
 ]
 
 export default function MainCTA() {
   return (
-    <>
-      <section className="py-16 lg:py-24 relative overflow-hidden">
-        {/* Background glow */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden>
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-accent/8 blur-[120px] rounded-full" />
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400px] h-[200px] bg-accent/5 blur-[80px] rounded-full" />
-        </div>
+    <section className="py-20 lg:py-28 bg-bg-2">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p className="eyebrow mb-4">Разбор с основательницей</p>
+        <h2 className="section-title mb-12 max-w-3xl">Посчитаем, во сколько вам обходится одна заявка</h2>
 
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-12">
-            <p className="eyebrow mb-5">Следующий шаг</p>
-            <h2 className="section-title mb-4" style={{ fontSize: 'clamp(28px, 5vw, 56px)' }}>
-              Готовы выстроить систему,{' '}
-              <span className="text-outline">которая приносит</span>{' '}
-              деньги?
-            </h2>
-          </AnimatedSection>
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-10 lg:gap-16 items-start">
+          {/* What's included */}
+          <div>
+            <p className="text-muted text-lg mb-8 max-w-xl">
+              На созвоне покажем, где сейчас уходит бюджет и сколько на самом деле стоит каждая заявка.
+            </p>
+            <ul className="flex flex-col gap-4">
+              {diagnosticItems.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <Check size={16} className="text-up mt-1 flex-shrink-0" aria-hidden />
+                  <span className="text-text/90 leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          {/* Diagnostic card */}
-          <AnimatedSection delay={0.1} className="mb-10">
-            <div
-              className="glass-card relative overflow-hidden"
-              style={{ borderColor: 'rgba(26,110,255,0.2)' }}
-            >
-              {/* Blue left stripe */}
-              <div className="absolute top-0 left-0 w-1 h-full bg-accent" />
-
-              <div className="p-6 sm:p-8 pl-8 sm:pl-10">
-                {/* Header row */}
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
-                  <div>
-                    <p className="eyebrow mb-2">60-минутная стратегия от фаундера</p>
-                    <h3 className="text-xl sm:text-2xl font-bold text-text">
-                      Диагностика вашего бизнеса
-                    </h3>
-                  </div>
-                  <div className="flex-shrink-0 text-right sm:text-right">
-                    <span className="text-xs text-muted/60 font-grotesk block">Стоимость</span>
-                    <span className="text-3xl font-bold text-text font-grotesk">10 000 ₽</span>
-                  </div>
+          {/* Estimate */}
+          <div className="rounded-xl border border-white/10 bg-bg font-mono text-sm">
+            <div className="px-5 py-3 border-b border-white/[0.08] text-xs text-muted">СМЕТА</div>
+            <dl>
+              {estimate.map((row) => (
+                <div key={row.label} className="flex justify-between gap-4 px-5 py-3 border-b border-white/[0.06]">
+                  <dt className="text-muted">{row.label}</dt>
+                  <dd className="text-text text-right">{row.value}</dd>
                 </div>
-
-                {/* Subtitle */}
-                <p className="text-muted text-sm sm:text-base mb-6 max-w-xl">
-                  Эти деньги окупятся в первые 10 минут созвона —{' '}
-                  когда вы увидите, где прямо сейчас теряете бюджет
-                </p>
-
-                {/* What's included */}
-                <ul className="flex flex-col gap-3 mb-8">
-                  {diagnosticItems.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <div className="w-5 h-5 rounded-full bg-accent/15 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Check size={11} className="text-accent" />
-                      </div>
-                      <span className="text-sm text-muted leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* CTAs */}
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                  <Button
-                    variant="primary"
-                    size="lg"
-                    className="w-full sm:w-auto"
-                    onClick={() => {
-                      document.getElementById('strategy')?.scrollIntoView({ behavior: 'smooth' })
-                    }}
-                  >
-                    Записаться на диагностику
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    size="lg"
-                    className="w-full sm:w-auto"
-                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  >
-                    Обсудить проект
-                  </Button>
-                </div>
+              ))}
+              <div className="flex justify-between items-baseline gap-4 px-5 py-5">
+                <dt className="text-muted">Стоимость</dt>
+                <dd className="text-text text-3xl font-bold tabular-nums">10 000 ₽</dd>
               </div>
+            </dl>
+            <div className="flex flex-col gap-2 p-5 pt-0 font-sans">
+              <Button variant="primary" size="lg" fullWidth onClick={() => openContact('strategy')}>
+                Записаться на разбор
+              </Button>
+              <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className={buttonClass('secondary', 'lg', 'w-full')}>
+                Написать в Telegram
+              </a>
             </div>
-          </AnimatedSection>
-
+          </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   )
 }

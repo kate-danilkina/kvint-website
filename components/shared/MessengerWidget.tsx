@@ -4,9 +4,9 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { MessageCircle, X, Send } from 'lucide-react'
 
-// REPLACE with real username/phone before deploying
-const TELEGRAM_URL = 'https://t.me/kvint_agency'
-const WHATSAPP_URL = 'https://wa.me/+79021848655'
+import { TELEGRAM_URL } from '@/lib/utils'
+
+const WHATSAPP_URL = 'https://wa.me/79930798655'
 
 const messengers = [
   {
@@ -35,32 +35,8 @@ const messengers = [
 
 export default function MessengerWidget() {
   const [open, setOpen] = useState(false)
-  const [bounced, setBounced] = useState(false)
-  const [showPing, setShowPing] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const reducedMotion = useReducedMotion()
-
-  // Initial bounce after 2s
-  useEffect(() => {
-    if (reducedMotion) return
-    const t = setTimeout(() => setBounced(true), 2000)
-    return () => clearTimeout(t)
-  }, [reducedMotion])
-
-  // Ping every 8s (first after 5s)
-  useEffect(() => {
-    if (reducedMotion) return
-    const first = setTimeout(() => {
-      setShowPing(true)
-      setTimeout(() => setShowPing(false), 1200)
-    }, 5000)
-    const interval = setInterval(() => {
-      if (open) return
-      setShowPing(true)
-      setTimeout(() => setShowPing(false), 1200)
-    }, 8000)
-    return () => { clearTimeout(first); clearInterval(interval) }
-  }, [reducedMotion, open])
 
   // Click-outside to collapse
   useEffect(() => {
@@ -120,7 +96,7 @@ export default function MessengerWidget() {
                     padding: '4px 10px',
                     fontSize: 12,
                     color: 'rgba(240,240,245,0.85)',
-                    fontFamily: 'var(--font-space-grotesk)',
+                    fontFamily: 'var(--font-mono)',
                     whiteSpace: 'nowrap',
                     opacity: 0,
                     transition: 'opacity 0.15s ease',
@@ -167,23 +143,10 @@ export default function MessengerWidget() {
         )}
       </AnimatePresence>
 
-      {/* Ping ring */}
-      {showPing && !open && (
-        <span
-          className="absolute inset-0 rounded-full border-2 border-accent animate-ping"
-          aria-hidden
-        />
-      )}
-
       {/* Main toggle button */}
       <motion.button
         onClick={() => setOpen((v) => !v)}
-        animate={
-          bounced && !open && !reducedMotion
-            ? { y: [0, -10, 0, -5, 0], transition: { duration: 0.6, ease: 'easeInOut' } }
-            : {}
-        }
-        whileHover={reducedMotion ? {} : { scale: 1.08 }}
+        whileHover={reducedMotion ? {} : { scale: 1.05 }}
         whileTap={reducedMotion ? {} : { scale: 0.95 }}
         aria-label={open ? 'Закрыть мессенджеры' : 'Написать нам'}
         className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
@@ -196,7 +159,7 @@ export default function MessengerWidget() {
           alignItems: 'center',
           justifyContent: 'center',
           color: '#fff',
-          boxShadow: '0 6px 24px rgba(26,110,255,0.45)',
+          boxShadow: '0 4px 14px rgba(0,0,0,0.4)',
           border: 'none',
           cursor: 'pointer',
           position: 'relative',

@@ -16,7 +16,7 @@ export default function Badge({ children, variant = 'muted', className }: BadgeP
   return (
     <span
       className={cn(
-        'inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-grotesk font-medium',
+        'inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-mono font-medium',
         variants[variant],
         className
       )}

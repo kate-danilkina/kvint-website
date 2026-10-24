@@ -1,33 +1,32 @@
 import type { Metadata, Viewport } from 'next'
-import { Montserrat, Space_Grotesk } from 'next/font/google'
+import { Onest, JetBrains_Mono } from 'next/font/google'
 import Script from 'next/script'
 import MessengerWidget from '@/components/shared/MessengerWidget'
-import CustomCursor from '@/components/shared/CustomCursor'
 import StickyCTA from '@/components/shared/StickyCTA'
 import './globals.css'
 
-const montserrat = Montserrat({
+const onest = Onest({
   subsets: ['latin', 'cyrillic'],
   weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-montserrat',
+  variable: '--font-sans',
   display: 'swap',
 })
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  variable: '--font-space-grotesk',
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['400', '500', '700'],
+  variable: '--font-mono',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://kvint.agency'),
   title: {
-    default: 'Квинт — Маркетинговое агентство | Системный маркетинг для бизнеса',
+    default: 'Квинт — маркетинговое агентство для IT B2B, ритейла, производства и недвижимости',
     template: '%s | Квинт — Маркетинговое агентство',
   },
   description:
-    'Бутиковое маркетинговое агентство полного цикла. Работаем с IT B2B, премиальным ритейлом, производством. Личный контроль фаундера, прозрачная аналитика, результат от 150 000 ₽/мес.',
+    'Бутиковое маркетинговое агентство полного цикла для IT B2B, премиального ритейла, производства и недвижимости. Стратегию ведёт основательница, отчёт каждую неделю. Сопровождение от 150 000 ₽ в месяц.',
   keywords: ['маркетинговое агентство', 'маркетинг для бизнеса', 'B2B маркетинг', 'performance маркетинг', 'SEO', 'квинт агентство'],
   authors: [{ name: 'Квинт' }],
   creator: 'Квинт',
@@ -36,16 +35,14 @@ export const metadata: Metadata = {
     locale: 'ru_RU',
     url: 'https://kvint.agency',
     siteName: 'Квинт — Маркетинговое агентство',
-    title: 'Квинт — Маркетинговое агентство | Системный маркетинг для бизнеса',
+    title: 'Квинт — маркетинговое агентство',
     description:
-      'Бутиковое маркетинговое агентство полного цикла. Работаем с IT B2B, премиальным ритейлом, производством.',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Квинт — Маркетинговое агентство' }],
+      'Бутиковое маркетинговое агентство полного цикла для IT B2B, премиального ритейла, производства и недвижимости.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Квинт — Маркетинговое агентство',
-    description: 'Системный маркетинг для бизнеса от 150 000 ₽/мес',
-    images: ['/og-image.svg'],
+    description: 'Реклама, сайт и аналитика для B2B. Сопровождение от 150 000 ₽ в месяц',
   },
   robots: { index: true, follow: true },
   icons: {
@@ -69,7 +66,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ru" className={`${montserrat.variable} ${spaceGrotesk.variable}`}>
+    <html lang="ru" className={`${onest.variable} ${jetbrainsMono.variable}`}>
       <head>
         <Script id="metrika" strategy="afterInteractive">
           {`
@@ -99,10 +96,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Перейти к содержанию
         </a>
-        <div className="noise-overlay" aria-hidden="true" />
         {children}
         <MessengerWidget />
-        <CustomCursor />
         <StickyCTA />
       </body>
     </html>

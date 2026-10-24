@@ -23,17 +23,11 @@ export default function BlogPage() {
   return (
     <>
       <Header />
-      <main className="pt-24 pb-20">
+      <main id="main-content" className="pt-28 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="mb-14">
-            <p className="eyebrow mb-4">Блог</p>
-            <h1 className="section-title mb-4">
-              Маркетинг без{' '}
-              <span className="text-outline">воды</span>
-            </h1>
-            <p className="text-muted max-w-xl">
-              Практика, кейсы, инструменты. Только то, что работает.
-            </p>
+            <h1 className="section-title mb-4">Блог</h1>
+            <p className="text-muted max-w-xl">Статьи про рекламу, SEO и аналитику для B2B</p>
           </AnimatedSection>
 
           <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -55,8 +49,8 @@ export default function BlogPage() {
 
                     <div className="flex items-center justify-between pt-4 border-t border-white/5">
                       <div className="flex items-center gap-3">
-                        <span className="text-xs text-muted font-grotesk">{formatDate(post.date)}</span>
-                        <span className="flex items-center gap-1 text-xs text-muted font-grotesk">
+                        <span className="text-xs text-muted font-mono">{formatDate(post.date)}</span>
+                        <span className="flex items-center gap-1 text-xs text-muted font-mono">
                           <Clock size={11} />
                           {post.readTime} мин
                         </span>

@@ -16,20 +16,20 @@ const config: Config = {
         text: '#F0F0F5',
         muted: '#888899',
         border: 'rgba(255,255,255,0.06)',
+        // Data colours: growth / loss
+        up: '#34D399',
+        down: '#F87171',
+        // Light "printed report" surface
+        paper: '#F2F1EC',
+        ink: '#15151B',
+        'ink-muted': '#5E5E6A',
       },
       fontFamily: {
-        sans: ['var(--font-montserrat)', 'sans-serif'],
-        grotesk: ['var(--font-space-grotesk)', 'sans-serif'],
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        sans: ['var(--font-sans)', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
       },
       borderRadius: {
         '2xl': '16px',
-      },
-      animation: {
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
     },
   },

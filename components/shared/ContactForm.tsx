@@ -7,12 +7,14 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
+import ConsentCheckbox from '@/components/shared/ConsentCheckbox'
 import { trackGoal } from '@/lib/utils'
 
 interface FormData {
   name: string
   contact: string
   message: string
+  consent: boolean
 }
 
 const STEPS = 3
@@ -53,13 +55,13 @@ export default function ContactForm() {
     setStep((s) => s - 1)
   }
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async ({ consent: _consent, ...fields }: FormData) => {
     setStatus('loading')
     try {
       const res = await fetch('/api/send-form', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, formType: 'project' }),
+        body: JSON.stringify({ ...fields, formType: 'project' }),
       })
       if (!res.ok) throw new Error()
       setStatus('success')
@@ -100,7 +102,7 @@ export default function ContactForm() {
           />
         ))}
       </div>
-      <p className="text-xs text-muted font-grotesk">Шаг {step} из {STEPS}</p>
+      <p className="text-xs text-muted font-mono">Шаг {step} из {STEPS}</p>
 
       {/* Step content */}
       <div className="overflow-hidden relative min-h-[160px]" aria-live="polite" aria-atomic="true">
@@ -157,7 +159,7 @@ export default function ContactForm() {
               className="flex flex-col gap-4"
             >
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="message" className="text-sm font-medium text-muted font-grotesk">
+                <label htmlFor="message" className="text-sm font-medium text-muted font-mono">
                   Расскажите о задаче
                 </label>
                 <textarea
@@ -183,7 +185,7 @@ export default function ContactForm() {
               className="flex flex-col gap-3"
             >
               <div className="p-4 rounded-xl bg-white/[0.03] border border-white/8 space-y-2">
-                <p className="text-xs text-muted font-grotesk uppercase tracking-wider mb-3">Ваша заявка</p>
+                <p className="text-xs text-muted font-mono uppercase tracking-wider mb-3">Ваша заявка</p>
                 {watchName && (
                   <div className="flex gap-2 text-sm">
                     <span className="text-muted w-20 flex-shrink-0">Имя:</span>
@@ -198,8 +200,13 @@ export default function ContactForm() {
                 )}
               </div>
               <p className="text-sm text-muted leading-relaxed">
-                Всё готово! Нажмите кнопку ниже — мы ответим в течение 2 часов в рабочее время.
+                Ответим в течение 2 часов в рабочее время.
               </p>
+              <ConsentCheckbox
+                id="consent-project"
+                error={errors.consent?.message}
+                {...register('consent', { required: 'Нужно согласие, чтобы мы могли связаться с вами' })}
+              />
               {status === 'error' && (
                 <div className="flex items-center gap-2 text-red-400 text-sm">
                   <AlertCircle size={16} />

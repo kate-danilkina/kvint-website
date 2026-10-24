@@ -6,11 +6,10 @@ import { testimonials } from '@/lib/data/services'
 
 export default function Testimonials() {
   return (
-    <section className="py-16">
+    <section className="py-20 lg:py-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="mb-12">
-          <p className="eyebrow mb-4">Они уже проверили</p>
-          <h2 className="section-title">Говорят клиенты</h2>
+          <h2 className="section-title">Что говорят клиенты</h2>
         </AnimatedSection>
 
         <div>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { Phone, ArrowRight } from 'lucide-react'
+import { openContact, PHONE, PHONE_HREF } from '@/lib/utils'
 
 export default function StickyCTA() {
   const [visible, setVisible] = useState(false)
@@ -40,18 +41,18 @@ export default function StickyCTA() {
         >
           <div className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-bg/90 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] whitespace-nowrap">
             <a
-              href="tel:+79930798655"
+              href={PHONE_HREF}
               className="hidden sm:flex items-center gap-1.5 text-sm text-muted hover:text-text transition-colors duration-150"
             >
               <Phone size={13} />
-              +7 993 079 86 55
+              {PHONE}
             </a>
             <div className="hidden sm:block w-px h-4 bg-white/10" />
             <button
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="flex items-center gap-1.5 text-sm font-semibold text-white bg-accent px-4 py-3 min-h-[44px] rounded-xl hover:shadow-[0_0_16px_rgba(26,110,255,0.5)] transition-all duration-200"
+              onClick={() => openContact('strategy')}
+              className="flex items-center gap-1.5 text-sm font-semibold text-white bg-accent px-4 py-3 min-h-[44px] rounded-xl hover:bg-[#3A82FF] transition-colors duration-200"
             >
-              Обсудить проект
+              Записаться на разбор
               <ArrowRight size={14} />
             </button>
           </div>

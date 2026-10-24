@@ -17,7 +17,7 @@ const itemStyle: React.CSSProperties = {
   fontSize: '13px',
   letterSpacing: '0.1em',
   color: 'rgba(255,255,255,0.45)',
-  fontFamily: 'var(--font-space-grotesk)',
+  fontFamily: 'var(--font-mono)',
   fontWeight: 500,
   textTransform: 'uppercase',
   whiteSpace: 'nowrap',

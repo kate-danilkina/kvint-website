@@ -6,6 +6,7 @@ import { Check, AlertCircle, Send, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
+import ConsentCheckbox from '@/components/shared/ConsentCheckbox'
 import { trackGoal } from '@/lib/utils'
 
 interface FormData {
@@ -13,6 +14,7 @@ interface FormData {
   contact: string
   niche: string
   budget: string
+  consent: boolean
 }
 
 const niches = [
@@ -36,13 +38,13 @@ export default function StrategyForm() {
     reset,
   } = useForm<FormData>()
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async ({ consent: _consent, ...fields }: FormData) => {
     setStatus('loading')
     try {
       const res = await fetch('/api/send-form', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, formType: 'strategy' }),
+        body: JSON.stringify({ ...fields, formType: 'strategy' }),
       })
       if (!res.ok) throw new Error()
       setStatus('success')
@@ -101,7 +103,7 @@ export default function StrategyForm() {
       />
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="s-niche" className="text-sm font-medium text-muted font-grotesk flex items-center gap-2">
+        <label htmlFor="s-niche" className="text-sm font-medium text-muted font-mono flex items-center gap-2">
           Ниша бизнеса
           <span className="text-xs text-muted/70 font-normal">(необязательно)</span>
         </label>
@@ -123,7 +125,7 @@ export default function StrategyForm() {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="s-budget" className="text-sm font-medium text-muted font-grotesk flex items-center gap-2">
+        <label htmlFor="s-budget" className="text-sm font-medium text-muted font-mono flex items-center gap-2">
           Текущий маркетинговый бюджет
           <span className="text-xs text-muted/70 font-normal">(необязательно)</span>
         </label>
@@ -144,6 +146,12 @@ export default function StrategyForm() {
         </div>
       </div>
 
+      <ConsentCheckbox
+        id="consent-strategy"
+        error={errors.consent?.message}
+        {...register('consent', { required: 'Нужно согласие, чтобы мы могли связаться с вами' })}
+      />
+
       {status === 'error' && (
         <div className="flex items-center gap-2 text-red-400 text-sm">
           <AlertCircle size={16} />
@@ -160,7 +168,7 @@ export default function StrategyForm() {
         ) : (
           <>
             <Send size={16} />
-            Записаться на диагностику
+            Записаться на разбор
           </>
         )}
       </Button>

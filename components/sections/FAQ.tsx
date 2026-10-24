@@ -1,0 +1,23 @@
+import { Plus } from 'lucide-react'
+import { faq } from '@/lib/data/services'
+
+export default function FAQ() {
+  return (
+    <section className="py-16 lg:py-24 bg-bg-2">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="section-title mb-10">Частые вопросы</h2>
+        <div className="border-t border-white/10">
+          {faq.map((item) => (
+            <details key={item.q} className="group border-b border-white/10">
+              <summary className="flex items-center justify-between gap-6 py-5 cursor-pointer list-none text-text text-lg font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded [&::-webkit-details-marker]:hidden">
+                {item.q}
+                <Plus size={18} className="text-muted flex-shrink-0 transition-transform duration-200 group-open:rotate-45" aria-hidden />
+              </summary>
+              <p className="text-muted leading-relaxed pb-6 max-w-2xl">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

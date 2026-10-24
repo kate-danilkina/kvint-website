@@ -13,6 +13,23 @@ export function trackGoal(goal: string) {
   }
 }
 
+export const TELEGRAM_URL = 'https://t.me/kvint_agency'
+export const PHONE = '+7 993 079 86 55'
+export const PHONE_HREF = 'tel:+79930798655'
+
+export type ContactTab = 'strategy' | 'project'
+
+/** Scrolls to the contact section and switches it to the given tab. */
+export function openContact(tab: ContactTab = 'strategy') {
+  const contact = document.getElementById('contact')
+  if (!contact) {
+    window.location.href = `/#${tab === 'strategy' ? 'strategy' : 'contact'}`
+    return
+  }
+  window.dispatchEvent(new CustomEvent<ContactTab>('kvint:contact-tab', { detail: tab }))
+  contact.scrollIntoView({ behavior: 'smooth' })
+}
+
 export function formatDate(date: string): string {
   return new Date(date).toLocaleDateString('ru-RU', {
     year: 'numeric',
