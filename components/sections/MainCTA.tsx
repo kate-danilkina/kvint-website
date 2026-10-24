@@ -6,11 +6,11 @@ import { openContact, TELEGRAM_URL } from '@/lib/utils'
 import SectionHeading from '@/components/shared/SectionHeading'
 
 const diagnosticItems = [
-  'Разбор ошибок в рекламе, на сайте и в воронке продаж',
-  'Расчёт реальной стоимости заявки и окупаемости вложений',
-  'Пошаговый план: как выйти из просадки или масштабироваться',
-  '3–5 точек роста, которые можно внедрить сразу',
-  'Честный вердикт: окупаем 3–5× — берёмся. Нет — скажем прямо',
+  'Ошибки в рекламе, на сайте и в воронке продаж',
+  'Стоимость заявки и срок окупаемости вложений',
+  'Пошаговый план: как выйти из просадки или вырасти',
+  '3–5 точек роста с первыми шагами',
+  'Вердикт: окупаем вложения в 3–5 раз — берёмся, нет — так и скажем',
 ]
 
 const estimate = [
@@ -24,13 +24,13 @@ export default function MainCTA() {
     <section className="py-fluid-2xl border-t border-white/[0.06]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <p className="eyebrow mb-4">Разбор с основательницей</p>
-        <SectionHeading className="section-title mb-fluid-l max-w-3xl">Посчитаем, во сколько вам обходится одна заявка</SectionHeading>
+        <SectionHeading className="section-title mb-fluid-l max-w-3xl">Посчитаем, во сколько вам обходится заявка</SectionHeading>
 
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-10 lg:gap-16 items-start">
           {/* What's included */}
           <div>
             <p className="text-muted text-lg mb-8 max-w-xl">
-              На созвоне покажем, где сейчас уходит бюджет и сколько на самом деле стоит каждая заявка.
+              За час покажем, куда уходит бюджет и сколько стоит заявка.
             </p>
             <ul className="flex flex-col gap-4">
               {diagnosticItems.map((item) => (

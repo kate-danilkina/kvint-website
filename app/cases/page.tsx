@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     'Кейсы маркетингового агентства Квинт: что было до нас, что сделали и какие цифры получили. Конверсия AI-стартапа ×6, 220 регистраций на B2B-вебинар за 7 дней.',
   openGraph: {
     title: 'Кейсы — Квинт',
-    description: 'Что было до нас, что сделали и какие цифры получили.',
+    description: 'Задача, решение и цифры по каждому проекту.',
   },
 }
 
@@ -25,7 +25,7 @@ export default function CasesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="mb-14">
             <h1 className="section-title mb-4">Кейсы</h1>
-            <p className="text-muted max-w-xl">Что было до нас, что сделали и какие цифры получили</p>
+            <p className="text-muted max-w-xl">Задача, решение и цифры по каждому проекту</p>
           </AnimatedSection>
 
           <AnimatedGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5">

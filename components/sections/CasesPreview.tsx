@@ -11,7 +11,7 @@ export default function CasesPreview() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
           <div>
             <SectionHeading className="section-title mb-3">Кейсы</SectionHeading>
-            <p className="text-muted max-w-xl">Что было до нас, что сделали и какие цифры получили</p>
+            <p className="text-muted max-w-xl">Задача, решение и цифры по каждому проекту</p>
           </div>
           <Link
             href="/cases"

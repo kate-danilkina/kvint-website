@@ -6,7 +6,7 @@ export default function ForWho() {
     <section className="py-fluid-xl border-t border-white/[0.06]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading className="section-title mb-3">Кому подходит Квинт</SectionHeading>
-        <p className="text-muted mb-fluid-l">Работаем там, где высока цена ошибки</p>
+        <p className="text-muted mb-fluid-l">Работаем там, где ошибка стоит дорого</p>
 
         <ul className="grid grid-cols-1 md:grid-cols-2 border-t border-white/10">
           {audiences.map((a, i) => (
