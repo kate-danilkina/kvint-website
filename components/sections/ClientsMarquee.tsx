@@ -1,70 +1,55 @@
-'use client'
+import Image from 'next/image'
 
-const clients = [
-  'Сбер.Образование',
-  'Альфа',
-  'Эконад',
-  'Сантехника Онлайн',
-  'БалтФлот',
-  'HelloWorldSchool',
-  'Тёплого Хлеба',
-  'Буше',
-  'Sup.me',
-  'Зеленка',
+type Client =
+  | { name: string; logo: string; width: number; height: number }
+  | { name: string; logo?: undefined }
+
+// Logos are rendered as white silhouettes so different brand colours read as one row
+const clients: Client[] = [
+  { name: 'Сбер.Образование', logo: '/logos/clients/sber-education.svg', width: 262, height: 26 },
+  { name: 'Альфа-Банк', logo: '/logos/clients/alfa.svg', width: 729, height: 146 },
+  { name: 'Эконад' },
+  { name: 'Сантехника Онлайн' },
+  { name: 'БалтФлот' },
+  { name: 'Hello World School', logo: '/logos/clients/hello-world-school.svg', width: 441, height: 128 },
+  { name: 'Тёплого хлеба' },
+  { name: 'Буше' },
+  { name: 'Sup.me', logo: '/logos/clients/supme.png', width: 662, height: 393 },
+  { name: 'Зелёнка', logo: '/logos/clients/zelenka.png', width: 1019, height: 1607 },
 ]
 
-const itemStyle: React.CSSProperties = {
-  fontSize: '13px',
-  letterSpacing: '0.1em',
-  color: 'rgba(255,255,255,0.45)',
-  fontFamily: 'var(--font-mono)',
-  fontWeight: 500,
-  textTransform: 'uppercase',
-  whiteSpace: 'nowrap',
-}
-
-const dotStyle: React.CSSProperties = {
-  ...itemStyle,
-  margin: '0 20px',
-  opacity: 0.3,
-}
-
-function MarqueeItems() {
+function MarqueeItems({ hidden = false }: { hidden?: boolean }) {
   return (
-    <>
-      {clients.map((name, i) => (
-        <span key={`${name}-${i}`} style={{ display: 'inline-flex', alignItems: 'center' }}>
-          <span style={itemStyle}>{name}</span>
-          <span style={dotStyle} aria-hidden="true">·</span>
-        </span>
+    <ul className="flex items-center gap-14 pr-14" aria-hidden={hidden || undefined}>
+      {clients.map((c) => (
+        <li key={c.name} className="flex items-center h-10 flex-shrink-0">
+          {c.logo ? (
+            <Image
+              src={c.logo}
+              alt={hidden ? '' : c.name}
+              width={c.width}
+              height={c.height}
+              unoptimized
+              className={`${c.height > c.width ? 'h-10' : 'h-7'} w-auto max-w-[200px] object-contain opacity-60 [filter:brightness(0)_invert(1)]`}
+            />
+          ) : (
+            <span className="font-mono text-[13px] uppercase tracking-[0.08em] text-white/50 whitespace-nowrap">
+              {c.name}
+            </span>
+          )}
+        </li>
       ))}
-    </>
+    </ul>
   )
 }
 
 export default function ClientsMarquee() {
   return (
-    <div
-      style={{
-        borderTop: '1px solid rgba(255,255,255,0.06)',
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
-        padding: '16px 0',
-        overflow: 'hidden',
-        background: 'transparent',
-      }}
-      aria-label="Наши клиенты"
-    >
-      {/* Track doubled for seamless loop */}
-      <div
-        className="marquee-track"
-        style={{ display: 'flex', alignItems: 'center', width: 'max-content' }}
-      >
-        <span style={{ display: 'inline-flex', alignItems: 'center', paddingRight: '40px' }}>
-          <MarqueeItems />
-        </span>
-        <span style={{ display: 'inline-flex', alignItems: 'center', paddingRight: '40px' }}>
-          <MarqueeItems />
-        </span>
+    <div className="border-y border-white/[0.06] py-5 overflow-hidden" aria-label="Наши клиенты">
+      {/* Track doubled for a seamless loop; the copy is hidden from screen readers */}
+      <div className="marquee-track flex w-max">
+        <MarqueeItems />
+        <MarqueeItems hidden />
       </div>
     </div>
   )
