@@ -9,9 +9,11 @@ import Button from '@/components/ui/Button'
 import { openContact, PHONE, PHONE_HREF } from '@/lib/utils'
 
 const navLinks = [
+  { href: '/uslugi', label: 'Услуги' },
+  { href: '/otrasli', label: 'Отрасли' },
   { href: '/cases', label: 'Кейсы' },
-  { href: '/blog', label: 'Блог' },
-  { href: '/#about', label: 'О нас' },
+  { href: '/ceny', label: 'Цены' },
+  { href: '/o-kompanii', label: 'О нас' },
 ]
 
 export default function Header() {
@@ -54,7 +56,7 @@ export default function Header() {
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => {
-              const isActive = !link.href.startsWith('/#') && pathname === link.href
+              const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`)
               return (
                 <Link
                   key={link.href}

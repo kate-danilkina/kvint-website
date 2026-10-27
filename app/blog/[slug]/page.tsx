@@ -6,7 +6,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Badge from '@/components/ui/Badge'
 import AnimatedSection from '@/components/shared/AnimatedSection'
-import { blogPosts, getPostBySlug } from '@/lib/data/blog'
+import { blogPosts, getPostBySlug, readMinutes } from '@/lib/data/blog'
 import { formatDate } from '@/lib/utils'
 
 interface Props {
@@ -23,13 +23,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: post.title,
     description: post.excerpt,
+    ...(post.noindex ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: 'article',
       publishedTime: post.date,
       authors: [post.author],
-      images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
     },
   }
 }
@@ -72,7 +72,7 @@ export default function BlogPostPage({ params }: Props) {
               <span>·</span>
               <span className="flex items-center gap-1">
                 <Clock size={13} />
-                {post.readTime} мин чтения
+                {readMinutes(post)} мин чтения
               </span>
             </div>
           </AnimatedSection>

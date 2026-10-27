@@ -5,8 +5,9 @@ export interface BlogPost {
   content: string
   tags: string[]
   date: string
-  readTime: number
   author: string
+  /** Outdated post kept for visitors but hidden from search */
+  noindex?: boolean
 }
 
 export const blogPosts: BlogPost[] = [
@@ -38,7 +39,6 @@ export const blogPosts: BlogPost[] = [
     `,
     tags: ['Стратегия', 'Маркетинг', 'B2B'],
     date: '2024-08-15',
-    readTime: 7,
     author: 'Екатерина Данилкина',
   },
   {
@@ -67,11 +67,11 @@ export const blogPosts: BlogPost[] = [
     `,
     tags: ['Performance', 'B2B', 'Аналитика'],
     date: '2024-09-20',
-    readTime: 9,
     author: 'Екатерина Данилкина',
   },
   {
     slug: 'seo-2024',
+    noindex: true,
     title: 'SEO в 2024: что изменилось и как адаптироваться',
     excerpt:
       'Алгоритмы Яндекса изменились кардинально. Рассказываем, что работает сейчас и как выстроить SEO-стратегию под новые реалии.',
@@ -96,10 +96,14 @@ SEO в 2024 — это маркетинг, а не техническое кол
     `,
     tags: ['SEO', 'Контент', 'Яндекс'],
     date: '2024-10-05',
-    readTime: 8,
     author: 'Екатерина Данилкина',
   },
 ]
+
+/** Reading time from the actual text length (~180 words per minute) */
+export function readMinutes(post: BlogPost): number {
+  return Math.max(1, Math.round(post.content.split(/\s+/).filter(Boolean).length / 180))
+}
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.slug === slug)

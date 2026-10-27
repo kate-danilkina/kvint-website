@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Badge from '@/components/ui/Badge'
 import { services } from '@/lib/data/services'
 import SectionHeading from '@/components/shared/SectionHeading'
@@ -15,7 +16,7 @@ export default function Services() {
           {/* Flagship */}
           <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] gap-1 md:gap-10 py-5 border-b border-white/10">
             <div className="flex items-center gap-3">
-              <span className="font-semibold text-text text-lg">Система Роста под ключ</span>
+              <Link href="/uslugi/soprovozhdenie" className="font-semibold text-text text-lg link-underline">Система Роста под ключ</Link>
               <Badge variant="flagship">Флагман</Badge>
             </div>
             <p className="text-muted md:text-text/80">Аудит, цифровой продавец и трафик в одном проекте</p>
@@ -32,7 +33,11 @@ export default function Services() {
               key={s.id}
               className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] gap-1 md:gap-10 py-4 border-b border-white/[0.07]"
             >
-              <span className="text-text font-medium">{s.label}</span>
+              {'href' in s && s.href ? (
+                <Link href={s.href} className="text-text font-medium link-underline self-start">{s.label}</Link>
+              ) : (
+                <span className="text-text font-medium">{s.label}</span>
+              )}
               <span className="text-muted">{s.when}</span>
             </div>
           ))}

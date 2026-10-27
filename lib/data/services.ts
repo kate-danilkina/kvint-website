@@ -1,21 +1,22 @@
 export const services = [
-  { id: 'performance', label: 'Performance-маркетинг', when: 'Нужны заявки из рекламы по понятной цене' },
-  { id: 'seo', label: 'SEO', when: 'Хотите заявки из поиска без оплаты за клик' },
+  { id: 'performance', href: '/uslugi/yandex-direct', label: 'Performance-маркетинг', when: 'Нужны заявки из рекламы по понятной цене' },
+  { id: 'seo', href: '/uslugi/seo-i-geo', label: 'SEO', when: 'Хотите заявки из поиска без оплаты за клик' },
   { id: 'web', label: 'Разработка сайтов', when: 'Трафик есть, а заявок с сайта мало' },
   { id: 'smm', label: 'SMM', when: 'Клиенты выбирают вас по соцсетям и отзывам' },
-  { id: 'strategy', label: 'Стратегия и аудит', when: 'Бюджет на рекламу тратится, а отдачу не видно' },
+  { id: 'strategy', href: '/uslugi/marketingovyj-audit', label: 'Стратегия и аудит', when: 'Бюджет на рекламу тратится, а отдачу не видно' },
   { id: 'brandformance', label: 'Реклама на узнаваемость и заявки', when: 'Продукт новый, о нём пока не знают' },
   { id: 'influence', label: 'Инфлюенс-маркетинг', when: 'Аудитория верит блогерам больше, чем рекламе' },
   { id: 'personal-brand', label: 'Личный бренд', when: 'Продаёт основатель, и клиенты хотят видеть его' },
-  { id: 'research', label: 'Исследование ЦА и конкурентов', when: 'Непонятно, кто покупает и почему уходит к конкурентам' },
-  { id: 'comms-strategy', label: 'Коммуникационная стратегия', when: 'Каналов много, а сообщения в них не сходятся' },
-  { id: 'strategic-sessions', label: 'Стратегические сессии', when: 'Команда расходится в целях и приоритетах' },
+  { id: 'research', href: '/uslugi/marketingovaya-strategiya', label: 'Исследование ЦА и конкурентов', when: 'Непонятно, кто покупает и почему уходит к конкурентам' },
+  { id: 'comms-strategy', href: '/uslugi/marketingovaya-strategiya', label: 'Коммуникационная стратегия', when: 'Каналов много, а сообщения в них не сходятся' },
+  { id: 'strategic-sessions', href: '/uslugi/marketingovaya-strategiya', label: 'Стратегические сессии', when: 'Команда расходится в целях и приоритетах' },
   { id: 'presentations', label: 'Презентации', when: 'Сложный продукт продаёте на встречах и в письмах' },
 ]
 
 export const audiences = [
   {
     id: 'it',
+    href: '/otrasli/it-b2b',
     title: 'IT B2B',
     description: 'Сложный продукт, сделка длится месяцами',
   },
@@ -26,6 +27,7 @@ export const audiences = [
   },
   {
     id: 'manufacturing',
+    href: '/otrasli/proizvodstvo',
     title: 'Производство',
     description: 'Мало заявок, каждая — крупный заказ',
   },

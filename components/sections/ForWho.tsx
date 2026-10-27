@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { audiences } from '@/lib/data/services'
 import SectionHeading from '@/components/shared/SectionHeading'
 
@@ -14,7 +15,9 @@ export default function ForWho() {
               key={a.id}
               className={`py-6 border-b border-white/10 ${i % 2 === 1 ? 'md:pl-10 md:border-l' : 'md:pr-10'}`}
             >
-              <h3 className="font-semibold text-text text-2xl tracking-tight mb-1">{a.title}</h3>
+              <h3 className="font-semibold text-text text-2xl tracking-tight mb-1">
+                {'href' in a && a.href ? <Link href={a.href} className="link-underline">{a.title}</Link> : a.title}
+              </h3>
               <p className="text-muted">{a.description}</p>
             </li>
           ))}

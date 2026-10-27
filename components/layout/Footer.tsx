@@ -24,10 +24,15 @@ export default function Footer() {
             <p className="eyebrow mb-4">Навигация</p>
             <nav className="flex flex-col gap-3">
               {[
+                { href: '/uslugi', label: 'Услуги' },
+                { href: '/otrasli', label: 'Отрасли' },
                 { href: '/cases', label: 'Кейсы' },
+                { href: '/ceny', label: 'Цены' },
+                { href: '/razbor', label: 'Разбор с основательницей' },
+                { href: '/o-kompanii', label: 'О компании' },
+                { href: '/ekaterina-danilkina', label: 'Екатерина Данилкина' },
                 { href: '/blog', label: 'Блог' },
-                { href: '/#about', label: 'О нас' },
-                { href: '/#contact', label: 'Контакты' },
+                { href: '/kontakty', label: 'Контакты' },
               ].map((l) => (
                 <Link key={l.href} href={l.href} className="link-underline self-start text-sm text-muted hover:text-text transition-colors">
                   {l.label}

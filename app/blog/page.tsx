@@ -5,7 +5,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Badge from '@/components/ui/Badge'
 import AnimatedSection, { AnimatedGrid, AnimatedItem } from '@/components/shared/AnimatedSection'
-import { blogPosts } from '@/lib/data/blog'
+import { blogPosts, readMinutes } from '@/lib/data/blog'
 import { formatDate } from '@/lib/utils'
 
 export const metadata: Metadata = {
@@ -15,7 +15,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Блог — Квинт',
     description: 'Практика маркетинга без воды.',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
   },
 }
 
@@ -52,7 +51,7 @@ export default function BlogPage() {
                         <span className="text-xs text-muted font-mono">{formatDate(post.date)}</span>
                         <span className="flex items-center gap-1 text-xs text-muted font-mono">
                           <Clock size={11} />
-                          {post.readTime} мин
+                          {readMinutes(post)} мин
                         </span>
                       </div>
                       <ArrowRight

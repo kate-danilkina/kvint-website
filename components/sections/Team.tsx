@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { teamMembers } from '@/lib/data/services'
 import SectionHeading from '@/components/shared/SectionHeading'
 
@@ -25,7 +26,9 @@ export default function Team() {
           {/* Bio */}
           <div className="min-w-0">
             <p className="eyebrow mb-3">{founder.role}</p>
-            <h3 className="font-bold text-text text-3xl sm:text-4xl tracking-tight mb-6">{founder.name}</h3>
+            <h3 className="font-bold text-text text-3xl sm:text-4xl tracking-tight mb-6">
+              <Link href="/ekaterina-danilkina" className="link-underline">{founder.name}</Link>
+            </h3>
 
             <p className="text-muted text-lg leading-relaxed mb-8 max-w-2xl">{founder.bio}</p>
 

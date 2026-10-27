@@ -1,10 +1,12 @@
 import { Plus } from 'lucide-react'
 import { faq } from '@/lib/data/services'
 import SectionHeading from '@/components/shared/SectionHeading'
+import { JsonLd, faqLd } from '@/lib/seo'
 
 export default function FAQ() {
   return (
     <section className="py-fluid-xl border-t border-white/[0.06]">
+      <JsonLd data={faqLd(faq)} />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading className="section-title mb-fluid-l">Частые вопросы</SectionHeading>
         <div className="border-t border-white/10">

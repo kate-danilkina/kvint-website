@@ -4,6 +4,7 @@ import Script from 'next/script'
 import MessengerWidget from '@/components/shared/MessengerWidget'
 import StickyCTA from '@/components/shared/StickyCTA'
 import LeadPanel from '@/components/shared/LeadPanel'
+import { JsonLd, organizationLd, founderLd } from '@/lib/seo'
 import './globals.css'
 
 const onest = Onest({
@@ -24,11 +25,12 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://kvint.agency'),
   title: {
     default: 'Квинт — маркетинговое агентство для IT B2B, ритейла, производства и недвижимости',
-    template: '%s | Квинт — Маркетинговое агентство',
+    template: '%s | Квинт',
   },
   description:
     'Бутиковое маркетинговое агентство полного цикла для IT B2B, премиального ритейла, производства и недвижимости. Стратегию ведёт основательница, отчёт каждую неделю. Сопровождение от 150 000 ₽ в месяц.',
-  keywords: ['маркетинговое агентство', 'маркетинг для бизнеса', 'B2B маркетинг', 'performance маркетинг', 'SEO', 'квинт агентство'],
+  // Each page gets a self-canonical resolved against metadataBase
+  alternates: { canonical: './' },
   authors: [{ name: 'Квинт' }],
   creator: 'Квинт',
   openGraph: {
@@ -91,6 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </noscript>
       </head>
       <body className="bg-bg text-text antialiased">
+        <JsonLd data={[organizationLd(), founderLd()]} />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-lg focus:text-sm focus:font-semibold focus:shadow-lg focus:outline-none"

@@ -28,7 +28,7 @@ export interface LeadPanelDetail {
 }
 
 /** Answer options for the optional «Откуда узнали о нас» field (also whitelisted in /api/send-form). */
-export const LEAD_SOURCES = ['Telegram', 'Поиск', 'Рекомендация', 'Соцсети', 'Другое'] as const
+export const LEAD_SOURCES = ['Telegram', 'Поиск', 'Алиса или другая нейросеть', 'Рекомендация', 'Соцсети', 'Другое'] as const
 
 /** Opens the side lead panel (bottom sheet on mobile) on the given tab. Works on every page. */
 export function openLeadPanel(tab: ContactTab = 'strategy') {
