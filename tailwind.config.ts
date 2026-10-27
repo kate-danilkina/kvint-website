@@ -11,14 +11,14 @@ const config: Config = {
       colors: {
         bg: '#ECEBE6',
         'bg-2': '#FFFFFF',
-        accent: '#1A6EFF',
-        'accent-dim': 'rgba(26,110,255,0.13)',
+        accent: '#1561E0',
+        'accent-dim': 'rgba(21,97,224,0.13)',
         text: '#111114',
         muted: '#5C5C66',
         border: 'rgba(0,0,0,0.08)',
         night: '#111114',
         // Data colours: growth / loss
-        up: '#0A8F5F',
+        up: '#0E7452',
         down: '#D23B3B',
         // Light "printed report" surface
         paper: '#F2F1EC',

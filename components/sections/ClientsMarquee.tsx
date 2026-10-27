@@ -26,14 +26,14 @@ function MarqueeItems({ hidden = false }: { hidden?: boolean }) {
           {c.logo ? (
             <Image
               src={c.logo}
-              alt={hidden ? '' : c.name}
+              alt={hidden ? '' : `Логотип ${c.name}`}
               width={c.width}
               height={c.height}
               unoptimized
               className={`${c.height > c.width ? 'h-10' : 'h-7'} w-auto max-w-[200px] object-contain opacity-55 [filter:brightness(0)]`}
             />
           ) : (
-            <span className="font-mono text-[13px] uppercase tracking-[0.08em] text-black/50 whitespace-nowrap">
+            <span className="font-mono text-[13px] uppercase tracking-[0.08em] text-muted whitespace-nowrap">
               {c.name}
             </span>
           )}
@@ -45,7 +45,11 @@ function MarqueeItems({ hidden = false }: { hidden?: boolean }) {
 
 export default function ClientsMarquee() {
   return (
-    <div className="py-5 overflow-hidden" aria-label="Наши клиенты">
+    <div className="pt-5 pb-5 overflow-hidden" role="region" aria-labelledby="clients-label">
+      {/* Not agency clients only: includes past employment, so the label says who the team worked with */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
+        <p id="clients-label" className="eyebrow">С кем работали Екатерина и команда</p>
+      </div>
       {/* Track doubled for a seamless loop; the copy is hidden from screen readers */}
       <div className="marquee-track flex w-max">
         <MarqueeItems />

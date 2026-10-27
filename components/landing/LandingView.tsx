@@ -9,7 +9,7 @@ import { JsonLd, serviceLd, faqLd } from '@/lib/seo'
 import { TELEGRAM_URL } from '@/lib/utils'
 
 const STATIC_TITLES: Record<string, string> = {
-  '/razbor': 'Разбор с основательницей',
+  '/razbor': 'Разбор с основательницей',
   '/ceny': 'Цены',
   '/kontakty': 'Контакты',
 }
@@ -25,11 +25,11 @@ function linkTitle(path: string) {
 const H2 = 'section-title !text-step-3 mb-fluid-s'
 
 export const TRUST_POINTS = [
-  '54 проекта с августа 2024',
+  '54 проекта с августа 2024',
   'Стратегию пишет основательница',
-  'Специалисты среднего и старшего уровня',
+  'Специалисты среднего и старшего уровня',
   'Отчёт каждую неделю',
-  'Онлайн по всей России',
+  'Онлайн по всей России',
 ]
 
 export function TrustStrip({ className = '' }: { className?: string }) {
@@ -44,18 +44,18 @@ export function TrustStrip({ className = '' }: { className?: string }) {
   )
 }
 
-export function FinalCta({ title = 'Разберём вашу рекламу за 60 минут' }: { title?: string }) {
+export function FinalCta({ title = 'Разберём вашу рекламу за 60 минут' }: { title?: string }) {
   return (
     <section className="rounded-2xl bg-night text-white p-6 sm:p-10">
-      <p className="eyebrow !text-white/50 mb-3">Разбор с основательницей · 60 минут</p>
+      <p className="eyebrow !text-white/50 mb-3">Разбор с основательницей · 60 минут</p>
       <h2 className="section-title !text-step-3 !text-white mb-4 max-w-2xl">{title}</h2>
       <p className="text-white/70 leading-relaxed max-w-xl mb-6">
-        Екатерина Данилкина по видеосвязи смотрит вашу рекламу, сайт и цифры. Через час вы знаете:
+        Екатерина Данилкина по видеосвязи смотрит вашу рекламу, сайт и цифры. Через час вы знаете:
       </p>
       <ul className="flex flex-col gap-3 mb-8 max-w-xl">
         {[
-          'куда уходит бюджет и сколько стоит заявка',
-          'что исправить первым',
+          'куда уходит бюджет и сколько стоит заявка',
+          'что исправить первым',
           'берёмся ли мы. Если видим окупаемость, берёмся. Если нет, скажем прямо',
         ].map((item) => (
           <li key={item} className="flex items-start gap-3 text-white/90 leading-relaxed">
@@ -72,7 +72,7 @@ export function FinalCta({ title = 'Разберём вашу рекламу з�
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-8 py-4 text-lg font-semibold text-white transition-colors hover:border-white hover:bg-white/5"
         >
-          Написать в Telegram
+          Написать в Telegram
         </a>
       </div>
       <p className="font-mono text-xs text-white/50">Работаем пн–сб, 9:00–20:00</p>
@@ -106,7 +106,7 @@ export default function LandingView({ page }: { page: Landing }) {
         <p className="text-text/85 text-lg sm:text-xl leading-relaxed max-w-3xl mb-8">{page.lead}</p>
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
           <DiagnosticButton />
-          <p className="text-sm text-muted max-w-xs">60 минут с основательницей, онлайн</p>
+          <p className="text-sm text-muted max-w-xs">60 минут с основательницей, онлайн</p>
         </div>
         <TrustStrip />
       </header>
@@ -152,7 +152,7 @@ export default function LandingView({ page }: { page: Landing }) {
 
       {/* 4. Steps with what the client gets */}
       <section className="mb-fluid-xl" aria-labelledby="steps">
-        <h2 id="steps" className={H2}>Что мы делаем</h2>
+        <h2 id="steps" className={H2}>Что мы делаем</h2>
         <ol className="flex flex-col gap-3">
           {page.steps.map((s, i) => (
             <li key={s.title} className="grid grid-cols-[auto_minmax(0,1fr)] gap-5 sm:gap-8 rounded-2xl bg-bg-2 p-5 sm:p-7">
@@ -163,7 +163,7 @@ export default function LandingView({ page }: { page: Landing }) {
                   <p className="text-muted leading-relaxed">{s.text}</p>
                 </div>
                 <p className="self-start rounded-xl bg-accent-dim px-4 py-3 text-text/90 leading-relaxed">
-                  <span className="block font-mono text-xs uppercase tracking-wide text-accent mb-1">Вы получаете</span>
+                  <span className="block font-mono text-xs uppercase tracking-wide text-accent mb-1">Вы получаете</span>
                   {s.get}
                 </p>
               </div>
@@ -225,7 +225,7 @@ export default function LandingView({ page }: { page: Landing }) {
 
       {/* 6. Price and facts — the block snippets and AI answers pick up */}
       <section className="mb-fluid-xl" aria-labelledby="price">
-        <h2 id="price" className={H2}>Сколько стоит и как устроено</h2>
+        <h2 id="price" className={H2}>Сколько стоит и как устроено</h2>
         <dl className="rounded-2xl bg-bg-2 grid grid-cols-1 sm:grid-cols-2 overflow-hidden">
           {page.facts.map((f) => (
             <div key={f.label} className="flex flex-col gap-1 px-5 sm:px-7 py-4 border-b border-black/[0.06]">
@@ -253,7 +253,7 @@ export default function LandingView({ page }: { page: Landing }) {
             </ul>
           </div>
           <div className="rounded-2xl border border-black/10 p-6 sm:p-7">
-            <p className="eyebrow mb-4">Не подойдёт, если</p>
+            <p className="eyebrow mb-4">Не подойдёт, если</p>
             <ul className="flex flex-col gap-3">
               {page.fit.no.map((t) => (
                 <li key={t} className="flex items-start gap-3 text-text/80 leading-relaxed">

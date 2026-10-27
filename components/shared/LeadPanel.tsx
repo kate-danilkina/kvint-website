@@ -9,7 +9,7 @@ import { useIsMobile } from '@/lib/hooks/useIsMobile'
 import { LEAD_PANEL_EVENT, PHONE, PHONE_HREF, type ContactTab, type LeadPanelDetail } from '@/lib/utils'
 
 const tabs: { id: ContactTab; label: string }[] = [
-  { id: 'strategy', label: 'Разбор с основательницей' },
+  { id: 'strategy', label: 'Разбор с основательницей' },
   { id: 'project', label: 'Обсудить проект' },
 ]
 
@@ -167,7 +167,7 @@ export default function LeadPanel() {
                 type="button"
                 onClick={close}
                 aria-label="Закрыть форму заявки"
-                className="flex-shrink-0 w-11 h-11 -mr-2 flex items-center justify-center rounded-xl text-muted hover:text-text hover:bg-black/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+                className="flex-shrink-0 w-11 h-11 -mr-2 flex items-center justify-center rounded-xl text-muted hover:text-text hover:bg-black/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
                 <X size={22} />
               </button>
@@ -186,7 +186,7 @@ export default function LeadPanel() {
                     tabIndex={tab === t.id ? 0 : -1}
                     onClick={() => setTab(t.id)}
                     onKeyDown={onTabKey}
-                    className={`flex-1 py-3 px-3 rounded-lg text-sm font-medium transition-colors duration-200 min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${
+                    className={`flex-1 py-3 px-3 rounded-lg text-sm font-medium transition-colors duration-200 min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                       tab === t.id ? 'bg-accent text-white' : 'text-muted hover:text-text'
                     }`}
                   >
@@ -200,7 +200,7 @@ export default function LeadPanel() {
               </div>
 
               <p className="text-sm text-muted mt-6">
-                Или позвоните:{' '}
+                Или позвоните:{' '}
                 <a href={PHONE_HREF} className="link-underline text-text font-mono whitespace-nowrap">
                   {PHONE}
                 </a>

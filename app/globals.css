@@ -5,8 +5,8 @@
 :root {
   --color-bg: #ECEBE6;
   --color-bg-2: #FFFFFF;
-  --color-accent: #1A6EFF;
-  --color-accent-dim: rgba(26, 110, 255, 0.13);
+  --color-accent: #1561E0;
+  --color-accent-dim: rgba(21, 97, 224, 0.13);
   --color-text: #111114;
   --color-text-muted: #5C5C66;
   --color-border: rgba(0, 0, 0, 0.08);
@@ -55,7 +55,7 @@ body {
 
 @layer utilities {
   .text-outline {
-    -webkit-text-stroke: 1.5px #1A6EFF;
+    -webkit-text-stroke: 1.5px #1561E0;
     color: transparent;
   }
 
@@ -117,13 +117,13 @@ body {
   }
 
   .link-underline:focus-visible {
-    outline: 2px solid rgba(26, 110, 255, 0.55);
+    outline: 2px solid var(--color-accent);
     outline-offset: 4px;
     border-radius: 3px;
   }
 
   .nav-link:focus-visible {
-    outline: 2px solid rgba(26, 110, 255, 0.55);
+    outline: 2px solid var(--color-accent);
     outline-offset: 4px;
     border-radius: 3px;
     color: var(--color-text);
@@ -144,7 +144,7 @@ body {
 
   .btn-primary:hover {
     transform: scale(1.02);
-    box-shadow: 0 0 24px rgba(26, 110, 255, 0.4);
+    box-shadow: 0 0 24px rgba(21, 97, 224, 0.4);
   }
 
   .btn-secondary {
@@ -194,6 +194,15 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* Logo and client marquee stops; the list stays readable as a static row */
+  .marquee-track {
+    animation: none;
   }
 }
 

@@ -22,7 +22,7 @@ export default function HubView({
   path: string
   lead: string
   items: Landing[]
-  /** «С чего начать»: situation → page */
+  /** «С чего начать»: situation → page */
   guide?: { situation: string; href: string; label: string }[]
   outro?: string
 }) {
@@ -35,7 +35,7 @@ export default function HubView({
         <p className="text-text/85 text-lg sm:text-xl leading-relaxed max-w-3xl mb-8">{lead}</p>
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
           <DiagnosticButton />
-          <p className="text-sm text-muted max-w-xs">60 минут с основательницей, онлайн</p>
+          <p className="text-sm text-muted max-w-xs">60 минут с основательницей, онлайн</p>
         </div>
         <TrustStrip />
       </header>
@@ -74,7 +74,7 @@ export default function HubView({
 
       {guide && guide.length > 0 && (
         <section className="mb-fluid-xl" aria-labelledby="guide">
-          <h2 id="guide" className="section-title !text-step-3 mb-fluid-s">С чего начать</h2>
+          <h2 id="guide" className="section-title !text-step-3 mb-fluid-s">С чего начать</h2>
           <ul className="rounded-2xl bg-bg-2 px-5 sm:px-7">
             {guide.map((g, i) => (
               <li key={g.href} className={i > 0 ? 'border-t border-black/[0.06]' : ''}>

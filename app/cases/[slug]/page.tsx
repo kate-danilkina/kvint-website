@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const c = getCaseBySlug(params.slug)
   if (!c) return {}
   return {
-    title: `${c.title} — кейс`,
+    title: `${c.title} — кейс`,
     description: c.description,
     alternates: { canonical: `/cases/${c.slug}` },
     openGraph: {
@@ -129,14 +129,22 @@ function MonthlyTable({ table }: { table: CaseMonthly }) {
         <span className="block font-semibold text-text">{table.caption}</span>
         <span className="block text-xs text-muted mt-1">{table.source}</span>
       </figcaption>
-      <div className="overflow-x-auto -mx-5 sm:-mx-6 px-5 sm:px-6">
+      {/* Focusable so keyboard users can scroll the table on narrow screens */}
+      <div
+        className="overflow-x-auto -mx-5 sm:-mx-6 px-5 sm:px-6"
+        tabIndex={0}
+        role="region"
+        aria-label={table.caption}
+      >
         <table className="w-full min-w-[520px] text-sm tabular-nums">
           <thead>
             <tr className="text-left text-xs text-muted">
-              <th className="font-normal pb-3 pr-4">Месяц</th>
-              <th className="font-normal pb-3 pr-4 w-[28%]" aria-label="График" />
+              <th scope="col" className="font-normal pb-3 pr-4">Месяц</th>
+              <th scope="col" className="font-normal pb-3 pr-4 w-[28%]">
+                <span className="sr-only">График</span>
+              </th>
               {table.columns.map((col) => (
-                <th key={col} className="font-normal pb-3 pl-3 text-right whitespace-nowrap">
+                <th key={col} scope="col" className="font-normal pb-3 pl-3 text-right whitespace-nowrap">
                   {col}
                 </th>
               ))}
@@ -244,13 +252,13 @@ export default function CasePage({ params }: Props) {
 
           <div className="flex flex-col gap-14 sm:gap-16 py-10">
             {c.context && (
-              <Block title="Что было">
+              <Block title="Что было">
                 <Paragraphs items={c.context} />
               </Block>
             )}
 
             {c.problem && (
-              <Block title="Что мешало">
+              <Block title="Что мешало">
                 <Paragraphs items={c.problem} />
               </Block>
             )}
@@ -268,7 +276,7 @@ export default function CasePage({ params }: Props) {
               </Block>
             )}
 
-            <Block title="Что сделали">
+            <Block title="Что сделали">
               {c.steps ? (
                 <ol className="flex flex-col gap-3">
                   {c.steps.map((s, i) => (
@@ -287,7 +295,7 @@ export default function CasePage({ params }: Props) {
             </Block>
 
             {c.comparison && (
-              <Block title="Что получили">
+              <Block title="Что получили">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {c.comparison.map((row) => (
                     <ComparisonRow key={row.metric} row={row} />
@@ -297,7 +305,7 @@ export default function CasePage({ params }: Props) {
             )}
 
             {c.monthly && (
-              <Block title="По месяцам">
+              <Block title="По месяцам">
                 <div className="flex flex-col gap-3">
                   {c.monthly.map((t) => (
                     <MonthlyTable key={t.caption} table={t} />
@@ -307,7 +315,7 @@ export default function CasePage({ params }: Props) {
             )}
 
             {c.lessons && (
-              <Block title="Что поняли">
+              <Block title="Что поняли">
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {c.lessons.map((l, i) => (
                     <Lesson key={i} text={l} />
@@ -317,7 +325,7 @@ export default function CasePage({ params }: Props) {
             )}
 
             {c.terms && (
-              <Block title="Как читать цифры">
+              <Block title="Как читать цифры">
                 <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5 max-w-3xl">
                   {c.terms.map((t) => (
                     <div key={t.term}>
@@ -329,7 +337,7 @@ export default function CasePage({ params }: Props) {
               </Block>
             )}
 
-            <Block title="Каналы и данные">
+            <Block title="Каналы и данные">
               <div className="flex flex-wrap gap-2 mb-5">
                 {(c.channels ?? c.tags).map((ch) => (
                   <span key={ch} className="rounded-full bg-bg-2 px-3.5 py-1.5 text-sm text-text">

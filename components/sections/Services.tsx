@@ -7,9 +7,9 @@ export default function Services() {
   return (
     <section className="py-fluid-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading className="section-title mb-3">Что делаем</SectionHeading>
+        <SectionHeading className="section-title mb-3">Что делаем</SectionHeading>
         <p className="text-muted max-w-xl mb-fluid-l">
-          Сначала находим, где теряются деньги, потом подбираем инструменты под вашу задачу: от рекламы до сайта и аналитики
+          Сначала находим, где теряются деньги, потом подбираем инструменты под вашу задачу: от рекламы до сайта и аналитики
         </p>
 
         <div className="border-t border-black/10">
@@ -19,7 +19,7 @@ export default function Services() {
               <Link href="/uslugi/soprovozhdenie" className="font-semibold text-text text-lg link-underline">Система Роста</Link>
               <Badge variant="flagship">Флагман</Badge>
             </div>
-            <p className="text-muted md:text-text/80">Разбор, реклама, сайт, Карты и аналитика в одной команде. Отчёт каждую неделю</p>
+            <p className="text-muted md:text-text/80">Разбор, реклама, сайт, Яндекс Карты и аналитика в одной команде. Отчёт каждую неделю</p>
           </div>
 
           {/* Column heads */}

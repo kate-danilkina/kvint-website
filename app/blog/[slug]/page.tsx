@@ -58,7 +58,7 @@ export default function BlogPostPage({ params }: Props) {
     <>
       <JsonLd data={post.faq?.length ? [articleLd, faqLd(post.faq)] : articleLd} />
       <Header />
-      <main className="pt-24 pb-20">
+      <main id="main-content" className="pt-24 pb-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Back */}
           <AnimatedSection className="mb-8">
@@ -127,12 +127,12 @@ export default function BlogPostPage({ params }: Props) {
           {/* Author */}
           <AnimatedSection delay={0.2} className="mt-12 pt-8 border-t border-black/5">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center" aria-hidden>
                 <span className="font-bold text-accent">ЕД</span>
               </div>
               <div>
                 <p className="font-semibold text-text">{post.author}</p>
-                <p className="text-sm text-muted">CEO & Founder, Квинт</p>
+                <p className="text-sm text-muted">Основательница агентства «Квинт»</p>
               </div>
             </div>
           </AnimatedSection>

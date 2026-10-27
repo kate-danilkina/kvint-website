@@ -20,7 +20,7 @@ export async function sendFormNotification(data: {
 
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; background: #0A0A0F; color: #F0F0F5; padding: 40px; border-radius: 16px;">
-      <h2 style="color: #1A6EFF;">${subject}</h2>
+      <h2 style="color: #1561E0;">${subject}</h2>
       <table style="width:100%; border-collapse: collapse; margin-top: 16px;">
         <tr><td style="padding: 8px 0; color: #888899; width: 40%;">Имя</td><td style="padding: 8px 0;">${data.name}</td></tr>
         ${data.company ? `<tr><td style="padding: 8px 0; color: #888899;">Компания</td><td style="padding: 8px 0;">${data.company}</td></tr>` : ''}

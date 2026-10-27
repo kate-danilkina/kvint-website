@@ -44,16 +44,16 @@ export default function StickyCTA() {
               href={PHONE_HREF}
               className="hidden sm:flex items-center gap-1.5 text-sm text-muted hover:text-text transition-colors duration-150"
             >
-              <Phone size={13} />
+              <Phone size={13} aria-hidden />
               {PHONE}
             </a>
             <div className="hidden sm:block w-px h-4 bg-black/10" />
             <button
               onClick={() => openContact('strategy')}
-              className="flex items-center gap-1.5 text-sm font-semibold text-white bg-accent px-4 py-3 min-h-[44px] rounded-xl hover:bg-[#3A82FF] transition-colors duration-200"
+              className="flex items-center gap-1.5 text-sm font-semibold text-white bg-accent px-4 py-3 min-h-[44px] rounded-xl hover:bg-[#1258D6] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
             >
-              Записаться на разбор
-              <ArrowRight size={14} />
+              Записаться на разбор
+              <ArrowRight size={14} aria-hidden />
             </button>
           </div>
         </motion.div>

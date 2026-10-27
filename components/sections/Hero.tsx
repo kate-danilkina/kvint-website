@@ -34,8 +34,10 @@ export default function Hero() {
   const isMobile = useIsMobile()
 
   const statsVisible = useInView(statsRef, { once: true, margin: '-60px' })
-  const projects = useCountUp(54, 1500, statsVisible)
-  const years = useCountUp(9, 1500, statsVisible)
+  // Reduced motion: the counters show the final numbers at once
+  const countActive = statsVisible && !reduced
+  const projects = useCountUp(54, 1500, countActive)
+  const years = useCountUp(9, 1500, countActive)
 
   // Gentle parallax on the report card only (desktop, motion allowed)
   const { scrollY } = useScroll()
@@ -44,7 +46,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-[100dvh] flex items-center pt-[calc(5rem+var(--space-xl))] pb-fluid-3xl">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="eyebrow mb-6">Маркетинговое агентство для B2B</p>
+        <p className="eyebrow mb-6">Маркетинговое агентство для B2B</p>
 
         {/* Headline spans the full width: the long word must never collide with the report card */}
         <h1 className="font-display font-bold uppercase text-[clamp(25px,6.6vw,104px)] leading-[0.95] tracking-[-0.02em] mb-fluid-l text-text max-w-[14ch] lg:max-w-none">
@@ -55,7 +57,7 @@ export default function Hero() {
           {/* Left: offer */}
           <div className="min-w-0">
             <p className="text-muted text-lg leading-relaxed mb-10 max-w-xl">
-              Считаем окупаемость до старта. Не видим, как вернуть вложения минимум в 3–5 раз, — не берёмся
+              Считаем окупаемость до старта. Не видим, как вернуть вложения минимум в 3–5 раз, — не берёмся
             </p>
 
             {/* Stats */}
@@ -64,26 +66,26 @@ export default function Hero() {
                 <div className="font-mono font-bold text-text tabular-nums" style={{ fontSize: 'clamp(34px, 4vw, 52px)', lineHeight: 1 }}>
                   {projects}
                 </div>
-                <div className="text-muted mt-2 text-sm">проекта с августа 2024</div>
+                <div className="text-muted mt-2 text-sm">проекта с августа 2024</div>
               </div>
               <div className="whitespace-nowrap">
                 <div className="font-mono font-bold text-text tabular-nums" style={{ fontSize: 'clamp(34px, 4vw, 52px)', lineHeight: 1 }}>
                   {years} лет
                 </div>
-                <div className="text-muted mt-2 text-sm">в маркетинге</div>
+                <div className="text-muted mt-2 text-sm">в маркетинге</div>
               </div>
             </div>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
               <Button variant="primary" size="lg" onClick={() => openContact('strategy')}>
-                Записаться на разбор
+                Записаться на разбор
               </Button>
               <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className={buttonClass('secondary', 'lg')}>
-                Написать в Telegram
+                Написать в Telegram
               </a>
             </div>
-            <p className="text-xs text-muted mt-3 font-mono">Разбор: 60 минут с основательницей, итог — план и вердикт</p>
+            <p className="text-xs text-muted mt-3 font-mono">Разбор: 60 минут с основательницей, итог — план и вердикт</p>
           </div>
 
           {/* Right: report card */}

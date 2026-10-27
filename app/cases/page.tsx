@@ -7,13 +7,13 @@ import AnimatedSection, { AnimatedGrid, AnimatedItem } from '@/components/shared
 import { cases } from '@/lib/data/cases'
 
 export const metadata: Metadata = {
-  title: 'Кейсы: производство, IT и B2B в цифрах',
+  title: 'Кейсы: производство, IT и B2B в цифрах',
   description:
-    'Кейсы агентства Квинт: что было, что мешало, что сделали и что получили. Неудобные цифры не прячем. Данные из Яндекс Метрики и Директа с периодами',
+    'Кейсы агентства Квинт: что было, что мешало, что сделали и что получили. Неудобные цифры не прячем. Данные из Яндекс Метрики и Директа с периодами',
   alternates: { canonical: '/cases' },
   openGraph: {
-    title: 'Кейсы — Квинт',
-    description: 'Что было, что сделали и что получили. Цифры до и после по каждому проекту',
+    title: 'Кейсы — Квинт',
+    description: 'Что было, что сделали и что получили. Цифры до и после по каждому проекту',
   },
 }
 
@@ -26,7 +26,7 @@ export default function CasesPage() {
           <AnimatedSection className="mb-10">
             <h1 className="section-title mb-4">Кейсы</h1>
             <p className="text-text/75 max-w-xl">
-              Что было, что мешало, что сделали и что получили. Неудобные цифры не прячем. Источник и период — в каждом кейсе
+              Что было, что мешало, что сделали и что получили. Неудобные цифры не прячем. Источник и период — в каждом кейсе
             </p>
           </AnimatedSection>
 
@@ -35,7 +35,7 @@ export default function CasesPage() {
               <AnimatedItem key={c.slug}>
                 <Link
                   href={`/cases/${c.slug}`}
-                  className="group block h-full rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+                  className="group block h-full rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
                   <article className="h-full rounded-2xl bg-bg-2 border border-transparent group-hover:border-black/15 transition-colors p-6 sm:p-8 flex flex-col">
                     <p className="font-mono text-xs uppercase tracking-wider text-muted mb-4">

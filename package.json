@@ -4,10 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/typograph.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "typograph": "node scripts/typograph.mjs",
+    "typograph:check": "node scripts/typograph.mjs --check"
   },
   "dependencies": {
     "autoprefixer": "^10.5.0",

@@ -7,7 +7,7 @@ import SectionHeading from '@/components/shared/SectionHeading'
 import { PHONE, PHONE_HREF, type ContactTab } from '@/lib/utils'
 
 const tabs: { id: ContactTab; label: string }[] = [
-  { id: 'strategy', label: 'Разбор с основательницей' },
+  { id: 'strategy', label: 'Разбор с основательницей' },
   { id: 'project', label: 'Обсудить проект' },
 ]
 
@@ -39,7 +39,7 @@ export default function ContactSection() {
         <div className="mb-fluid-l">
           <SectionHeading className="section-title mb-4">Расскажите, где теряете заявки</SectionHeading>
           <p className="text-muted">
-            Выберите разбор с основательницей или обсуждение проекта. Или позвоните:{' '}
+            Выберите разбор с основательницей или обсуждение проекта. Или позвоните:{' '}
             <a href={PHONE_HREF} className="link-underline text-text font-mono whitespace-nowrap">
               {PHONE}
             </a>
@@ -55,7 +55,7 @@ export default function ContactSection() {
               aria-selected={tab === t.id}
               aria-controls="contact-panel"
               onClick={() => setTab(t.id)}
-              className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-colors duration-200 min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${
+              className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-colors duration-200 min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                 tab === t.id ? 'bg-accent text-white' : 'text-muted hover:text-text'
               }`}
             >

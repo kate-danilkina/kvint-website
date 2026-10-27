@@ -6,8 +6,8 @@ export default function ForWho() {
   return (
     <section className="py-fluid-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading className="section-title mb-3">С кем работаем</SectionHeading>
-        <p className="text-muted mb-fluid-l">B2B-компании с дорогой сделкой и долгим выбором. Там, где шаблонная реклама не работает</p>
+        <SectionHeading className="section-title mb-3">С кем работаем</SectionHeading>
+        <p className="text-muted mb-fluid-l">B2B-компании с дорогой сделкой и долгим выбором. Там, где шаблонная реклама не работает</p>
 
         <ul className="grid grid-cols-1 md:grid-cols-2 border-t border-black/10">
           {audiences.map((a, i) => (

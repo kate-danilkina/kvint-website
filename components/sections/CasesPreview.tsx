@@ -10,7 +10,7 @@ export default function CasesPreview() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
             <SectionHeading className="section-title mb-3">Кейсы</SectionHeading>
-            <p className="text-text/75 max-w-xl">Что было, что сделали и что получили — в цифрах</p>
+            <p className="text-text/75 max-w-xl">Что было, что сделали и что получили — в цифрах</p>
           </div>
           <Link
             href="/cases"
@@ -25,7 +25,7 @@ export default function CasesPreview() {
             <Link
               key={c.slug}
               href={`/cases/${c.slug}`}
-              className="group block rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+              className="group block rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               <article className="rounded-2xl bg-bg-2 border border-transparent transition-colors duration-200 group-hover:border-black/15 p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] gap-6 lg:gap-12">
                 <div className="min-w-0 flex flex-col">

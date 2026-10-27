@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from 'next'
 import { Onest, JetBrains_Mono, Unbounded } from 'next/font/google'
-import Script from 'next/script'
 import MessengerWidget from '@/components/shared/MessengerWidget'
 import ClickGoals from '@/components/shared/ClickGoals'
 import StickyCTA from '@/components/shared/StickyCTA'
 import LeadPanel from '@/components/shared/LeadPanel'
+import CookieConsent from '@/components/shared/CookieConsent'
 import { JsonLd, organizationLd, founderLd } from '@/lib/seo'
 import './globals.css'
 
@@ -32,11 +32,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://kvint.agency'),
   title: {
-    default: 'Квинт — маркетинговое агентство для B2B: IT, ритейл, производство, недвижимость',
+    default: 'Квинт — маркетинговое агентство для B2B: IT, ритейл, производство, недвижимость',
     template: '%s | Квинт',
   },
   description:
-    'Маркетинговое агентство для B2B. Считаем окупаемость до старта и показываем, сколько приносит каждый рубль рекламы. Проект ведёт основательница Екатерина Данилкина',
+    'Маркетинговое агентство для B2B. Считаем окупаемость до старта и показываем, сколько приносит каждый рубль рекламы. Проект ведёт основательница Екатерина Данилкина',
   // Each page gets a self-canonical resolved against metadataBase
   alternates: { canonical: './' },
   verification: { other: { 'msvalidate.01': '269C5DB1E3644ECDE492CE7B447803BD' } },
@@ -46,15 +46,15 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'ru_RU',
     url: 'https://kvint.agency',
-    siteName: 'Квинт — Маркетинговое агентство',
-    title: 'Квинт — маркетинговое агентство',
+    siteName: 'Квинт — Маркетинговое агентство',
+    title: 'Квинт — маркетинговое агентство',
     description:
-      'Реклама, сайт, SEO и аналитика для B2B с расчётом окупаемости до старта',
+      'Реклама, сайт, SEO и аналитика для B2B с расчётом окупаемости до старта',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Квинт — Маркетинговое агентство',
-    description: 'Маркетинг для B2B, который считают в деньгах',
+    title: 'Квинт — Маркетинговое агентство',
+    description: 'Маркетинг для B2B, который считают в деньгах',
   },
   robots: { index: true, follow: true },
   icons: {
@@ -78,42 +78,22 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
+    // Yandex Metrika is not in the HTML: CookieConsent loads it only after the visitor accepts analytics
     <html lang="ru" className={`${onest.variable} ${jetbrainsMono.variable} ${unbounded.variable}`}>
-      <head>
-        <Script id="metrika" strategy="afterInteractive">
-          {`
-            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-            ym(109826277, "init", {
-              clickmap: true,
-              trackLinks: true,
-              accurateTrackBounce: true,
-              webvisor: true
-            });
-          `}
-        </Script>
-        <noscript>
-          <div>
-            <img src="https://mc.yandex.ru/watch/109826277" style={{position:'absolute', left:'-9999px'}} alt="" />
-          </div>
-        </noscript>
-      </head>
       <body className="bg-bg text-text antialiased">
         <JsonLd data={[organizationLd(), founderLd()]} />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-lg focus:text-sm focus:font-semibold focus:shadow-lg focus:outline-none"
         >
-          Перейти к содержанию
+          Перейти к содержанию
         </a>
         {children}
         <MessengerWidget />
         <ClickGoals />
         <StickyCTA />
         <LeadPanel />
+        <CookieConsent />
       </body>
     </html>
   )

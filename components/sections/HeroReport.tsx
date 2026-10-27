@@ -34,7 +34,7 @@ export default function HeroReport() {
     <div ref={ref} className="w-full max-w-[460px] rounded-2xl bg-night text-white font-mono text-sm shadow-[0_20px_60px_-20px_rgba(0,0,0,0.45)]">
       {/* Report header */}
       <div className="flex items-center justify-between px-5 py-3 border-b border-white/[0.08] text-xs text-white/60">
-        <span>ОТЧЁТ · ИЗ НАШИХ КЕЙСОВ</span>
+        <span>ОТЧЁТ · ИЗ НАШИХ КЕЙСОВ</span>
         <span className="flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-[#34D399]" aria-hidden />
           факт
@@ -82,10 +82,10 @@ export default function HeroReport() {
 
       <Link
         href="/cases"
-        className="flex items-center justify-between px-5 py-3 border-t border-white/[0.08] text-xs text-white/60 hover:text-white transition-colors rounded-b-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+        className="flex items-center justify-between px-5 py-3 border-t border-white/[0.08] text-xs text-white/60 hover:text-white transition-colors rounded-b-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
       >
-        <span>Как мы получили эти цифры</span>
-        <ArrowRight size={14} />
+        <span>Как мы получили эти цифры</span>
+        <ArrowRight size={14} aria-hidden />
       </Link>
     </div>
   )

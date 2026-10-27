@@ -1,6 +1,11 @@
+'use client'
+
 import Link from 'next/link'
 import { Mail, Send, Phone } from 'lucide-react'
 import { PHONE, PHONE_HREF, TELEGRAM_URL } from '@/lib/utils'
+import { openCookieSettings } from '@/components/shared/CookieConsent'
+
+const legalLinkClass = 'link-underline hover:text-white transition-colors'
 
 export default function Footer() {
   return (
@@ -13,7 +18,7 @@ export default function Footer() {
               КВИНТ
             </Link>
             <p className="mt-3 text-sm text-white/60 leading-relaxed">
-              Маркетинговое агентство для B2B
+              Маркетинговое агентство для B2B
               <br />
               IT B2B, премиум-ритейл, производство, недвижимость
             </p>
@@ -28,9 +33,9 @@ export default function Footer() {
                 { href: '/otrasli', label: 'Отрасли' },
                 { href: '/cases', label: 'Кейсы' },
                 { href: '/ceny', label: 'Цены' },
-                { href: '/razbor', label: 'Разбор с основательницей' },
+                { href: '/razbor', label: 'Разбор с основательницей' },
                 { href: '/kalkulyator-zayavki', label: 'Калькулятор заявки' },
-                { href: '/o-kompanii', label: 'О компании' },
+                { href: '/o-kompanii', label: 'О компании' },
                 { href: '/ekaterina-danilkina', label: 'Екатерина Данилкина' },
                 { href: '/blog', label: 'Блог' },
                 { href: '/kontakty', label: 'Контакты' },
@@ -74,9 +79,20 @@ export default function Footer() {
           <p>
             © {new Date().getFullYear()} Квинт · ИП Данилкина Екатерина Денисовна · ИНН 631607801908 · ОГРНИП 326632700136276
           </p>
-          <Link href="/privacy" className="link-underline self-start lg:self-auto hover:text-white transition-colors">
-            Политика конфиденциальности
-          </Link>
+          <nav aria-label="Правовая информация" className="flex flex-wrap gap-x-6 gap-y-2">
+            <Link href="/privacy" className={legalLinkClass}>
+              Политика конфиденциальности
+            </Link>
+            <Link href="/soglasie" className={legalLinkClass}>
+              Согласие на обработку данных
+            </Link>
+            <Link href="/cookies" className={legalLinkClass}>
+              Cookie
+            </Link>
+            <button type="button" onClick={openCookieSettings} className={`${legalLinkClass} text-left`}>
+              Настройки cookie
+            </button>
+          </nav>
         </div>
       </div>
     </footer>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -13,13 +13,15 @@ const navLinks = [
   { href: '/otrasli', label: 'Отрасли' },
   { href: '/cases', label: 'Кейсы' },
   { href: '/ceny', label: 'Цены' },
-  { href: '/o-kompanii', label: 'О нас' },
+  { href: '/o-kompanii', label: 'О нас' },
 ]
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
+  const burgerRef = useRef<HTMLButtonElement>(null)
+  const menuCloseRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20)
@@ -34,6 +36,20 @@ export default function Header() {
       document.body.style.overflow = ''
     }
     return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
+
+  // Mobile menu: focus moves into the overlay, Esc closes it and returns focus to the burger
+  useEffect(() => {
+    if (!menuOpen) return
+    menuCloseRef.current?.focus()
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMenuOpen(false)
+        burgerRef.current?.focus()
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
   }, [menuOpen])
 
   return (
@@ -78,15 +94,19 @@ export default function Header() {
               {PHONE}
             </a>
             <Button variant="primary" size="sm" onClick={() => openContact('strategy')}>
-              Записаться на разбор
+              Записаться на разбор
             </Button>
           </div>
 
           {/* Burger */}
           <button
-            className="md:hidden p-2 text-text hover:text-accent transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+            ref={burgerRef}
+            type="button"
+            className="md:hidden p-2 text-text hover:text-accent transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -97,13 +117,30 @@ export default function Header() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
+            id="mobile-menu"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Меню"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-[60] bg-bg/95 backdrop-blur-2xl flex flex-col items-center justify-center gap-8 md:hidden"
           >
-            <nav className="flex flex-col items-center gap-6">
+            {/* The header burger sits under this overlay, so the overlay needs its own close button */}
+            <button
+              ref={menuCloseRef}
+              type="button"
+              onClick={() => {
+                setMenuOpen(false)
+                burgerRef.current?.focus()
+              }}
+              aria-label="Закрыть меню"
+              className="absolute right-4 top-5 flex h-11 w-11 items-center justify-center rounded-lg text-text hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            >
+              <X size={24} aria-hidden />
+            </button>
+            <nav aria-label="Основное меню" className="flex flex-col items-center gap-6">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.href}
@@ -137,7 +174,7 @@ export default function Header() {
                   setTimeout(() => openContact('strategy'), 300)
                 }}
               >
-                Записаться на разбор
+                Записаться на разбор
               </Button>
             </motion.div>
           </motion.div>

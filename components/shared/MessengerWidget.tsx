@@ -55,7 +55,6 @@ export default function MessengerWidget() {
       ref={containerRef}
       className="messenger-widget-root"
       style={{ position: 'fixed', bottom: 'calc(env(safe-area-inset-bottom, 0px) + 32px)', right: 32, zIndex: 50 }}
-      aria-label="Связаться с нами"
     >
       {/* Messenger buttons */}
       <AnimatePresence>
@@ -102,7 +101,8 @@ export default function MessengerWidget() {
                     transition: 'opacity 0.15s ease',
                     pointerEvents: 'none',
                   }}
-                  className="group-hover:!opacity-100"
+                  className="group-hover:!opacity-100 group-focus-within:!opacity-100"
+                  aria-hidden
                 >
                   {m.label}
                 </span>
@@ -113,6 +113,7 @@ export default function MessengerWidget() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={m.label}
+                  className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
                   style={{
                     width: 48,
                     height: 48,
@@ -149,12 +150,13 @@ export default function MessengerWidget() {
         whileHover={reducedMotion ? {} : { scale: 1.05 }}
         whileTap={reducedMotion ? {} : { scale: 0.95 }}
         aria-label={open ? 'Закрыть мессенджеры' : 'Написать нам'}
-        className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+        aria-expanded={open}
+        className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
         style={{
           width: 56,
           height: 56,
           borderRadius: '50%',
-          background: '#1A6EFF',
+          background: '#1561E0',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -170,7 +172,7 @@ export default function MessengerWidget() {
           animate={{ rotate: open ? 45 : 0 }}
           transition={{ duration: 0.2 }}
         >
-          {open ? <X size={22} /> : <MessageCircle size={22} />}
+          {open ? <X size={22} aria-hidden /> : <MessageCircle size={22} aria-hidden />}
         </motion.div>
       </motion.button>
     </div>

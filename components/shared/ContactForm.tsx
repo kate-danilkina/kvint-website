@@ -86,7 +86,7 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
         </div>
         <h3 className="text-xl font-bold text-text mb-2">Заявка отправлена!</h3>
         <p className="text-muted text-sm">
-          Спасибо, скоро свяжемся с вами.{' '}
+          Спасибо, скоро свяжемся с вами.{' '}
           Пока можно посмотреть наши{' '}
           <Link href="/cases" className="text-accent hover:underline inline-flex items-center gap-0.5">
             кейсы <ArrowRight size={12} />
@@ -97,18 +97,18 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+    <form onSubmit={handleSubmit(onSubmit)} className="ym-hide-content flex flex-col gap-5">
       {/* Progress bar */}
-      <div className="flex gap-1.5 mb-1">
+      <div className="flex gap-1.5 mb-1" aria-hidden>
         {Array.from({ length: STEPS }).map((_, i) => (
           <div
             key={i}
             className="h-1 flex-1 rounded-full transition-all duration-300"
-            style={{ background: i < step ? '#1A6EFF' : 'rgba(255,255,255,0.1)' }}
+            style={{ background: i < step ? '#1561E0' : 'rgba(0,0,0,0.1)' }}
           />
         ))}
       </div>
-      <p className="text-xs text-muted font-mono">Шаг {step} из {STEPS}</p>
+      <p className="text-xs text-muted font-mono">Шаг {step} из {STEPS}</p>
 
       {/* Step content */}
       <div className="overflow-hidden relative min-h-[160px]" aria-live="polite" aria-atomic="true">
@@ -126,8 +126,8 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
             >
               <Input
                 id={`${idPrefix}name`}
-                label="Как вас зовут?"
-                placeholder="Имя или название компании"
+                label="Как вас зовут?"
+                placeholder="Имя или название компании"
                 autoComplete="name"
                 error={errors.name?.message}
                 {...register('name', {
@@ -138,7 +138,7 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
               />
               <Input
                 id={`${idPrefix}contact`}
-                label="Как с вами связаться?"
+                label="Как с вами связаться?"
                 placeholder="+7 (999) 000-00-00 или @username"
                 autoComplete="tel"
                 error={errors.contact?.message}
@@ -166,25 +166,25 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
             >
               <div className="flex flex-col gap-1.5">
                 <label htmlFor={`${idPrefix}message`} className="text-sm font-medium text-muted font-mono">
-                  Расскажите о задаче
+                  Расскажите о задаче
                 </label>
                 <textarea
                   id={`${idPrefix}message`}
                   rows={3}
-                  placeholder="Что сейчас не работает и чего хотите добиться"
-                  className="w-full px-4 py-3 rounded-xl bg-black/5 border border-black/10 text-text placeholder:text-muted focus:outline-none focus:border-accent/60 focus:bg-black/[0.07] transition-all duration-200 text-base resize-none"
+                  placeholder="Что сейчас не работает и чего хотите добиться"
+                  className="ym-disable-keys w-full px-4 py-3 rounded-xl bg-black/5 border border-black/10 text-text placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent focus:bg-black/[0.07] transition-all duration-200 text-base resize-none"
                   {...register('message')}
                 />
               </div>
               <div className="flex flex-col gap-1.5">
                 <label htmlFor={`${idPrefix}p-source`} className="text-sm font-medium text-muted font-mono flex items-center gap-2">
-                  Откуда узнали о нас
-                  <span className="text-xs text-muted/70 font-normal">(необязательно)</span>
+                  Откуда узнали о нас
+                  <span className="text-xs text-muted font-normal">(необязательно)</span>
                 </label>
                 <div className="relative">
                   <select
                     id={`${idPrefix}p-source`}
-                    className="w-full px-4 py-3 pr-10 rounded-xl bg-black/5 border border-black/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none cursor-pointer"
+                    className="w-full px-4 py-3 pr-10 rounded-xl bg-black/5 border border-black/10 text-text focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all duration-200 text-base appearance-none cursor-pointer"
                     {...register('source')}
                   >
                     <option value="">Выберите вариант</option>
@@ -229,12 +229,12 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
               <ConsentCheckbox
                 id={`${idPrefix}consent-project`}
                 error={errors.consent?.message}
-                {...register('consent', { required: 'Нужно согласие, чтобы мы могли связаться с вами' })}
+                {...register('consent', { required: 'Нужно согласие, чтобы мы могли связаться с вами' })}
               />
               {status === 'error' && (
-                <div className="flex items-center gap-2 text-red-400 text-sm">
-                  <AlertCircle size={16} />
-                  Что-то пошло не так. Попробуйте позже
+                <div role="alert" className="flex items-center gap-2 text-red-700 text-sm">
+                  <AlertCircle size={16} aria-hidden />
+                  Что-то пошло не так. Попробуйте позже
                 </div>
               )}
             </motion.div>
@@ -248,7 +248,7 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
           <button
             type="button"
             onClick={goBack}
-            className="flex items-center gap-1.5 px-4 py-3 min-h-[44px] rounded-xl border border-black/15 text-muted hover:text-text hover:border-black/30 transition-all duration-200 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+            className="flex items-center gap-1.5 px-4 py-3 min-h-[44px] rounded-xl border border-black/15 text-muted hover:text-text hover:border-black/30 transition-all duration-200 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
             <ArrowLeft size={15} />
             Назад
@@ -268,7 +268,7 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
           <Button type="submit" variant="primary" size="lg" fullWidth disabled={status === 'loading'}>
             {status === 'loading' ? (
               <>
-                <span className="animate-spin rounded-full h-4 w-4 border-2 border-black/30 border-t-white" />
+                <span className="animate-spin rounded-full h-4 w-4 border-2 border-black/30 border-t-white" aria-hidden />
                 Отправляем...
               </>
             ) : (

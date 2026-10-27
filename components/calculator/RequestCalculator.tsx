@@ -9,17 +9,17 @@ type Kind = 'rub' | 'pct'
 
 const GROUPS: { title: string; fields: { key: keyof CalcInput; label: string; kind: Kind }[] }[] = [
   {
-    title: 'Реклама и сайт',
+    title: 'Реклама и сайт',
     fields: [
-      { key: 'budget', label: 'Рекламный бюджет в месяц, ₽', kind: 'rub' },
+      { key: 'budget', label: 'Рекламный бюджет в месяц, ₽', kind: 'rub' },
       { key: 'cpc', label: 'Цена клика, ₽', kind: 'rub' },
-      { key: 'siteConv', label: 'Конверсия сайта в заявку, %', kind: 'pct' },
+      { key: 'siteConv', label: 'Конверсия сайта в заявку, %', kind: 'pct' },
     ],
   },
   {
     title: 'Продажи',
     fields: [
-      { key: 'dealConv', label: 'Конверсия заявки в сделку, %', kind: 'pct' },
+      { key: 'dealConv', label: 'Конверсия заявки в сделку, %', kind: 'pct' },
       { key: 'check', label: 'Средний чек, ₽', kind: 'rub' },
       { key: 'margin', label: 'Маржинальность, %', kind: 'pct' },
     ],
@@ -27,29 +27,29 @@ const GROUPS: { title: string; fields: { key: keyof CalcInput; label: string; ki
 ]
 
 const VERDICT: Record<Verdict, { title: string; text: string; pill: string }> = {
-  profit: { title: 'Реклама окупается', text: 'Прибыль с продаж покрывает бюджет с запасом', pill: 'bg-up text-white' },
-  edge: { title: 'Реклама на грани', text: 'Бюджет возвращается, но запаса мало', pill: 'bg-white text-night' },
-  loss: { title: 'Реклама не окупается', text: 'Клиент приносит меньше прибыли, чем стоит', pill: 'bg-down text-white' },
-  none: { title: 'Введите цифры', text: 'Нужны бюджет и цена клика больше нуля', pill: 'bg-white/15 text-white' },
+  profit: { title: 'Реклама окупается', text: 'Прибыль с продаж покрывает бюджет с запасом', pill: 'bg-up text-white' },
+  edge: { title: 'Реклама на грани', text: 'Бюджет возвращается, но запаса мало', pill: 'bg-white text-night' },
+  loss: { title: 'Реклама не окупается', text: 'Клиент приносит меньше прибыли, чем стоит', pill: 'bg-down text-white' },
+  none: { title: 'Введите цифры', text: 'Нужны бюджет и цена клика больше нуля', pill: 'bg-white/15 text-white' },
 }
 
-// Значение в поле после ухода с него: 100 000, 1,5
+// Значение в поле после ухода с него: 100 000, 1,5
 function toShown(v: number, kind: Kind) {
   return kind === 'rub' ? formatNum(v) : String(Math.round(v * 100) / 100).replace('.', ',')
 }
 
-// Значение для редактирования: без пробелов
+// Значение для редактирования: без пробелов
 function toRaw(v: number, kind: Kind) {
   return kind === 'rub' ? String(Math.round(v)) : toShown(v, kind)
 }
 
-// Число для расчёта: цифры для рублей, проценты до 100
+// Число для расчёта: цифры для рублей, проценты до 100
 function parse(s: string, kind: Kind) {
   if (kind === 'rub') return Number(s.replace(/\D/g, '')) || 0
   return Math.min(Number.parseFloat(s.replace(',', '.')) || 0, 100)
 }
 
-// Не даём тексту уйти в число: в поле рублей только цифры, в процентах цифры, точка и запятая
+// Не даём тексту уйти в число: в поле рублей только цифры, в процентах цифры, точка и запятая
 function clean(s: string, kind: Kind) {
   return kind === 'rub' ? s.replace(/\D/g, '') : s.replace(/[^\d.,]/g, '')
 }
@@ -67,7 +67,7 @@ function NumberField({
   value: number
   onChange: (n: number) => void
 }) {
-  // Пока поле в фокусе, показываем сырой ввод. Пробелы появляются после ухода с поля
+  // Пока поле в фокусе, показываем сырой ввод. Пробелы появляются после ухода с поля
   const [focused, setFocused] = useState(false)
   const [raw, setRaw] = useState('')
 
@@ -94,7 +94,7 @@ function NumberField({
   )
 }
 
-// Число для таблицы: целые, а дробные (заявки, сделки) — до одного знака
+// Число для таблицы: целые, а дробные (заявки, сделки) — до одного знака
 function count(n: number) {
   const x = Math.round(n * 10) / 10
   return formatNum(x, Number.isInteger(x) ? 0 : 1)
@@ -142,7 +142,7 @@ export default function RequestCalculator() {
           </fieldset>
         ))}
         <p className="text-sm text-muted leading-relaxed">
-          Расчёт упрощённый: работает со средними значениями за месяц. Точные цифры дают сквозная аналитика и CRM
+          Расчёт упрощённый: работает со средними значениями за месяц. Точные цифры дают сквозная аналитика и CRM
         </p>
       </div>
 
@@ -155,7 +155,7 @@ export default function RequestCalculator() {
               {VERDICT[verdict].title}
             </span>
             <div>
-              <p className="font-mono text-xs text-white/50 mb-2">ROMI, возврат на рекламу</p>
+              <p className="font-mono text-xs text-white/50 mb-2">ROMI, возврат на рекламу</p>
               <p className="font-display font-bold text-step-5 leading-none break-words">
                 {result.romi === null ? '—' : `${formatNum(Math.round(result.romi))}%`}
               </p>
@@ -165,13 +165,13 @@ export default function RequestCalculator() {
 
           {hint && (
             <div className="mt-6 rounded-xl bg-white/5 p-4">
-              <p className="eyebrow !text-white/50 mb-2">Что улучшить первым</p>
+              <p className="eyebrow !text-white/50 mb-2">Что улучшить первым</p>
               <p className="font-semibold mb-1">{hint.title}</p>
               <p className="text-white/75 leading-relaxed">{hint.text}</p>
             </div>
           )}
 
-          <DiagnosticButton label="Разобрать мои цифры с основательницей" className="mt-6 w-full sm:w-auto" />
+          <DiagnosticButton label="Разобрать мои цифры с основательницей" className="mt-6 w-full sm:w-auto" />
         </section>
 
         <dl className="grid grid-cols-2 sm:grid-cols-4 gap-x-5 gap-y-5 rounded-2xl bg-bg-2 p-5 sm:p-6 border border-black/[0.08]">

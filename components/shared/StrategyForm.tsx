@@ -23,11 +23,11 @@ const niches = [
   'Премиум-ритейл',
   'Производство',
   'Недвижимость',
-  'Медицина и здоровье',
+  'Медицина и здоровье',
   'Другое',
 ]
 
-const budgets = ['до 50 000 ₽', '50 000 – 150 000 ₽', '150 000 ₽ и выше']
+const budgets = ['до 50 000 ₽', '50 000 – 150 000 ₽', '150 000 ₽ и выше']
 
 interface Props {
   /** Prefix for element ids, so the form can be rendered twice on a page (contact section + lead panel) */
@@ -69,7 +69,7 @@ export default function StrategyForm({ idPrefix = '' }: Props = {}) {
         </div>
         <h3 className="text-xl font-bold text-text mb-2">Заявка отправлена!</h3>
         <p className="text-muted text-sm">
-          Спасибо, скоро свяжемся с вами.{' '}
+          Спасибо, скоро свяжемся с вами.{' '}
           Пока можно посмотреть наши{' '}
           <Link href="/cases" className="text-accent hover:underline inline-flex items-center gap-0.5">
             кейсы <ArrowRight size={12} />
@@ -80,7 +80,7 @@ export default function StrategyForm({ idPrefix = '' }: Props = {}) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="ym-hide-content flex flex-col gap-4">
       <Input
         id={`${idPrefix}s-name`}
         label="Имя"
@@ -111,12 +111,12 @@ export default function StrategyForm({ idPrefix = '' }: Props = {}) {
       <div className="flex flex-col gap-1.5">
         <label htmlFor={`${idPrefix}s-niche`} className="text-sm font-medium text-muted font-mono flex items-center gap-2">
           Ниша бизнеса
-          <span className="text-xs text-muted/70 font-normal">(необязательно)</span>
+          <span className="text-xs text-muted font-normal">(необязательно)</span>
         </label>
         <div className="relative">
           <select
             id={`${idPrefix}s-niche`}
-            className="w-full px-4 py-3 pr-10 rounded-xl bg-black/5 border border-black/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none cursor-pointer"
+            className="w-full px-4 py-3 pr-10 rounded-xl bg-black/5 border border-black/10 text-text focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all duration-200 text-base appearance-none cursor-pointer"
             {...register('niche')}
           >
             <option value="">Выберите нишу</option>
@@ -133,12 +133,12 @@ export default function StrategyForm({ idPrefix = '' }: Props = {}) {
       <div className="flex flex-col gap-1.5">
         <label htmlFor={`${idPrefix}s-budget`} className="text-sm font-medium text-muted font-mono flex items-center gap-2">
           Текущий маркетинговый бюджет
-          <span className="text-xs text-muted/70 font-normal">(необязательно)</span>
+          <span className="text-xs text-muted font-normal">(необязательно)</span>
         </label>
         <div className="relative">
           <select
             id={`${idPrefix}s-budget`}
-            className="w-full px-4 py-3 pr-10 rounded-xl bg-black/5 border border-black/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none cursor-pointer"
+            className="w-full px-4 py-3 pr-10 rounded-xl bg-black/5 border border-black/10 text-text focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all duration-200 text-base appearance-none cursor-pointer"
             {...register('budget')}
           >
             <option value="">Выберите диапазон</option>
@@ -154,13 +154,13 @@ export default function StrategyForm({ idPrefix = '' }: Props = {}) {
 
       <div className="flex flex-col gap-1.5">
         <label htmlFor={`${idPrefix}s-source`} className="text-sm font-medium text-muted font-mono flex items-center gap-2">
-          Откуда узнали о нас
-          <span className="text-xs text-muted/70 font-normal">(необязательно)</span>
+          Откуда узнали о нас
+          <span className="text-xs text-muted font-normal">(необязательно)</span>
         </label>
         <div className="relative">
           <select
             id={`${idPrefix}s-source`}
-            className="w-full px-4 py-3 pr-10 rounded-xl bg-black/5 border border-black/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none cursor-pointer"
+            className="w-full px-4 py-3 pr-10 rounded-xl bg-black/5 border border-black/10 text-text focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all duration-200 text-base appearance-none cursor-pointer"
             {...register('source')}
           >
             <option value="">Выберите вариант</option>
@@ -177,26 +177,26 @@ export default function StrategyForm({ idPrefix = '' }: Props = {}) {
       <ConsentCheckbox
         id={`${idPrefix}consent-strategy`}
         error={errors.consent?.message}
-        {...register('consent', { required: 'Нужно согласие, чтобы мы могли связаться с вами' })}
+        {...register('consent', { required: 'Нужно согласие, чтобы мы могли связаться с вами' })}
       />
 
       {status === 'error' && (
-        <div className="flex items-center gap-2 text-red-400 text-sm">
-          <AlertCircle size={16} />
-          Что-то пошло не так. Попробуйте позже
+        <div role="alert" className="flex items-center gap-2 text-red-700 text-sm">
+          <AlertCircle size={16} aria-hidden />
+          Что-то пошло не так. Попробуйте позже
         </div>
       )}
 
       <Button type="submit" variant="primary" size="lg" fullWidth disabled={status === 'loading'}>
         {status === 'loading' ? (
           <>
-            <span className="animate-spin rounded-full h-4 w-4 border-2 border-black/30 border-t-white" />
+            <span className="animate-spin rounded-full h-4 w-4 border-2 border-black/30 border-t-white" aria-hidden />
             Отправляем...
           </>
         ) : (
           <>
             <Send size={16} />
-            Записаться на разбор
+            Записаться на разбор
           </>
         )}
       </Button>

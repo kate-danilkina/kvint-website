@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og'
 
-export const alt = 'Квинт — маркетинговое агентство'
+export const alt = 'Квинт — маркетинговое агентство'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -44,7 +44,7 @@ export default async function OpengraphImage() {
         <div style={{ display: 'flex', fontSize: 34, fontWeight: 700, letterSpacing: -1 }}>КВИНТ</div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', fontSize: 72, fontWeight: 700, lineHeight: 1.05, letterSpacing: -2, maxWidth: 900 }}>
-            Реклама, сайт и аналитика одной командой
+            Реклама, сайт и аналитика одной командой
           </div>
           <div style={{ display: 'flex', fontSize: 30, color: '#888899', marginTop: 28 }}>
             IT B2B · премиум-ритейл · производство · недвижимость

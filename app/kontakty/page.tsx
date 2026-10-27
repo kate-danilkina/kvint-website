@@ -7,7 +7,7 @@ import { PHONE_HREF } from '@/lib/utils'
 
 export const metadata: Metadata = {
   title: 'Контакты агентства Квинт',
-  description: `Телефон ${company.phone}, почта ${company.email}, Telegram @kvint_agency. Работаем онлайн по всей России. ${company.legalName}, ИНН ${company.inn}.`,
+  description: `Телефон ${company.phone}, почта ${company.email}, Telegram @kvint_agency. Работаем онлайн по всей России. ${company.legalName}, ИНН ${company.inn}.`,
 }
 
 export default function ContactsPage() {
@@ -17,14 +17,14 @@ export default function ContactsPage() {
     { label: 'Telegram', value: '@kvint_agency', href: company.telegram },
     { label: 'WhatsApp', value: company.phone, href: 'https://wa.me/79930798655' },
     { label: 'Часы работы', value: 'Пн–сб, 9:00–20:00' },
-    { label: 'География', value: 'Работаем онлайн с клиентами по всей России' },
+    { label: 'География', value: 'Работаем онлайн с клиентами по всей России' },
   ]
   return (
     <PageShell narrow>
       <Breadcrumbs items={[{ name: 'Контакты', path: '/kontakty' }]} />
       <h1 className="section-title mb-6">Контакты</h1>
       <p className="text-text/85 text-lg leading-relaxed mb-fluid-l">
-        Быстрее всего отвечаем в Telegram. Чтобы записаться на разбор, оставьте заявку, и мы свяжемся с вами
+        Быстрее всего отвечаем в Telegram. Чтобы записаться на разбор, оставьте заявку, и мы свяжемся с вами
       </p>
       <dl className="border-t border-black/10 mb-fluid-l">
         {rows.map((r) => (
