@@ -39,7 +39,7 @@ export default function StickyCTA() {
             bottom: 'calc(env(safe-area-inset-bottom, 0px) + 24px)',
           }}
         >
-          <div className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-bg/90 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] whitespace-nowrap">
+          <div className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-bg/90 backdrop-blur-xl border border-black/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] whitespace-nowrap">
             <a
               href={PHONE_HREF}
               className="hidden sm:flex items-center gap-1.5 text-sm text-muted hover:text-text transition-colors duration-150"
@@ -47,7 +47,7 @@ export default function StickyCTA() {
               <Phone size={13} />
               {PHONE}
             </a>
-            <div className="hidden sm:block w-px h-4 bg-white/10" />
+            <div className="hidden sm:block w-px h-4 bg-black/10" />
             <button
               onClick={() => openContact('strategy')}
               className="flex items-center gap-1.5 text-sm font-semibold text-white bg-accent px-4 py-3 min-h-[44px] rounded-xl hover:bg-[#3A82FF] transition-colors duration-200"

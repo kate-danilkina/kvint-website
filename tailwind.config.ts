@@ -9,16 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bg: '#0A0A0F',
-        'bg-2': '#12121A',
+        bg: '#ECEBE6',
+        'bg-2': '#FFFFFF',
         accent: '#1A6EFF',
         'accent-dim': 'rgba(26,110,255,0.13)',
-        text: '#F0F0F5',
-        muted: '#888899',
-        border: 'rgba(255,255,255,0.06)',
+        text: '#111114',
+        muted: '#5C5C66',
+        border: 'rgba(0,0,0,0.08)',
+        night: '#111114',
         // Data colours: growth / loss
-        up: '#34D399',
-        down: '#F87171',
+        up: '#0A8F5F',
+        down: '#D23B3B',
         // Light "printed report" surface
         paper: '#F2F1EC',
         ink: '#15151B',
@@ -27,6 +28,7 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-sans)', 'sans-serif'],
         mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
+        display: ['var(--font-display)', 'var(--font-sans)', 'sans-serif'],
       },
       // Fluid type scale — values live in app/globals.css (:root)
       fontSize: {

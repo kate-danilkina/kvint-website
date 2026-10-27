@@ -21,7 +21,7 @@ export default function AboutPage() {
         Основала агентство Екатерина Данилкина 25 августа 2024 года. На счету команды — {company.projects} проектов.
       </p>
 
-      <dl className="grid grid-cols-2 border-y border-white/10 mb-fluid-l font-mono">
+      <dl className="grid grid-cols-2 border-y border-black/10 mb-fluid-l font-mono">
         {[
           ['Основано', '25 августа 2024'],
           ['Проектов', String(company.projects)],

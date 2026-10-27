@@ -116,7 +116,7 @@ export default function StrategyForm({ idPrefix = '' }: Props = {}) {
         <div className="relative">
           <select
             id={`${idPrefix}s-niche`}
-            className="w-full px-4 py-3 pr-10 rounded-xl bg-white/5 border border-white/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none cursor-pointer"
+            className="w-full px-4 py-3 pr-10 rounded-xl bg-black/5 border border-black/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none cursor-pointer"
             {...register('niche')}
           >
             <option value="">Выберите нишу</option>
@@ -138,7 +138,7 @@ export default function StrategyForm({ idPrefix = '' }: Props = {}) {
         <div className="relative">
           <select
             id={`${idPrefix}s-budget`}
-            className="w-full px-4 py-3 pr-10 rounded-xl bg-white/5 border border-white/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none cursor-pointer"
+            className="w-full px-4 py-3 pr-10 rounded-xl bg-black/5 border border-black/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none cursor-pointer"
             {...register('budget')}
           >
             <option value="">Выберите диапазон</option>
@@ -160,7 +160,7 @@ export default function StrategyForm({ idPrefix = '' }: Props = {}) {
         <div className="relative">
           <select
             id={`${idPrefix}s-source`}
-            className="w-full px-4 py-3 pr-10 rounded-xl bg-white/5 border border-white/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none cursor-pointer"
+            className="w-full px-4 py-3 pr-10 rounded-xl bg-black/5 border border-black/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none cursor-pointer"
             {...register('source')}
           >
             <option value="">Выберите вариант</option>
@@ -190,7 +190,7 @@ export default function StrategyForm({ idPrefix = '' }: Props = {}) {
       <Button type="submit" variant="primary" size="lg" fullWidth disabled={status === 'loading'}>
         {status === 'loading' ? (
           <>
-            <span className="animate-spin rounded-full h-4 w-4 border-2 border-white/30 border-t-white" />
+            <span className="animate-spin rounded-full h-4 w-4 border-2 border-black/30 border-t-white" />
             Отправляем...
           </>
         ) : (

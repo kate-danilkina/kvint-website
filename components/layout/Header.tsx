@@ -42,13 +42,13 @@ export default function Header() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           // Opaque background on purpose: Safari 26+ treats a transparent fixed top bar as page content
           // and lays its toolbar blur over it
-          scrolled ? 'bg-bg border-b border-white/[0.06] py-3' : 'bg-bg border-b border-transparent py-5'
+          scrolled ? 'bg-bg border-b border-black/[0.06] py-3' : 'bg-bg border-b border-transparent py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <span className="text-xl font-bold font-sans tracking-tight text-white group-hover:text-accent transition-colors duration-200">
+            <span className="text-xl font-bold font-sans tracking-tight text-text group-hover:text-accent transition-colors duration-200">
               КВИНТ
             </span>
           </Link>

@@ -14,28 +14,28 @@ export default function Process() {
   const reduced = useReducedMotion()
 
   return (
-    <section className="py-fluid-2xl bg-paper text-ink">
+    <section className="py-fluid-2xl bg-night text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading className="section-title !text-ink mb-3">Как работаем после разбора</SectionHeading>
-        <p className="text-ink-muted text-lg mb-fluid-l max-w-xl">На каждом этапе отсекаем то, что не окупается</p>
+        <SectionHeading className="section-title !text-white mb-3">Как работаем после разбора</SectionHeading>
+        <p className="text-white/60 text-lg mb-fluid-l max-w-xl">На каждом этапе отсекаем то, что не окупается</p>
 
         <ol ref={ref} className="flex flex-col">
           {processSteps.map((step, i) => (
             <li
               key={step.number}
-              className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-4 md:gap-10 py-7 border-t border-ink/15"
+              className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-4 md:gap-10 py-7 border-t border-white/15"
             >
               <div className="flex gap-5">
-                <span className="font-mono text-sm text-ink-muted pt-1.5">{step.number}</span>
+                <span className="font-mono text-sm text-white/60 pt-1.5">{step.number}</span>
                 <div>
                   <h3 className="font-bold text-2xl tracking-tight mb-2">{step.title}</h3>
-                  <p className="text-ink-muted leading-relaxed max-w-md">{step.description}</p>
+                  <p className="text-white/60 leading-relaxed max-w-md">{step.description}</p>
                 </div>
               </div>
 
               <div className="flex flex-col justify-center gap-2 md:pl-0 pl-10">
                 <motion.div
-                  className="h-9 rounded-md bg-ink origin-left"
+                  className="h-9 rounded-md bg-accent origin-left"
                   style={{ width: `${widths[i]}%` }}
                   initial={reduced ? false : { scaleX: 0 }}
                   animate={inView || reduced ? { scaleX: 1 } : {}}

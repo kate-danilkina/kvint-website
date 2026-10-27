@@ -172,7 +172,7 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
                   id={`${idPrefix}message`}
                   rows={3}
                   placeholder="Что хотите улучшить? Какая сейчас ситуация? Любой формат..."
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-text placeholder:text-muted focus:outline-none focus:border-accent/60 focus:bg-white/[0.07] transition-all duration-200 text-base resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-black/5 border border-black/10 text-text placeholder:text-muted focus:outline-none focus:border-accent/60 focus:bg-black/[0.07] transition-all duration-200 text-base resize-none"
                   {...register('message')}
                 />
               </div>
@@ -184,7 +184,7 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
                 <div className="relative">
                   <select
                     id={`${idPrefix}p-source`}
-                    className="w-full px-4 py-3 pr-10 rounded-xl bg-white/5 border border-white/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none cursor-pointer"
+                    className="w-full px-4 py-3 pr-10 rounded-xl bg-black/5 border border-black/10 text-text focus:outline-none focus:border-accent/60 transition-all duration-200 text-base appearance-none cursor-pointer"
                     {...register('source')}
                   >
                     <option value="">Выберите вариант</option>
@@ -211,7 +211,7 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
               transition={{ duration: 0.22, ease: 'easeInOut' }}
               className="flex flex-col gap-3"
             >
-              <div className="p-4 rounded-xl bg-white/[0.03] border border-white/8 space-y-2">
+              <div className="p-4 rounded-xl bg-black/[0.03] border border-black/8 space-y-2">
                 <p className="text-xs text-muted font-mono uppercase tracking-wider mb-3">Ваша заявка</p>
                 {watchName && (
                   <div className="flex gap-2 text-sm">
@@ -251,7 +251,7 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
           <button
             type="button"
             onClick={goBack}
-            className="flex items-center gap-1.5 px-4 py-3 min-h-[44px] rounded-xl border border-white/15 text-muted hover:text-text hover:border-white/30 transition-all duration-200 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+            className="flex items-center gap-1.5 px-4 py-3 min-h-[44px] rounded-xl border border-black/15 text-muted hover:text-text hover:border-black/30 transition-all duration-200 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
           >
             <ArrowLeft size={15} />
             Назад
@@ -271,7 +271,7 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
           <Button type="submit" variant="primary" size="lg" fullWidth disabled={status === 'loading'}>
             {status === 'loading' ? (
               <>
-                <span className="animate-spin rounded-full h-4 w-4 border-2 border-white/30 border-t-white" />
+                <span className="animate-spin rounded-full h-4 w-4 border-2 border-black/30 border-t-white" />
                 Отправляем...
               </>
             ) : (

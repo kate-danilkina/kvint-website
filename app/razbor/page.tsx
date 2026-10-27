@@ -40,7 +40,7 @@ export default function RazborPage() {
       </p>
       <DiagnosticButton className="mb-fluid-l" />
 
-      <dl className="grid grid-cols-2 sm:grid-cols-4 border-y border-white/10 mb-fluid-l font-mono">
+      <dl className="grid grid-cols-2 sm:grid-cols-4 border-y border-black/10 mb-fluid-l font-mono">
         {[
           ['Формат', 'созвон'],
           ['Длительность', '60 минут'],
@@ -100,9 +100,9 @@ export default function RazborPage() {
 
       <section className="mb-fluid-l max-w-3xl">
         <h2 className="font-bold text-text text-2xl tracking-tight mb-4">Вопросы</h2>
-        <dl className="border-t border-white/10">
+        <dl className="border-t border-black/10">
           {faq.map((f) => (
-            <div key={f.q} className="py-4 border-b border-white/10">
+            <div key={f.q} className="py-4 border-b border-black/10">
               <dt className="text-text font-medium mb-1">{f.q}</dt>
               <dd className="text-muted">{f.a}</dd>
             </div>

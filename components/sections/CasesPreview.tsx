@@ -24,7 +24,7 @@ export default function CasesPreview() {
         <div className="flex flex-col gap-5">
           {cases.map((c) => (
             <Link key={c.slug} href={`/cases/${c.slug}`} className="group block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50">
-              <article className="rounded-xl border border-white/10 bg-bg-2 transition-colors duration-200 group-hover:border-white/25">
+              <article className="rounded-2xl border border-transparent bg-bg-2 transition-colors duration-200 group-hover:border-black/15">
                 <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-8 p-6 sm:p-8">
                   <div className="min-w-0">
                     <div className="flex items-center gap-3 mb-4">
@@ -35,7 +35,7 @@ export default function CasesPreview() {
                     <p className="text-muted leading-relaxed">{c.task}</p>
                   </div>
 
-                  <div className="lg:border-l lg:border-white/10 lg:pl-8 flex flex-col justify-between gap-6">
+                  <div className="lg:border-l lg:border-black/10 lg:pl-8 flex flex-col justify-between gap-6">
                     <div>
                       <div className="font-mono font-bold text-up tabular-nums" style={{ fontSize: 'clamp(40px, 5vw, 60px)', lineHeight: 1 }}>
                         {c.mainMetric}
@@ -49,9 +49,9 @@ export default function CasesPreview() {
                   </div>
                 </div>
 
-                <dl className="grid grid-cols-3 border-t border-white/10 font-mono">
+                <dl className="grid grid-cols-3 border-t border-black/10 font-mono">
                   {c.results.map((r, i) => (
-                    <div key={r.label} className={`px-4 sm:px-8 py-4 ${i > 0 ? 'border-l border-white/10' : ''}`}>
+                    <div key={r.label} className={`px-4 sm:px-8 py-4 ${i > 0 ? 'border-l border-black/10' : ''}`}>
                       <dt className="text-xs text-muted">{r.label}</dt>
                       <dd className="text-text font-bold mt-1 tabular-nums">{r.value}</dd>
                     </div>

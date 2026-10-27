@@ -29,9 +29,9 @@ export default function PricesPage() {
         Разбор маркетинга с основательницей стоит 10 000 ₽, сопровождение под ключ — от 150 000 ₽ в месяц. Итоговую
         стоимость отдельных услуг называем после разбора, когда видно объём работы. Рекламный бюджет оплачивается отдельно.
       </p>
-      <div className="border-t border-white/10 mb-fluid-l">
+      <div className="border-t border-black/10 mb-fluid-l">
         {rows.map((r) => (
-          <div key={r.name} className="grid grid-cols-1 md:grid-cols-[minmax(0,1.4fr)_minmax(0,0.8fr)_minmax(0,1.2fr)] gap-1 md:gap-8 py-5 border-b border-white/10">
+          <div key={r.name} className="grid grid-cols-1 md:grid-cols-[minmax(0,1.4fr)_minmax(0,0.8fr)_minmax(0,1.2fr)] gap-1 md:gap-8 py-5 border-b border-black/10">
             <Link href={r.href} className="text-text font-medium link-underline self-start">{r.name}</Link>
             <span className="font-mono text-text">{r.price}</span>
             <span className="text-muted text-sm">{r.note}</span>

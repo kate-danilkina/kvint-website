@@ -9,7 +9,7 @@ interface BadgeProps {
 export default function Badge({ children, variant = 'muted', className }: BadgeProps) {
   const variants = {
     accent: 'bg-accent/15 text-accent border border-accent/30',
-    muted: 'bg-white/5 text-muted border border-white/10',
+    muted: 'bg-black/5 text-muted border border-black/10',
     flagship: 'bg-accent text-white',
   }
 

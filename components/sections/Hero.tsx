@@ -44,21 +44,16 @@ export default function Hero() {
   return (
     <section className="relative min-h-[100dvh] flex items-center pt-[calc(5rem+var(--space-xl))] pb-fluid-3xl">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] items-center gap-14 lg:gap-16">
+        <p className="eyebrow mb-6">Маркетинговый штаб для бизнеса</p>
+
+        {/* Headline spans the full width: the long word must never collide with the report card */}
+        <h1 className="font-display font-bold uppercase text-[clamp(25px,6.6vw,104px)] leading-[0.95] tracking-[-0.02em] mb-fluid-l text-text max-w-[14ch] lg:max-w-none">
+          Внедряем <span className="text-accent">контролируемую</span> систему маркетинга
+        </h1>
+
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start gap-14 lg:gap-16">
           {/* Left: offer */}
           <div className="min-w-0">
-            <p className="eyebrow mb-6">
-              Маркетинговый штаб для бизнеса
-            </p>
-
-            <h1
-              className="font-sans font-extrabold text-step-6 leading-[1.02] tracking-[-0.04em] mb-7 text-text"
-            >
-              Внедряем <span className="text-outline">контролируемую</span> систему
-              <br />
-              маркетинга
-            </h1>
-
             <p className="text-muted text-lg leading-relaxed mb-10 max-w-xl">
               Связываем рекламу, сайт, CRM и аналитику: видно цену каждой заявки и канал, который приносит
               сделки. Когда схема работает без нас, уходим.

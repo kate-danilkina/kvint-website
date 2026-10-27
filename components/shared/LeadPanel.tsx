@@ -145,7 +145,7 @@ export default function LeadPanel() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="lead-panel-title"
-            className="absolute flex flex-col bg-bg border-white/10 shadow-[0_0_48px_rgba(0,0,0,0.6)]
+            className="absolute flex flex-col bg-bg border-black/10 shadow-[0_0_48px_rgba(0,0,0,0.6)]
               inset-x-0 bottom-0 max-h-[92dvh] rounded-t-2xl border-t
               sm:inset-x-auto sm:right-0 sm:top-0 sm:bottom-0 sm:max-h-none sm:h-full sm:w-full sm:max-w-[480px] sm:rounded-none sm:border-t-0 sm:border-l"
             initial={offscreen}
@@ -154,7 +154,7 @@ export default function LeadPanel() {
             transition={{ duration: reduced ? 0.15 : 0.4, ease: EASE }}
           >
             {/* Grab handle (mobile) */}
-            <div className="sm:hidden mx-auto mt-2.5 h-1 w-10 rounded-full bg-white/20" aria-hidden />
+            <div className="sm:hidden mx-auto mt-2.5 h-1 w-10 rounded-full bg-black/20" aria-hidden />
 
             <div className="flex items-start justify-between gap-4 px-5 sm:px-8 pt-4 sm:pt-8 pb-4">
               <div>
@@ -168,14 +168,14 @@ export default function LeadPanel() {
                 type="button"
                 onClick={close}
                 aria-label="Закрыть форму заявки"
-                className="flex-shrink-0 w-11 h-11 -mr-2 flex items-center justify-center rounded-xl text-muted hover:text-text hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+                className="flex-shrink-0 w-11 h-11 -mr-2 flex items-center justify-center rounded-xl text-muted hover:text-text hover:bg-black/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
               >
                 <X size={22} />
               </button>
             </div>
 
             <div className="flex-1 overflow-y-auto overscroll-contain px-5 sm:px-8 pb-[calc(env(safe-area-inset-bottom,0px)+24px)]">
-              <div role="tablist" aria-label="Формат заявки" className="flex gap-1 mb-5 p-1 bg-white/5 rounded-xl">
+              <div role="tablist" aria-label="Формат заявки" className="flex gap-1 mb-5 p-1 bg-black/5 rounded-xl">
                 {tabs.map((t) => (
                   <button
                     key={t.id}

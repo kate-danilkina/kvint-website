@@ -39,9 +39,9 @@ export default function LandingView({ page }: { page: Landing }) {
       </header>
 
       {/* Facts table — the block AI answers and snippets pick up first */}
-      <dl className="grid grid-cols-1 sm:grid-cols-2 border-t border-white/10 mb-fluid-l">
+      <dl className="grid grid-cols-1 sm:grid-cols-2 border-t border-black/10 mb-fluid-l">
         {page.facts.map((f) => (
-          <div key={f.label} className="flex flex-col gap-1 py-4 border-b border-white/10 sm:odd:pr-8 sm:even:pl-8 sm:even:border-l">
+          <div key={f.label} className="flex flex-col gap-1 py-4 border-b border-black/10 sm:odd:pr-8 sm:even:pl-8 sm:even:border-l">
             <dt className="text-xs text-muted font-mono uppercase tracking-wide">{f.label}</dt>
             <dd className="text-text">{f.value}</dd>
           </div>
@@ -77,7 +77,7 @@ export default function LandingView({ page }: { page: Landing }) {
               <Link
                 key={c.slug}
                 href={`/cases/${c.slug}`}
-                className="group rounded-xl border border-white/10 bg-bg-2 p-6 hover:border-white/25 transition-colors"
+                className="group rounded-2xl border border-transparent bg-bg-2 p-6 hover:border-black/15 transition-colors"
               >
                 <p className="text-xs text-muted font-mono mb-2">{c.tag} · {c.duration}</p>
                 <h3 className="font-semibold text-text text-lg mb-3">{c.title}</h3>
@@ -95,9 +95,9 @@ export default function LandingView({ page }: { page: Landing }) {
       {page.faq.length > 0 && (
         <section className="mb-fluid-l max-w-3xl">
           <h2 className="font-bold text-text text-2xl tracking-tight mb-4">Вопросы</h2>
-          <div className="border-t border-white/10">
+          <div className="border-t border-black/10">
             {page.faq.map((f) => (
-              <details key={f.q} className="group border-b border-white/10">
+              <details key={f.q} className="group border-b border-black/10">
                 <summary className="flex items-center justify-between gap-6 py-4 cursor-pointer list-none text-text font-medium [&::-webkit-details-marker]:hidden">
                   {f.q}
                   <Plus size={16} className="text-muted flex-shrink-0 transition-transform group-open:rotate-45" aria-hidden />
@@ -118,7 +118,7 @@ export default function LandingView({ page }: { page: Landing }) {
         <ul className="flex flex-wrap gap-3">
           {page.related.map((r) => (
             <li key={r}>
-              <Link href={r} className="inline-flex rounded-lg border border-white/10 px-4 py-2 text-sm text-text/90 hover:border-white/30 transition-colors">
+              <Link href={r} className="inline-flex rounded-lg border border-black/10 px-4 py-2 text-sm text-text/90 hover:border-black/30 transition-colors">
                 {linkTitle(r)}
               </Link>
             </li>

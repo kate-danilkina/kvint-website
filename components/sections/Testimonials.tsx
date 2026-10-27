@@ -7,7 +7,7 @@ import SectionHeading from '@/components/shared/SectionHeading'
 
 export default function Testimonials() {
   return (
-    <section className="py-fluid-2xl border-t border-white/[0.06]">
+    <section className="py-fluid-2xl border-t border-black/[0.06]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="mb-fluid-l">
           <SectionHeading className="section-title">Что говорят клиенты</SectionHeading>
@@ -16,7 +16,7 @@ export default function Testimonials() {
         <div>
           {testimonials.map((t, i) => (
             <AnimatedSection key={i} delay={i * 0.08}>
-              <div className="py-8 pl-5 border-l border-white/[0.07]">
+              <div className="py-8 pl-5 border-l border-black/[0.07]">
                 <Quote size={20} className="text-accent/55 mb-4" />
                 <p className="text-text/80 text-base sm:text-lg leading-relaxed mb-6 max-w-3xl">
                   {t.text}
@@ -32,7 +32,7 @@ export default function Testimonials() {
                 </div>
               </div>
               {i < testimonials.length - 1 && (
-                <div className="h-px bg-white/[0.08]" />
+                <div className="h-px bg-black/[0.08]" />
               )}
             </AnimatedSection>
           ))}

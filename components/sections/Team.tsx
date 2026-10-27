@@ -7,13 +7,13 @@ const founder = teamMembers[0]
 
 export default function Team() {
   return (
-    <section id="about" className="py-fluid-2xl border-t border-white/[0.06]">
+    <section id="about" className="py-fluid-2xl border-t border-black/[0.06]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading className="section-title mb-12 max-w-2xl">Кто отвечает за ваш проект</SectionHeading>
 
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-10 lg:gap-16 items-start">
           {/* Photo */}
-          <div className="relative aspect-square w-full max-w-[420px] rounded-xl border border-white/10 bg-bg-2 overflow-hidden">
+          <div className="relative aspect-square w-full max-w-[420px] rounded-2xl border border-transparent bg-bg-2 overflow-hidden">
             <Image
               src="/team/founder.jpg"
               alt="Екатерина Данилкина, основательница агентства Квинт"
@@ -36,7 +36,7 @@ export default function Team() {
               «{founder.quote}»
             </blockquote>
 
-            <dl className="grid grid-cols-2 max-w-md border-t border-white/10">
+            <dl className="grid grid-cols-2 max-w-md border-t border-black/10">
               {[
                 { value: '8+', label: 'лет в маркетинге' },
                 { value: '125', label: 'проектов' },

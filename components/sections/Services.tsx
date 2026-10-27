@@ -12,9 +12,9 @@ export default function Services() {
           Сначала ищем, где теряются деньги, потом выбираем каналы: иногда Telegram Ads, иногда SEO.
         </p>
 
-        <div className="border-t border-white/10">
+        <div className="border-t border-black/10">
           {/* Flagship */}
-          <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] gap-1 md:gap-10 py-5 border-b border-white/10">
+          <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] gap-1 md:gap-10 py-5 border-b border-black/10">
             <div className="flex items-center gap-3">
               <Link href="/uslugi/soprovozhdenie" className="font-semibold text-text text-lg link-underline">Система Роста под ключ</Link>
               <Badge variant="flagship">Флагман</Badge>
@@ -31,7 +31,7 @@ export default function Services() {
           {services.map((s) => (
             <div
               key={s.id}
-              className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] gap-1 md:gap-10 py-4 border-b border-white/[0.07]"
+              className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] gap-1 md:gap-10 py-4 border-b border-black/[0.07]"
             >
               {'href' in s && s.href ? (
                 <Link href={s.href} className="text-text font-medium link-underline self-start">{s.label}</Link>

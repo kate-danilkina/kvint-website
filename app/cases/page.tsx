@@ -55,7 +55,7 @@ export default function CasesPage() {
                       <p className="text-xs text-muted/60 mt-0.5 font-mono">{c.metricSecondary}</p>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-3 pt-4 border-t border-white/5">
+                    <div className="grid grid-cols-3 gap-3 pt-4 border-t border-black/5">
                       {c.results.map((r) => (
                         <div key={r.label}>
                           <div className="text-sm font-bold text-text font-mono">{r.value}</div>

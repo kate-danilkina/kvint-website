@@ -4,7 +4,7 @@ type Client =
   | { name: string; logo: string; width: number; height: number }
   | { name: string; logo?: undefined }
 
-// Logos are rendered as white silhouettes so different brand colours read as one row
+// Logos are rendered as dark silhouettes so different brand colours read as one row
 const clients: Client[] = [
   { name: 'Сбер.Образование', logo: '/logos/clients/sber-education.svg', width: 262, height: 26 },
   { name: 'Альфа-Банк', logo: '/logos/clients/alfa.svg', width: 729, height: 146 },
@@ -30,10 +30,10 @@ function MarqueeItems({ hidden = false }: { hidden?: boolean }) {
               width={c.width}
               height={c.height}
               unoptimized
-              className={`${c.height > c.width ? 'h-10' : 'h-7'} w-auto max-w-[200px] object-contain opacity-60 [filter:brightness(0)_invert(1)]`}
+              className={`${c.height > c.width ? 'h-10' : 'h-7'} w-auto max-w-[200px] object-contain opacity-55 [filter:brightness(0)]`}
             />
           ) : (
-            <span className="font-mono text-[13px] uppercase tracking-[0.08em] text-white/50 whitespace-nowrap">
+            <span className="font-mono text-[13px] uppercase tracking-[0.08em] text-black/50 whitespace-nowrap">
               {c.name}
             </span>
           )}
@@ -45,7 +45,7 @@ function MarqueeItems({ hidden = false }: { hidden?: boolean }) {
 
 export default function ClientsMarquee() {
   return (
-    <div className="border-y border-white/[0.06] py-5 overflow-hidden" aria-label="Наши клиенты">
+    <div className="border-y border-black/[0.06] py-5 overflow-hidden" aria-label="Наши клиенты">
       {/* Track doubled for a seamless loop; the copy is hidden from screen readers */}
       <div className="marquee-track flex w-max">
         <MarqueeItems />

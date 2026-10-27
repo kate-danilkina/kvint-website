@@ -27,9 +27,9 @@ export default function ContactsPage() {
       <p className="text-text/85 text-lg leading-relaxed mb-fluid-l">
         Быстрее всего отвечаем в Telegram. Для разбора маркетинга оставьте заявку — свяжемся в течение 2 часов в рабочее время.
       </p>
-      <dl className="border-t border-white/10 mb-fluid-l">
+      <dl className="border-t border-black/10 mb-fluid-l">
         {rows.map((r) => (
-          <div key={r.label} className="grid grid-cols-[140px_1fr] gap-4 py-4 border-b border-white/10">
+          <div key={r.label} className="grid grid-cols-[140px_1fr] gap-4 py-4 border-b border-black/10">
             <dt className="text-muted text-sm font-mono">{r.label}</dt>
             <dd className="text-text">
               {r.href ? (
@@ -44,13 +44,13 @@ export default function ContactsPage() {
         ))}
       </dl>
       <h2 className="font-bold text-text text-2xl tracking-tight mb-4">Реквизиты</h2>
-      <dl className="border-t border-white/10 mb-fluid-l font-mono text-sm">
+      <dl className="border-t border-black/10 mb-fluid-l font-mono text-sm">
         {[
           ['Исполнитель', company.legalName],
           ['ИНН', company.inn],
           ['ОГРНИП', company.ogrnip],
         ].map(([l, v]) => (
-          <div key={l} className="grid grid-cols-[140px_1fr] gap-4 py-3 border-b border-white/10">
+          <div key={l} className="grid grid-cols-[140px_1fr] gap-4 py-3 border-b border-black/10">
             <dt className="text-muted">{l}</dt>
             <dd className="text-text">{v}</dd>
           </div>

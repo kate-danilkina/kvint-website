@@ -20,8 +20,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ className, label, erro
         ref={ref}
         id={id}
         className={cn(
-          'w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-text placeholder:text-muted',
-          'focus:outline-none focus:border-accent/60 focus:bg-white/[0.07] transition-all duration-200',
+          'w-full px-4 py-3 rounded-xl bg-black/5 border border-black/10 text-text placeholder:text-muted',
+          'focus:outline-none focus:border-accent/60 focus:bg-black/[0.07] transition-all duration-200',
           'text-base', // min 16px prevents iOS Safari zoom
           error && 'border-red-500/60',
           className

@@ -65,7 +65,7 @@ export default function BlogPostPage({ params }: Props) {
             <h1 className="section-title mb-4">{post.title}</h1>
             <p className="text-muted text-lg mb-6">{post.excerpt}</p>
 
-            <div className="flex items-center gap-4 text-sm text-muted font-mono pb-6 border-b border-white/5">
+            <div className="flex items-center gap-4 text-sm text-muted font-mono pb-6 border-b border-black/5">
               <span>{post.author}</span>
               <span>·</span>
               <span>{formatDate(post.date)}</span>
@@ -93,7 +93,7 @@ export default function BlogPostPage({ params }: Props) {
           </AnimatedSection>
 
           {/* Author */}
-          <AnimatedSection delay={0.2} className="mt-12 pt-8 border-t border-white/5">
+          <AnimatedSection delay={0.2} className="mt-12 pt-8 border-t border-black/5">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
                 <span className="font-bold text-accent">ЕД</span>

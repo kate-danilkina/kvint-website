@@ -34,7 +34,7 @@ export default function ContactSection() {
   }, [])
 
   return (
-    <section id="contact" className="py-fluid-2xl scroll-mt-16 border-t border-white/[0.06]">
+    <section id="contact" className="py-fluid-2xl scroll-mt-16 border-t border-black/[0.06]">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-fluid-l">
           <p className="eyebrow mb-4">Ответим за 2 часа в рабочее время</p>
@@ -47,7 +47,7 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <div role="tablist" aria-label="Формат заявки" className="flex gap-1 mb-6 p-1 bg-white/5 rounded-xl">
+        <div role="tablist" aria-label="Формат заявки" className="flex gap-1 mb-6 p-1 bg-black/5 rounded-xl">
           {tabs.map((t) => (
             <button
               key={t.id}

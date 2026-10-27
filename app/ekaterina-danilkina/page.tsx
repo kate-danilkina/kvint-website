@@ -30,7 +30,7 @@ export default function FounderPage() {
     <PageShell>
       <Breadcrumbs items={[{ name: 'О компании', path: '/o-kompanii' }, { name: founder.name, path: founder.slug }]} />
       <div className="grid grid-cols-1 md:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] gap-fluid-l mb-fluid-l items-start">
-        <div className="relative aspect-square w-full max-w-[380px] rounded-xl overflow-hidden border border-white/10">
+        <div className="relative aspect-square w-full max-w-[380px] rounded-xl overflow-hidden border border-black/10">
           <Image src="/team/founder.jpg" alt="Екатерина Данилкина" fill sizes="(min-width: 768px) 380px, 100vw" className="object-cover" priority />
         </div>
         <div>

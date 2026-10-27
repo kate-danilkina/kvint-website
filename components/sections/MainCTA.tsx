@@ -21,7 +21,7 @@ const estimate = [
 
 export default function MainCTA() {
   return (
-    <section className="py-fluid-2xl border-t border-white/[0.06]">
+    <section className="py-fluid-2xl border-t border-black/[0.06]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <p className="eyebrow mb-4">Разбор с основательницей</p>
         <SectionHeading className="section-title mb-fluid-l max-w-3xl">Посчитаем, во сколько вам обходится заявка</SectionHeading>
@@ -43,11 +43,11 @@ export default function MainCTA() {
           </div>
 
           {/* Estimate */}
-          <div className="rounded-xl border border-white/10 bg-bg-2 font-mono text-sm">
-            <div className="px-5 py-3 border-b border-white/[0.08] text-xs text-muted">СМЕТА</div>
+          <div className="rounded-2xl border border-transparent bg-bg-2 font-mono text-sm">
+            <div className="px-5 py-3 border-b border-black/[0.08] text-xs text-muted">СМЕТА</div>
             <dl>
               {estimate.map((row) => (
-                <div key={row.label} className="flex justify-between gap-4 px-5 py-3 border-b border-white/[0.06]">
+                <div key={row.label} className="flex justify-between gap-4 px-5 py-3 border-b border-black/[0.06]">
                   <dt className="text-muted">{row.label}</dt>
                   <dd className="text-text text-right">{row.value}</dd>
                 </div>

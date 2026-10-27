@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Onest, JetBrains_Mono } from 'next/font/google'
+import { Onest, JetBrains_Mono, Unbounded } from 'next/font/google'
 import Script from 'next/script'
 import MessengerWidget from '@/components/shared/MessengerWidget'
 import StickyCTA from '@/components/shared/StickyCTA'
@@ -11,6 +11,13 @@ const onest = Onest({
   subsets: ['latin', 'cyrillic'],
   weight: ['400', '500', '600', '700', '800'],
   variable: '--font-sans',
+  display: 'swap',
+})
+
+const unbounded = Unbounded({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['500', '700', '800'],
+  variable: '--font-display',
   display: 'swap',
 })
 
@@ -64,12 +71,12 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#0A0A0F',
+  themeColor: '#ECEBE6',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ru" className={`${onest.variable} ${jetbrainsMono.variable}`}>
+    <html lang="ru" className={`${onest.variable} ${jetbrainsMono.variable} ${unbounded.variable}`}>
       <head>
         <Script id="metrika" strategy="afterInteractive">
           {`

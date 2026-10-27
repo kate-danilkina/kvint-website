@@ -31,12 +31,12 @@ export default function HeroReport() {
   const active = useInView(ref, { once: true, margin: '-40px' })
 
   return (
-    <div ref={ref} className="w-full max-w-[460px] rounded-xl border border-white/10 bg-bg-2 font-mono text-sm">
+    <div ref={ref} className="w-full max-w-[460px] rounded-2xl bg-night text-white font-mono text-sm shadow-[0_20px_60px_-20px_rgba(0,0,0,0.45)]">
       {/* Report header */}
-      <div className="flex items-center justify-between px-5 py-3 border-b border-white/[0.08] text-xs text-muted">
+      <div className="flex items-center justify-between px-5 py-3 border-b border-white/[0.08] text-xs text-white/60">
         <span>ОТЧЁТ · ИЗ НАШИХ КЕЙСОВ</span>
         <span className="flex items-center gap-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-up" aria-hidden />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#34D399]" aria-hidden />
           факт
         </span>
       </div>
@@ -44,45 +44,45 @@ export default function HeroReport() {
       {/* Case 1: conversion */}
       <div className="px-5 pt-5 pb-6 border-b border-white/[0.08]">
         <div className="flex items-baseline justify-between mb-4">
-          <span className="text-text font-sans font-semibold text-base">AI-стартап · 2 месяца</span>
-          <span className="text-up text-2xl font-bold">×6</span>
+          <span className="text-white font-sans font-semibold text-base">AI-стартап · 2 месяца</span>
+          <span className="text-[#34D399] text-2xl font-bold">×6</span>
         </div>
-        <p className="text-xs text-muted mb-3">Конверсия сайта</p>
+        <p className="text-xs text-white/60 mb-3">Конверсия сайта</p>
         <div className="grid grid-cols-[52px_1fr_56px] items-center gap-3 mb-2.5">
-          <span className="text-xs text-muted">до</span>
+          <span className="text-xs text-white/60">до</span>
           <Bar value={CONV_BEFORE} max={CONV_AFTER} className="bg-white/30" delay={0.2} active={active} />
-          <span className="text-right text-muted tabular-nums">0,36%</span>
+          <span className="text-right text-white/60 tabular-nums">0,36%</span>
         </div>
         <div className="grid grid-cols-[52px_1fr_56px] items-center gap-3">
-          <span className="text-xs text-muted">после</span>
-          <Bar value={CONV_AFTER} max={CONV_AFTER} className="bg-up" delay={0.45} active={active} />
-          <span className="text-right text-text font-bold tabular-nums">2,17%</span>
+          <span className="text-xs text-white/60">после</span>
+          <Bar value={CONV_AFTER} max={CONV_AFTER} className="bg-[#34D399]" delay={0.45} active={active} />
+          <span className="text-right text-white font-bold tabular-nums">2,17%</span>
         </div>
       </div>
 
       {/* Case 2: lead cost vs limit */}
       <div className="px-5 pt-5 pb-5">
         <div className="flex flex-wrap items-baseline justify-between gap-x-3 mb-4">
-          <span className="text-text font-sans font-semibold text-base">Вебинар HR · 7 дней</span>
-          <span className="text-text text-2xl font-bold tabular-nums">
-            220 <span className="text-xs font-normal text-muted">регистраций</span>
+          <span className="text-white font-sans font-semibold text-base">Вебинар HR · 7 дней</span>
+          <span className="text-white text-2xl font-bold tabular-nums">
+            220 <span className="text-xs font-normal text-white/60">регистраций</span>
           </span>
         </div>
-        <p className="text-xs text-muted mb-3">Стоимость регистрации</p>
+        <p className="text-xs text-white/60 mb-3">Стоимость регистрации</p>
         <div className="relative mb-2">
           <Bar value={CPL} max={CPL_LIMIT} className="bg-accent" delay={0.7} active={active} />
           {/* Client's limit marker */}
           <span className="absolute right-0 -top-1 h-4 w-px bg-white/50" aria-hidden />
         </div>
         <div className="flex justify-between text-xs tabular-nums">
-          <span className="text-text font-bold">604 ₽</span>
-          <span className="text-muted">лимит клиента 650 ₽</span>
+          <span className="text-white font-bold">604 ₽</span>
+          <span className="text-white/60">лимит клиента 650 ₽</span>
         </div>
       </div>
 
       <Link
         href="/cases"
-        className="flex items-center justify-between px-5 py-3 border-t border-white/[0.08] text-xs text-muted hover:text-text transition-colors rounded-b-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+        className="flex items-center justify-between px-5 py-3 border-t border-white/[0.08] text-xs text-white/60 hover:text-white transition-colors rounded-b-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
       >
         <span>Как получили эти цифры</span>
         <ArrowRight size={14} />

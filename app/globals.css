@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: #0A0A0F;
-  --color-bg-2: #12121A;
+  --color-bg: #ECEBE6;
+  --color-bg-2: #FFFFFF;
   --color-accent: #1A6EFF;
   --color-accent-dim: rgba(26, 110, 255, 0.13);
-  --color-text: #F0F0F5;
-  --color-text-muted: #888899;
-  --color-border: rgba(255, 255, 255, 0.06);
+  --color-text: #111114;
+  --color-text-muted: #5C5C66;
+  --color-border: rgba(0, 0, 0, 0.08);
   --color-white: #FFFFFF;
 
   /* Fluid type scale (utopia-style): 375px → 1440px viewport.
@@ -67,8 +67,8 @@ body {
   /* Flat surface with a hairline border (name kept for existing usages) */
   .glass-card {
     background: var(--color-bg-2);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
   }
 
   .glass-card-hover {
@@ -76,7 +76,7 @@ body {
   }
 
   .glass-card-hover:hover {
-    border-color: rgba(255, 255, 255, 0.22);
+    border-color: rgba(0, 0, 0, 0.25);
   }
 
   .nav-link {
@@ -165,15 +165,16 @@ body {
     font-weight: 500;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: #A6A6B5;
+    color: #5C5C66;
   }
 
   .section-title {
-    font-family: var(--font-sans), sans-serif;
-    font-weight: 800;
-    font-size: var(--step-5);
-    line-height: 1.04;
-    letter-spacing: -0.04em;
+    font-family: var(--font-display), var(--font-sans), sans-serif;
+    font-weight: 700;
+    font-size: var(--step-4);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
     color: var(--color-text);
   }
 
@@ -221,7 +222,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.18);
   border-radius: 3px;
 }
 

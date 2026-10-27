@@ -46,7 +46,7 @@ export default function BlogPage() {
 
                     <p className="text-muted text-sm leading-relaxed line-clamp-3">{post.excerpt}</p>
 
-                    <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                    <div className="flex items-center justify-between pt-4 border-t border-black/5">
                       <div className="flex items-center gap-3">
                         <span className="text-xs text-muted font-mono">{formatDate(post.date)}</span>
                         <span className="flex items-center gap-1 text-xs text-muted font-mono">
