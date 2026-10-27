@@ -86,7 +86,7 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
         </div>
         <h3 className="text-xl font-bold text-text mb-2">Заявка отправлена!</h3>
         <p className="text-muted text-sm">
-          Спасибо — вернёмся в течение 2 часов.{' '}
+          Спасибо, скоро свяжемся с вами.{' '}
           Пока можно посмотреть наши{' '}
           <Link href="/cases" className="text-accent hover:underline inline-flex items-center gap-0.5">
             кейсы <ArrowRight size={12} />
@@ -171,7 +171,7 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
                 <textarea
                   id={`${idPrefix}message`}
                   rows={3}
-                  placeholder="Что хотите улучшить? Какая сейчас ситуация? Любой формат..."
+                  placeholder="Что сейчас не работает и чего хотите добиться"
                   className="w-full px-4 py-3 rounded-xl bg-black/5 border border-black/10 text-text placeholder:text-muted focus:outline-none focus:border-accent/60 focus:bg-black/[0.07] transition-all duration-200 text-base resize-none"
                   {...register('message')}
                 />
@@ -226,9 +226,6 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
                   </div>
                 )}
               </div>
-              <p className="text-sm text-muted leading-relaxed">
-                Ответим в течение 2 часов в рабочее время.
-              </p>
               <ConsentCheckbox
                 id={`${idPrefix}consent-project`}
                 error={errors.consent?.message}
@@ -237,7 +234,7 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
               {status === 'error' && (
                 <div className="flex items-center gap-2 text-red-400 text-sm">
                   <AlertCircle size={16} />
-                  Что-то пошло не так. Попробуйте позже.
+                  Что-то пошло не так. Попробуйте позже
                 </div>
               )}
             </motion.div>

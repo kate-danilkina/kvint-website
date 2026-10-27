@@ -158,7 +158,6 @@ export default function LeadPanel() {
 
             <div className="flex items-start justify-between gap-4 px-5 sm:px-8 pt-4 sm:pt-8 pb-4">
               <div>
-                <p className="eyebrow mb-2">Ответим за 2 часа в рабочее время</p>
                 <h2 id="lead-panel-title" className="font-extrabold text-step-3 leading-tight tracking-[-0.04em] text-text">
                   Оставить заявку
                 </h2>

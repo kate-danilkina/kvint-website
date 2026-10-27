@@ -25,9 +25,9 @@ function linkTitle(path: string) {
 const H2 = 'section-title !text-step-3 mb-fluid-s'
 
 export const TRUST_POINTS = [
-  '125 проектов с августа 2024',
+  '54 проекта с августа 2024',
   'Стратегию пишет основательница',
-  'Никаких стажёров',
+  'Специалисты среднего и старшего уровня',
   'Отчёт каждую неделю',
   'Онлайн по всей России',
 ]
@@ -44,7 +44,7 @@ export function TrustStrip({ className = '' }: { className?: string }) {
   )
 }
 
-export function FinalCta({ title = 'Хватит гадать. Пора считать' }: { title?: string }) {
+export function FinalCta({ title = 'Разберём вашу рекламу за 60 минут' }: { title?: string }) {
   return (
     <section className="rounded-2xl bg-night text-white p-6 sm:p-10">
       <p className="eyebrow !text-white/50 mb-3">Разбор с основательницей · 60 минут</p>
@@ -56,7 +56,7 @@ export function FinalCta({ title = 'Хватит гадать. Пора счит
         {[
           'куда уходит бюджет и сколько стоит заявка',
           'что исправить первым',
-          'берёмся ли мы. Видим, как окупить вложения в 3–5 раз, — берёмся. Нет — скажем прямо',
+          'берёмся ли мы. Если видим окупаемость, берёмся. Если нет, скажем прямо',
         ].map((item) => (
           <li key={item} className="flex items-start gap-3 text-white/90 leading-relaxed">
             <Check size={16} className="text-up mt-1 flex-shrink-0" aria-hidden />
@@ -75,7 +75,7 @@ export function FinalCta({ title = 'Хватит гадать. Пора счит
           Написать в Telegram
         </a>
       </div>
-      <p className="font-mono text-xs text-white/50">Отвечаем за 2 часа в рабочие часы: пн–сб, 9:00–20:00</p>
+      <p className="font-mono text-xs text-white/50">Работаем пн–сб, 9:00–20:00</p>
     </section>
   )
 }
@@ -106,7 +106,7 @@ export default function LandingView({ page }: { page: Landing }) {
         <p className="text-text/85 text-lg sm:text-xl leading-relaxed max-w-3xl mb-8">{page.lead}</p>
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
           <DiagnosticButton />
-          <p className="text-sm text-muted max-w-xs">60 минут с основательницей, онлайн. Отвечаем за 2 часа в рабочие часы.</p>
+          <p className="text-sm text-muted max-w-xs">60 минут с основательницей, онлайн</p>
         </div>
         <TrustStrip />
       </header>

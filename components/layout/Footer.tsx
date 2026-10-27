@@ -13,7 +13,7 @@ export default function Footer() {
               КВИНТ
             </Link>
             <p className="mt-3 text-sm text-white/60 leading-relaxed">
-              Бутиковое маркетинговое агентство
+              Маркетинговое агентство для B2B
               <br />
               IT B2B, премиум-ритейл, производство, недвижимость
             </p>
@@ -29,6 +29,7 @@ export default function Footer() {
                 { href: '/cases', label: 'Кейсы' },
                 { href: '/ceny', label: 'Цены' },
                 { href: '/razbor', label: 'Разбор с основательницей' },
+                { href: '/kalkulyator-zayavki', label: 'Калькулятор заявки' },
                 { href: '/o-kompanii', label: 'О компании' },
                 { href: '/ekaterina-danilkina', label: 'Екатерина Данилкина' },
                 { href: '/blog', label: 'Блог' },

@@ -11,10 +11,10 @@ import { formatDate } from '@/lib/utils'
 export const metadata: Metadata = {
   title: 'Блог Квинт — маркетинг для IT и B2B: стратегии, кейсы, инструменты',
   description:
-    'Блог агентства Квинт: как выстроить маркетинг для IT-компании, B2B-бизнеса и стартапа. Разборы, стратегии и инструменты.',
+    'Блог агентства Квинт: как выстроить маркетинг для IT-компании, B2B-бизнеса и стартапа. Разборы, стратегии и инструменты',
   openGraph: {
     title: 'Блог — Квинт',
-    description: 'Статьи о рекламе, SEO и аналитике для B2B.',
+    description: 'Статьи о рекламе, SEO и аналитике для B2B',
   },
 }
 
@@ -30,7 +30,7 @@ export default function BlogPage() {
           </AnimatedSection>
 
           <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {blogPosts.map((post) => (
+            {[...blogPosts].sort((a, b) => b.date.localeCompare(a.date)).map((post) => (
               <AnimatedItem key={post.slug}>
                 <Link href={`/blog/${post.slug}`} className="group block h-full">
                   <div className="glass-card glass-card-hover p-6 h-full flex flex-col gap-4">

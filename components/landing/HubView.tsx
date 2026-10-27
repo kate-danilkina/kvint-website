@@ -35,7 +35,7 @@ export default function HubView({
         <p className="text-text/85 text-lg sm:text-xl leading-relaxed max-w-3xl mb-8">{lead}</p>
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
           <DiagnosticButton />
-          <p className="text-sm text-muted max-w-xs">60 минут с основательницей, онлайн. Отвечаем за 2 часа в рабочие часы.</p>
+          <p className="text-sm text-muted max-w-xs">60 минут с основательницей, онлайн</p>
         </div>
         <TrustStrip />
       </header>

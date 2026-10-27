@@ -34,7 +34,7 @@ export default function Hero() {
   const isMobile = useIsMobile()
 
   const statsVisible = useInView(statsRef, { once: true, margin: '-60px' })
-  const projects = useCountUp(125, 1500, statsVisible)
+  const projects = useCountUp(54, 1500, statsVisible)
   const years = useCountUp(9, 1500, statsVisible)
 
   // Gentle parallax on the report card only (desktop, motion allowed)
@@ -48,15 +48,14 @@ export default function Hero() {
 
         {/* Headline spans the full width: the long word must never collide with the report card */}
         <h1 className="font-display font-bold uppercase text-[clamp(25px,6.6vw,104px)] leading-[0.95] tracking-[-0.02em] mb-fluid-l text-text max-w-[14ch] lg:max-w-none">
-          Хватит гадать. Пора <span className="text-accent">считать</span>
+          Маркетинг, который отвечает <span className="text-accent">деньгами</span>
         </h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start gap-14 lg:gap-16">
           {/* Left: offer */}
           <div className="min-w-0">
             <p className="text-muted text-lg leading-relaxed mb-10 max-w-xl">
-              Разбираем бизнес целиком, а не продаём услуги. Показываем путь каждого рубля от клика до денег
-              в CRM. Не видим, как окупить вложения в 3–5 раз, — не берём проект.
+              Считаем окупаемость до старта. Не видим, как вернуть вложения минимум в 3–5 раз, — не берёмся
             </p>
 
             {/* Stats */}
@@ -65,7 +64,7 @@ export default function Hero() {
                 <div className="font-mono font-bold text-text tabular-nums" style={{ fontSize: 'clamp(34px, 4vw, 52px)', lineHeight: 1 }}>
                   {projects}
                 </div>
-                <div className="text-muted mt-2 text-sm">проектов с 2024 года</div>
+                <div className="text-muted mt-2 text-sm">проекта с августа 2024</div>
               </div>
               <div className="whitespace-nowrap">
                 <div className="font-mono font-bold text-text tabular-nums" style={{ fontSize: 'clamp(34px, 4vw, 52px)', lineHeight: 1 }}>

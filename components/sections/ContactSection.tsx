@@ -37,7 +37,6 @@ export default function ContactSection() {
     <section id="contact" className="py-fluid-xl scroll-mt-16">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-fluid-l">
-          <p className="eyebrow mb-4">Ответим за 2 часа в рабочее время</p>
           <SectionHeading className="section-title mb-4">Расскажите, где теряете заявки</SectionHeading>
           <p className="text-muted">
             Выберите разбор с основательницей или обсуждение проекта. Или позвоните:{' '}

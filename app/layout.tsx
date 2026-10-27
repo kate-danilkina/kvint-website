@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Onest, JetBrains_Mono, Unbounded } from 'next/font/google'
 import Script from 'next/script'
 import MessengerWidget from '@/components/shared/MessengerWidget'
+import ClickGoals from '@/components/shared/ClickGoals'
 import StickyCTA from '@/components/shared/StickyCTA'
 import LeadPanel from '@/components/shared/LeadPanel'
 import { JsonLd, organizationLd, founderLd } from '@/lib/seo'
@@ -35,9 +36,10 @@ export const metadata: Metadata = {
     template: '%s | Квинт',
   },
   description:
-    'Маркетинговое агентство для B2B. Считаем окупаемость до старта и показываем путь каждого рубля от клика до денег в CRM. Проект ведёт основательница, без стажёров.',
+    'Маркетинговое агентство для B2B. Считаем окупаемость до старта и показываем, сколько приносит каждый рубль рекламы. Проект ведёт основательница Екатерина Данилкина',
   // Each page gets a self-canonical resolved against metadataBase
   alternates: { canonical: './' },
+  verification: { other: { 'msvalidate.01': '269C5DB1E3644ECDE492CE7B447803BD' } },
   authors: [{ name: 'Квинт' }],
   creator: 'Квинт',
   openGraph: {
@@ -47,7 +49,7 @@ export const metadata: Metadata = {
     siteName: 'Квинт — Маркетинговое агентство',
     title: 'Квинт — маркетинговое агентство',
     description:
-      'Хватит гадать — пора считать. Реклама, сайт, SEO и аналитика для B2B с расчётом окупаемости.',
+      'Реклама, сайт, SEO и аналитика для B2B с расчётом окупаемости до старта',
   },
   twitter: {
     card: 'summary_large_image',
@@ -109,6 +111,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         {children}
         <MessengerWidget />
+        <ClickGoals />
         <StickyCTA />
         <LeadPanel />
       </body>

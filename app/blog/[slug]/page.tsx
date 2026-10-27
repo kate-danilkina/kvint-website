@@ -8,6 +8,7 @@ import Badge from '@/components/ui/Badge'
 import AnimatedSection from '@/components/shared/AnimatedSection'
 import { blogPosts, getPostBySlug, readMinutes } from '@/lib/data/blog'
 import { formatDate } from '@/lib/utils'
+import { faqLd, JsonLd, SITE_URL } from '@/lib/seo'
 
 interface Props {
   params: { slug: string }
@@ -24,6 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: post.title,
     description: post.excerpt,
     ...(post.noindex ? { robots: { index: false, follow: true } } : {}),
+    alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -38,8 +40,23 @@ export default function BlogPostPage({ params }: Props) {
   const post = getPostBySlug(params.slug)
   if (!post) notFound()
 
+  const articleLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    url: `${SITE_URL}/blog/${post.slug}`,
+    mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
+    datePublished: post.date,
+    dateModified: post.date,
+    inLanguage: 'ru-RU',
+    author: { '@type': 'Person', name: post.author, '@id': `${SITE_URL}/#founder` },
+    publisher: { '@id': `${SITE_URL}/#organization` },
+  }
+
   return (
     <>
+      <JsonLd data={post.faq?.length ? [articleLd, faqLd(post.faq)] : articleLd} />
       <Header />
       <main className="pt-24 pb-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -92,6 +109,21 @@ export default function BlogPostPage({ params }: Props) {
             />
           </AnimatedSection>
 
+          {/* FAQ */}
+          {post.faq?.length ? (
+            <AnimatedSection delay={0.15} className="mt-12">
+              <h2 className="text-2xl font-bold text-text mb-6">Частые вопросы</h2>
+              <div className="flex flex-col gap-6">
+                {post.faq.map((item) => (
+                  <div key={item.q}>
+                    <h3 className="font-semibold text-text text-lg mb-2">{item.q}</h3>
+                    <p className="text-muted leading-relaxed">{item.a}</p>
+                  </div>
+                ))}
+              </div>
+            </AnimatedSection>
+          ) : null}
+
           {/* Author */}
           <AnimatedSection delay={0.2} className="mt-12 pt-8 border-t border-black/5">
             <div className="flex items-center gap-4">
@@ -111,21 +143,53 @@ export default function BlogPostPage({ params }: Props) {
   )
 }
 
+type MdBlock = { tag: 'h2' | 'h3' | 'p' | 'ul' | 'ol'; lines: string[] }
+
+// Line-based parser for our own trusted content: h2/h3, paragraphs,
+// ordered and unordered lists, **bold** and [text](/internal/path) links
 function markdownToHtml(md: string): string {
-  return md
-    .trim()
-    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
-    .replace(/^- (.+)$/gm, '<li>$1</li>')
-    .replace(/(<li>.*<\/li>\n?)+/g, (match) => `<ul>${match}</ul>`)
-    .split(/\n\n+/)
-    .map((block) => {
-      if (block.startsWith('<h') || block.startsWith('<ul') || block.startsWith('<ol')) return block
-      if (block.trim()) return `<p>${block.replace(/\n/g, ' ')}</p>`
-      return ''
+  const blocks: MdBlock[] = []
+  let afterBlank = true
+
+  for (const raw of md.trim().split('\n')) {
+    const line = raw.trim()
+    if (!line) {
+      afterBlank = true
+      continue
+    }
+
+    let tag: MdBlock['tag'] = 'p'
+    let text = line
+    const heading = /^(##|###) (.+)$/.exec(line)
+    if (heading) {
+      tag = heading[1] === '##' ? 'h2' : 'h3'
+      text = heading[2]
+    } else if (/^\d+\. /.test(line)) {
+      tag = 'ol'
+      text = line.replace(/^\d+\. /, '')
+    } else if (/^- /.test(line)) {
+      tag = 'ul'
+      text = line.slice(2)
+    }
+
+    const last = blocks[blocks.length - 1]
+    const mergeable = !afterBlank && last && last.tag === tag && (tag === 'p' || tag === 'ul' || tag === 'ol')
+    if (mergeable) last.lines.push(text)
+    else blocks.push({ tag, lines: [text] })
+    afterBlank = false
+  }
+
+  return blocks
+    .map(({ tag, lines }) => {
+      if (tag === 'h2' || tag === 'h3') return `<${tag}>${inline(lines[0])}</${tag}>`
+      if (tag === 'p') return `<p>${inline(lines.join(' '))}</p>`
+      return `<${tag}>${lines.map((l) => `<li>${inline(l)}</li>`).join('')}</${tag}>`
     })
-    .filter(Boolean)
     .join('\n')
+}
+
+function inline(s: string): string {
+  return s
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\[([^\]]+)\]\((\/[^)\s]*)\)/g, '<a href="$2">$1</a>')
 }

@@ -4,7 +4,8 @@ export function cn(...classes: (string | boolean | undefined | null)[]): string 
 
 export function trackGoal(goal: string) {
   if (typeof window === 'undefined') return
-  const ymId = process.env.NEXT_PUBLIC_YM_ID
+  // Fallback keeps goals working when the server env lacks the variable; the ID is public anyway (layout.tsx)
+  const ymId = process.env.NEXT_PUBLIC_YM_ID || '109826277'
   if (ymId && (window as any).ym) {
     ;(window as any).ym(ymId, 'reachGoal', goal)
   }

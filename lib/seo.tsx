@@ -16,7 +16,7 @@ export const company = {
   phone: PHONE,
   telegram: TELEGRAM_URL,
   founderTelegram: 'https://t.me/danilkina_does',
-  projects: 125,
+  projects: 54,
 }
 
 export const founder = {

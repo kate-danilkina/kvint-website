@@ -32,14 +32,11 @@ export default function Team() {
 
             <p className="text-muted text-lg leading-relaxed mb-8 max-w-2xl">{founder.bio}</p>
 
-            <blockquote className="text-text/90 text-xl sm:text-2xl leading-snug mb-10 max-w-2xl">
-              «{founder.quote}»
-            </blockquote>
 
             <dl className="grid grid-cols-2 max-w-md border-t border-black/10">
               {[
                 { value: '9', label: 'лет в маркетинге' },
-                { value: '125', label: 'проектов с 2024 года' },
+                { value: '54', label: 'проекта с августа 2024' },
               ].map((s) => (
                 <div key={s.label} className="pt-5 pr-6">
                   <dt className="sr-only">{s.label}</dt>

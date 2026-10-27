@@ -18,7 +18,7 @@ export default function NotFound() {
             <span className="font-mono">404</span>
           </h1>
           <p className="text-muted text-lg mb-8 max-w-sm mx-auto">
-            Страница не найдена. Возможно, она была перемещена или удалена.
+            Страница не найдена. Возможно, она была перемещена или удалена
           </p>
           <Link
             href="/"

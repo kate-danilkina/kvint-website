@@ -69,7 +69,7 @@ export default function StrategyForm({ idPrefix = '' }: Props = {}) {
         </div>
         <h3 className="text-xl font-bold text-text mb-2">Заявка отправлена!</h3>
         <p className="text-muted text-sm">
-          Спасибо — вернёмся в течение 2 часов.{' '}
+          Спасибо, скоро свяжемся с вами.{' '}
           Пока можно посмотреть наши{' '}
           <Link href="/cases" className="text-accent hover:underline inline-flex items-center gap-0.5">
             кейсы <ArrowRight size={12} />
@@ -183,7 +183,7 @@ export default function StrategyForm({ idPrefix = '' }: Props = {}) {
       {status === 'error' && (
         <div className="flex items-center gap-2 text-red-400 text-sm">
           <AlertCircle size={16} />
-          Что-то пошло не так. Попробуйте позже.
+          Что-то пошло не так. Попробуйте позже
         </div>
       )}
 
