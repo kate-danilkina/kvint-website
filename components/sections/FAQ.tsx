@@ -5,7 +5,7 @@ import { JsonLd, faqLd } from '@/lib/seo'
 
 export default function FAQ() {
   return (
-    <section className="py-fluid-xl border-t border-black/[0.06]">
+    <section className="py-fluid-xl">
       <JsonLd data={faqLd(faq)} />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading className="section-title mb-fluid-l">Частые вопросы</SectionHeading>

@@ -9,7 +9,7 @@ import { useIsMobile } from '@/lib/hooks/useIsMobile'
 import { LEAD_PANEL_EVENT, PHONE, PHONE_HREF, type ContactTab, type LeadPanelDetail } from '@/lib/utils'
 
 const tabs: { id: ContactTab; label: string }[] = [
-  { id: 'strategy', label: 'Разбор · 10 000 ₽' },
+  { id: 'strategy', label: 'Разбор с основательницей' },
   { id: 'project', label: 'Обсудить проект' },
 ]
 

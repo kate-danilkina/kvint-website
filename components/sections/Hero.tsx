@@ -35,7 +35,7 @@ export default function Hero() {
 
   const statsVisible = useInView(statsRef, { once: true, margin: '-60px' })
   const projects = useCountUp(125, 1500, statsVisible)
-  const years = useCountUp(8, 1500, statsVisible)
+  const years = useCountUp(9, 1500, statsVisible)
 
   // Gentle parallax on the report card only (desktop, motion allowed)
   const { scrollY } = useScroll()
@@ -44,19 +44,19 @@ export default function Hero() {
   return (
     <section className="relative min-h-[100dvh] flex items-center pt-[calc(5rem+var(--space-xl))] pb-fluid-3xl">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="eyebrow mb-6">Маркетинговый штаб для бизнеса</p>
+        <p className="eyebrow mb-6">Маркетинговое агентство для B2B</p>
 
         {/* Headline spans the full width: the long word must never collide with the report card */}
         <h1 className="font-display font-bold uppercase text-[clamp(25px,6.6vw,104px)] leading-[0.95] tracking-[-0.02em] mb-fluid-l text-text max-w-[14ch] lg:max-w-none">
-          Внедряем <span className="text-accent">контролируемую</span> систему маркетинга
+          Хватит гадать. Пора <span className="text-accent">считать</span>
         </h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start gap-14 lg:gap-16">
           {/* Left: offer */}
           <div className="min-w-0">
             <p className="text-muted text-lg leading-relaxed mb-10 max-w-xl">
-              Связываем рекламу, сайт, CRM и аналитику: видно цену каждой заявки и канал, который приносит
-              сделки. Когда схема работает без нас, уходим.
+              Разбираем бизнес целиком, а не продаём услуги. Показываем путь каждого рубля от клика до денег
+              в CRM. Не видим, как окупить вложения в 3–5 раз, — не берём проект.
             </p>
 
             {/* Stats */}
@@ -65,7 +65,7 @@ export default function Hero() {
                 <div className="font-mono font-bold text-text tabular-nums" style={{ fontSize: 'clamp(34px, 4vw, 52px)', lineHeight: 1 }}>
                   {projects}
                 </div>
-                <div className="text-muted mt-2 text-sm">проектов</div>
+                <div className="text-muted mt-2 text-sm">проектов с 2024 года</div>
               </div>
               <div className="whitespace-nowrap">
                 <div className="font-mono font-bold text-text tabular-nums" style={{ fontSize: 'clamp(34px, 4vw, 52px)', lineHeight: 1 }}>
@@ -84,7 +84,7 @@ export default function Hero() {
                 Написать в Telegram
               </a>
             </div>
-            <p className="text-xs text-muted mt-3 font-mono">Разбор: 60 минут с основательницей, 10 000 ₽</p>
+            <p className="text-xs text-muted mt-3 font-mono">Разбор: 60 минут с основательницей, итог — план и вердикт</p>
           </div>
 
           {/* Right: report card */}

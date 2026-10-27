@@ -7,16 +7,16 @@ import ForWho from '@/components/sections/ForWho'
 import Services from '@/components/sections/Services'
 import Process from '@/components/sections/Process'
 import CasesPreview from '@/components/sections/CasesPreview'
-import Testimonials from '@/components/sections/Testimonials'
 import FAQ from '@/components/sections/FAQ'
+import Testimonials from '@/components/sections/Testimonials'
 import Team from '@/components/sections/Team'
 import MainCTA from '@/components/sections/MainCTA'
 import ContactSection from '@/components/sections/ContactSection'
 
 export const metadata: Metadata = {
-  title: 'Маркетинговое агентство Квинт — реклама, сайт и аналитика для IT B2B, ритейла, производства и недвижимости',
+  title: 'Маркетинговое агентство Квинт — маркетинг для B2B с расчётом окупаемости',
   description:
-    'Бутиковое маркетинговое агентство: IT B2B, премиум-ритейл, производство, недвижимость. 125 проектов. Разбор маркетинга с основательницей за 60 минут — 10 000 ₽.',
+    'Маркетинг для B2B: IT, премиум-ритейл, производство, недвижимость. Разбираем бизнес целиком и показываем путь каждого рубля от клика до денег в CRM. Не видим окупаемости в 3–5 раз — не берём проект. 125 проектов с 2024 года.',
 }
 
 export default function Home() {

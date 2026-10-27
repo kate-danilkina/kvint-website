@@ -9,17 +9,17 @@ export default function Services() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading className="section-title mb-3">Что делаем</SectionHeading>
         <p className="text-muted max-w-xl mb-fluid-l">
-          Сначала ищем, где теряются деньги, потом выбираем каналы: иногда Telegram Ads, иногда SEO.
+          Инструменты под задачу, а не под прайс. Сначала находим, где теряются деньги, потом выбираем каналы: Яндекс Директ, SEO, Карты, Telegram.
         </p>
 
         <div className="border-t border-black/10">
           {/* Flagship */}
           <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] gap-1 md:gap-10 py-5 border-b border-black/10">
             <div className="flex items-center gap-3">
-              <Link href="/uslugi/soprovozhdenie" className="font-semibold text-text text-lg link-underline">Система Роста под ключ</Link>
+              <Link href="/uslugi/soprovozhdenie" className="font-semibold text-text text-lg link-underline">Система Роста</Link>
               <Badge variant="flagship">Флагман</Badge>
             </div>
-            <p className="text-muted md:text-text/80">Аудит, цифровой продавец и трафик в одном проекте</p>
+            <p className="text-muted md:text-text/80">Разбор, реклама, сайт, Карты и аналитика в одной команде. Отчёт каждую неделю</p>
           </div>
 
           {/* Column heads */}

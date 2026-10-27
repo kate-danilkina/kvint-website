@@ -47,7 +47,7 @@ export default function HeroReport() {
           <span className="text-white font-sans font-semibold text-base">AI-стартап · 2 месяца</span>
           <span className="text-[#34D399] text-2xl font-bold">×6</span>
         </div>
-        <p className="text-xs text-white/60 mb-3">Конверсия сайта</p>
+        <p className="text-xs text-white/60 mb-3">Конверсия: доля посетителей сайта, оставивших заявку</p>
         <div className="grid grid-cols-[52px_1fr_56px] items-center gap-3 mb-2.5">
           <span className="text-xs text-white/60">до</span>
           <Bar value={CONV_BEFORE} max={CONV_AFTER} className="bg-white/30" delay={0.2} active={active} />
@@ -68,15 +68,15 @@ export default function HeroReport() {
             220 <span className="text-xs font-normal text-white/60">регистраций</span>
           </span>
         </div>
-        <p className="text-xs text-white/60 mb-3">Стоимость регистрации</p>
+        <p className="text-xs text-white/60 mb-3">Цена одной регистрации</p>
         <div className="relative mb-2">
           <Bar value={CPL} max={CPL_LIMIT} className="bg-accent" delay={0.7} active={active} />
           {/* Client's limit marker */}
           <span className="absolute right-0 -top-1 h-4 w-px bg-white/50" aria-hidden />
         </div>
         <div className="flex justify-between text-xs tabular-nums">
-          <span className="text-white font-bold">604 ₽</span>
-          <span className="text-white/60">лимит клиента 650 ₽</span>
+          <span className="text-white font-bold">604 ₽</span>
+          <span className="text-white/60">лимит клиента 650 ₽</span>
         </div>
       </div>
 
@@ -84,7 +84,7 @@ export default function HeroReport() {
         href="/cases"
         className="flex items-center justify-between px-5 py-3 border-t border-white/[0.08] text-xs text-white/60 hover:text-white transition-colors rounded-b-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
       >
-        <span>Как получили эти цифры</span>
+        <span>Как мы получили эти цифры</span>
         <ArrowRight size={14} />
       </Link>
     </div>

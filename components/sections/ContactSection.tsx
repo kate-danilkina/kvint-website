@@ -7,7 +7,7 @@ import SectionHeading from '@/components/shared/SectionHeading'
 import { PHONE, PHONE_HREF, type ContactTab } from '@/lib/utils'
 
 const tabs: { id: ContactTab; label: string }[] = [
-  { id: 'strategy', label: 'Разбор · 10 000 ₽' },
+  { id: 'strategy', label: 'Разбор с основательницей' },
   { id: 'project', label: 'Обсудить проект' },
 ]
 
@@ -34,13 +34,13 @@ export default function ContactSection() {
   }, [])
 
   return (
-    <section id="contact" className="py-fluid-2xl scroll-mt-16 border-t border-black/[0.06]">
+    <section id="contact" className="py-fluid-xl scroll-mt-16">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-fluid-l">
           <p className="eyebrow mb-4">Ответим за 2 часа в рабочее время</p>
-          <SectionHeading className="section-title mb-4">Оставить заявку</SectionHeading>
+          <SectionHeading className="section-title mb-4">Расскажите, где теряете заявки</SectionHeading>
           <p className="text-muted">
-            Выберите формат: разбор за 10 000 ₽ или обсуждение проекта. Можно позвонить:{' '}
+            Выберите разбор с основательницей или обсуждение проекта. Или позвоните:{' '}
             <a href={PHONE_HREF} className="link-underline text-text font-mono whitespace-nowrap">
               {PHONE}
             </a>

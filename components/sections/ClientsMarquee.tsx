@@ -45,7 +45,7 @@ function MarqueeItems({ hidden = false }: { hidden?: boolean }) {
 
 export default function ClientsMarquee() {
   return (
-    <div className="border-y border-black/[0.06] py-5 overflow-hidden" aria-label="Наши клиенты">
+    <div className="py-5 overflow-hidden" aria-label="Наши клиенты">
       {/* Track doubled for a seamless loop; the copy is hidden from screen readers */}
       <div className="marquee-track flex w-max">
         <MarqueeItems />

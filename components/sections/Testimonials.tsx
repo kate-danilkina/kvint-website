@@ -7,10 +7,10 @@ import SectionHeading from '@/components/shared/SectionHeading'
 
 export default function Testimonials() {
   return (
-    <section className="py-fluid-2xl border-t border-black/[0.06]">
+    <section className="py-fluid-xl">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="mb-fluid-l">
-          <SectionHeading className="section-title">Что говорят клиенты</SectionHeading>
+          <SectionHeading className="section-title">Отзывы клиентов</SectionHeading>
         </AnimatedSection>
 
         <div>

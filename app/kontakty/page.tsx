@@ -17,7 +17,7 @@ export default function ContactsPage() {
     { label: 'Telegram', value: '@kvint_agency', href: company.telegram },
     { label: 'WhatsApp', value: company.phone, href: 'https://wa.me/79930798655' },
     { label: 'Часы работы', value: 'Пн–сб, 9:00–20:00' },
-    { label: 'Время ответа', value: 'В течение 2 часов в рабочие часы' },
+    { label: 'Время ответа', value: 'До 2 часов в рабочее время' },
     { label: 'География', value: 'Работаем онлайн с клиентами по всей России' },
   ]
   return (
@@ -25,7 +25,7 @@ export default function ContactsPage() {
       <Breadcrumbs items={[{ name: 'Контакты', path: '/kontakty' }]} />
       <h1 className="section-title mb-6">Контакты</h1>
       <p className="text-text/85 text-lg leading-relaxed mb-fluid-l">
-        Быстрее всего отвечаем в Telegram. Для разбора маркетинга оставьте заявку — свяжемся в течение 2 часов в рабочее время.
+        Быстрее всего отвечаем в Telegram. Чтобы записаться на разбор, оставьте заявку: ответим за 2 часа в рабочее время.
       </p>
       <dl className="border-t border-black/10 mb-fluid-l">
         {rows.map((r) => (

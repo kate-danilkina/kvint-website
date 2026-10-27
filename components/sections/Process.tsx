@@ -14,10 +14,10 @@ export default function Process() {
   const reduced = useReducedMotion()
 
   return (
-    <section className="py-fluid-2xl bg-night text-white">
+    <section className="py-fluid-xl bg-night text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading className="section-title !text-white mb-3">Как работаем после разбора</SectionHeading>
-        <p className="text-white/60 text-lg mb-fluid-l max-w-xl">На каждом этапе отсекаем то, что не окупается</p>
+        <SectionHeading className="section-title !text-white mb-3">4 шага к системе, которая приносит деньги</SectionHeading>
+        <p className="text-white/60 text-lg mb-fluid-l max-w-xl">От правды о цифрах до прибыли на вашем дашборде</p>
 
         <ol ref={ref} className="flex flex-col">
           {processSteps.map((step, i) => (
