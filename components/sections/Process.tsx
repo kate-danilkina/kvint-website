@@ -16,7 +16,7 @@ export default function Process() {
   return (
     <section className="py-fluid-xl bg-night text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading className="section-title !text-white mb-3">4 шага от цифр до прибыли</SectionHeading>
+        <SectionHeading className="section-title !text-white mb-3">4 шага от цифр до прибыли</SectionHeading>
         <p className="text-white/60 text-lg mb-fluid-l max-w-xl">Каждый шаг заканчивается результатом, который видно в цифрах</p>
 
         <ol ref={ref} className="flex flex-col">

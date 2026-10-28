@@ -159,7 +159,7 @@ export default function CookieConsent() {
       </div>
 
       <p className="text-sm text-muted leading-relaxed mb-4">
-        Необходимые cookie нужны, чтобы сайт работал и помнил ваш выбор. Яндекс Метрика, которая показывает, как пользуются сайтом,
+        Необходимые cookie нужны, чтобы сайт работал и помнил ваш выбор. Яндекс Метрика, которая показывает, как пользуются сайтом,
         включается только с вашего согласия.{' '}
         <Link href="/cookies" className="text-text underline underline-offset-2 hover:text-accent">
           Подробнее о cookie

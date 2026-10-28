@@ -207,7 +207,7 @@ export default function CasePage({ params }: Props) {
             className="inline-flex items-center gap-2 text-sm text-muted hover:text-text transition-colors mb-8"
           >
             <ArrowLeft size={15} />
-            Все кейсы
+            Все кейсы
           </Link>
 
           {/* Header */}

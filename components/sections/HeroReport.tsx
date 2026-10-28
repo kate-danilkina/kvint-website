@@ -44,7 +44,7 @@ export default function HeroReport() {
       {/* Case 1: conversion */}
       <div className="px-5 pt-5 pb-6 border-b border-white/[0.08]">
         <div className="flex items-baseline justify-between mb-4">
-          <span className="text-white font-sans font-semibold text-base">AI-стартап · 2 месяца</span>
+          <span className="text-white font-sans font-semibold text-base">AI-стартап · 2 месяца</span>
           <span className="text-[#34D399] text-2xl font-bold">×6</span>
         </div>
         <p className="text-xs text-white/60 mb-3">Конверсия: доля посетителей сайта, оставивших заявку</p>
@@ -63,7 +63,7 @@ export default function HeroReport() {
       {/* Case 2: lead cost vs limit */}
       <div className="px-5 pt-5 pb-5">
         <div className="flex flex-wrap items-baseline justify-between gap-x-3 mb-4">
-          <span className="text-white font-sans font-semibold text-base">Вебинар HR · 7 дней</span>
+          <span className="text-white font-sans font-semibold text-base">Вебинар HR · 7 дней</span>
           <span className="text-white text-2xl font-bold tabular-nums">
             220 <span className="text-xs font-normal text-white/60">регистраций</span>
           </span>

@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     template: '%s | Квинт',
   },
   description:
-    'Маркетинговое агентство для B2B. Считаем окупаемость до старта и показываем, сколько приносит каждый рубль рекламы. Проект ведёт основательница Екатерина Данилкина',
+    'Маркетинговое агентство для B2B. Считаем окупаемость до старта и показываем, сколько приносит каждый рубль рекламы. Стратегию ведёт основательница Екатерина Данилкина',
   // Each page gets a self-canonical resolved against metadataBase
   alternates: { canonical: './' },
   verification: { other: { 'msvalidate.01': '269C5DB1E3644ECDE492CE7B447803BD' } },

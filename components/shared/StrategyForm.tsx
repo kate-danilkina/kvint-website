@@ -27,7 +27,7 @@ const niches = [
   'Другое',
 ]
 
-const budgets = ['до 50 000 ₽', '50 000 – 150 000 ₽', '150 000 ₽ и выше']
+const budgets = ['до 50 000 ₽', '50 000 – 150 000 ₽', '150 000 ₽ и выше']
 
 interface Props {
   /** Prefix for element ids, so the form can be rendered twice on a page (contact section + lead panel) */
@@ -89,14 +89,14 @@ export default function StrategyForm({ idPrefix = '' }: Props = {}) {
         error={errors.name?.message}
         {...register('name', {
           required: 'Введите имя',
-          minLength: { value: 2, message: 'Минимум 2 символа' },
+          minLength: { value: 2, message: 'Минимум 2 символа' },
           pattern: { value: /^[а-яёА-ЯЁa-zA-Z\s-]+$/, message: 'Только буквы' },
         })}
       />
       <Input
         id={`${idPrefix}s-contact`}
         label="Телефон или @username"
-        placeholder="+7 (999) 000-00-00 или @username"
+        placeholder="+7 (999) 000-00-00 или @username"
         autoComplete="tel"
         error={errors.contact?.message}
         {...register('contact', {
@@ -177,7 +177,7 @@ export default function StrategyForm({ idPrefix = '' }: Props = {}) {
       <ConsentCheckbox
         id={`${idPrefix}consent-strategy`}
         error={errors.consent?.message}
-        {...register('consent', { required: 'Нужно согласие, чтобы мы могли связаться с вами' })}
+        {...register('consent', { required: 'Нужно согласие, чтобы мы могли связаться с вами' })}
       />
 
       {status === 'error' && (

@@ -29,11 +29,11 @@ const GROUPS: { title: string; fields: { key: keyof CalcInput; label: string; ki
 const VERDICT: Record<Verdict, { title: string; text: string; pill: string }> = {
   profit: { title: 'Реклама окупается', text: 'Прибыль с продаж покрывает бюджет с запасом', pill: 'bg-up text-white' },
   edge: { title: 'Реклама на грани', text: 'Бюджет возвращается, но запаса мало', pill: 'bg-white text-night' },
-  loss: { title: 'Реклама не окупается', text: 'Клиент приносит меньше прибыли, чем стоит', pill: 'bg-down text-white' },
+  loss: { title: 'Реклама не окупается', text: 'Клиент приносит меньше прибыли, чем стоит', pill: 'bg-down text-white' },
   none: { title: 'Введите цифры', text: 'Нужны бюджет и цена клика больше нуля', pill: 'bg-white/15 text-white' },
 }
 
-// Значение в поле после ухода с него: 100 000, 1,5
+// Значение в поле после ухода с него: 100 000, 1,5
 function toShown(v: number, kind: Kind) {
   return kind === 'rub' ? formatNum(v) : String(Math.round(v * 100) / 100).replace('.', ',')
 }

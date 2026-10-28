@@ -77,7 +77,7 @@ export default function Footer() {
 
         <div className="border-t border-white/10 pt-6 flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-xs text-white/60 font-mono">
           <p>
-            © {new Date().getFullYear()} Квинт · ИП Данилкина Екатерина Денисовна · ИНН 631607801908 · ОГРНИП 326632700136276
+            © {new Date().getFullYear()} Квинт · ИП Данилкина Екатерина Денисовна · ИНН 631607801908 · ОГРНИП 326632700136276
           </p>
           <nav aria-label="Правовая информация" className="flex flex-wrap gap-x-6 gap-y-2">
             <Link href="/privacy" className={legalLinkClass}>

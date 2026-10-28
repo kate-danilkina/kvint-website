@@ -21,7 +21,6 @@ export const company = {
 
 export const founder = {
   name: 'Екатерина Данилкина',
-  alternateName: 'Рина Данилкина',
   slug: '/ekaterina-danilkina',
   role: 'Основательница агентства «Квинт»',
 }
@@ -53,7 +52,6 @@ export function founderLd() {
     '@type': 'Person',
     '@id': `${SITE_URL}/#founder`,
     name: founder.name,
-    alternateName: founder.alternateName,
     jobTitle: 'Основательница маркетингового агентства',
     url: `${SITE_URL}${founder.slug}`,
     image: `${SITE_URL}/team/founder.jpg`,

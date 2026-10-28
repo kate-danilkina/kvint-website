@@ -11,6 +11,8 @@ const EXT = new Set(['.ts', '.tsx'])
 const SHORT = [
   'в', 'во', 'и', 'а', 'с', 'со', 'к', 'ко', 'у', 'о', 'об', 'обо', 'на', 'не', 'ни', 'но', 'да', 'по', 'за', 'от',
   'до', 'из', 'изо', 'без', 'для', 'при', 'про', 'над', 'под', 'или', 'что', 'как', 'я', 'мы', 'вы',
+  'где', 'чем', 'это', 'её', 'ее', 'их', 'его', 'все', 'всё', 'уже', 'так', 'кто', 'тем', 'чтобы', 'ип',
+  'он', 'она', 'оно', 'они', 'вам', 'нам', 'вас', 'нас', 'им', 'ей', 'нём', 'ней', 'там', 'два', 'две', 'три',
 ]
 const NBSP = '\u00A0'
 // Short word preceded by a non-letter boundary and followed by a plain space and a word, digit, quote or bracket
@@ -19,6 +21,8 @@ const shortRe = new RegExp(
   'giu',
 )
 const dashRe = / (—)/g
+// Number stays with the next word or digit group: «604 ₽», «27 октября», «20 227»
+const unitRe = /(\d) (?=[А-Яа-яЁё₽%]|\d{3}(?!\d))/gu
 
 function walk(dir, out = []) {
   for (const name of readdirSync(dir)) {
@@ -39,7 +43,7 @@ function fix(text) {
     prev = next
     next = next.replace(shortRe, (_, pre, word) => `${pre}${word}${NBSP}`)
   } while (next !== prev)
-  return next.replace(dashRe, `${NBSP}$1`)
+  return next.replace(dashRe, `${NBSP}$1`).replace(unitRe, `$1${NBSP}`)
 }
 
 const check = process.argv.includes('--check')

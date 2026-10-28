@@ -58,7 +58,7 @@ export default function CasesPage() {
 
                       <dl className="grid grid-cols-3 gap-4 mt-6 pt-5 border-t border-black/[0.07]">
                         {c.results.map((r) => (
-                          <div key={r.label} className="min-w-0 flex flex-col-reverse">
+                          <div key={r.label} className="min-w-0 flex flex-col-reverse justify-end">
                             <dt className="text-xs text-muted mt-1 leading-snug">{r.label}</dt>
                             <dd className="font-display font-semibold text-sm sm:text-base text-text tabular-nums leading-tight">
                               {r.value}

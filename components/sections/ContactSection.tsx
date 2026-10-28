@@ -37,7 +37,7 @@ export default function ContactSection() {
     <section id="contact" className="py-fluid-xl scroll-mt-16">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-fluid-l">
-          <SectionHeading className="section-title mb-4">Расскажите, где теряете заявки</SectionHeading>
+          <SectionHeading className="section-title mb-4">Расскажите, где теряете заявки</SectionHeading>
           <p className="text-muted">
             Выберите разбор с основательницей или обсуждение проекта. Или позвоните:{' '}
             <a href={PHONE_HREF} className="link-underline text-text font-mono whitespace-nowrap">

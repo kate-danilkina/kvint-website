@@ -49,7 +49,7 @@ export default function Hero() {
         <p className="eyebrow mb-6">Маркетинговое агентство для B2B</p>
 
         {/* Headline spans the full width: the long word must never collide with the report card */}
-        <h1 className="font-display font-bold uppercase text-[clamp(25px,6.6vw,104px)] leading-[0.95] tracking-[-0.02em] mb-fluid-l text-text max-w-[14ch] lg:max-w-none">
+        <h1 className="font-display font-bold uppercase text-[clamp(30px,10.8vw,56px)] sm:text-[clamp(40px,7.5vw,104px)] lg:text-[clamp(25px,6.6vw,104px)] leading-[0.95] tracking-[-0.02em] mb-fluid-l text-text max-w-[14ch] lg:max-w-none">
           Маркетинг, который отвечает <span className="text-accent">деньгами</span>
         </h1>
 
@@ -57,7 +57,7 @@ export default function Hero() {
           {/* Left: offer */}
           <div className="min-w-0">
             <p className="text-muted text-lg leading-relaxed mb-10 max-w-xl">
-              Считаем окупаемость до старта. Не видим, как вернуть вложения минимум в 3–5 раз, — не берёмся
+              Считаем окупаемость до старта. Не видим, как вернуть вложения минимум в 3–5 раз, — не берёмся
             </p>
 
             {/* Stats */}
@@ -85,7 +85,7 @@ export default function Hero() {
                 Написать в Telegram
               </a>
             </div>
-            <p className="text-xs text-muted mt-3 font-mono">Разбор: 60 минут с основательницей, итог — план и вердикт</p>
+            <p className="text-xs text-muted mt-3 font-mono">Разбор: 60 минут с основательницей, итог — план и вердикт</p>
           </div>
 
           {/* Right: report card */}

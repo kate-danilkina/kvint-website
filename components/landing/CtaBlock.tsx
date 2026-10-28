@@ -16,7 +16,7 @@ export default function CtaBlock({ title = 'Начните с разбора' }
     <section className="rounded-2xl border border-transparent bg-bg-2 p-6 sm:p-10">
       <h2 className="font-bold text-text text-2xl sm:text-3xl tracking-tight mb-3">{title}</h2>
       <p className="text-muted mb-6 max-w-xl">
-        За 60 минут основательница покажет, куда уходит бюджет и сколько стоит одна заявка. В конце честно скажем, берёмся ли за проект
+        За 60 минут основательница покажет, куда уходит бюджет и сколько стоит одна заявка. В конце честно скажем, берёмся ли за проект
       </p>
       <div className="flex flex-col sm:flex-row gap-3">
         <DiagnosticButton />

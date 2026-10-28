@@ -126,20 +126,20 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
             >
               <Input
                 id={`${idPrefix}name`}
-                label="Как вас зовут?"
+                label="Как вас зовут?"
                 placeholder="Имя или название компании"
                 autoComplete="name"
                 error={errors.name?.message}
                 {...register('name', {
                   required: 'Введите имя',
-                  minLength: { value: 2, message: 'Минимум 2 символа' },
+                  minLength: { value: 2, message: 'Минимум 2 символа' },
                   pattern: { value: /^[а-яёА-ЯЁa-zA-Z\s-]+$/, message: 'Только буквы' },
                 })}
               />
               <Input
                 id={`${idPrefix}contact`}
                 label="Как с вами связаться?"
-                placeholder="+7 (999) 000-00-00 или @username"
+                placeholder="+7 (999) 000-00-00 или @username"
                 autoComplete="tel"
                 error={errors.contact?.message}
                 {...register('contact', {
@@ -229,7 +229,7 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
               <ConsentCheckbox
                 id={`${idPrefix}consent-project`}
                 error={errors.consent?.message}
-                {...register('consent', { required: 'Нужно согласие, чтобы мы могли связаться с вами' })}
+                {...register('consent', { required: 'Нужно согласие, чтобы мы могли связаться с вами' })}
               />
               {status === 'error' && (
                 <div role="alert" className="flex items-center gap-2 text-red-700 text-sm">

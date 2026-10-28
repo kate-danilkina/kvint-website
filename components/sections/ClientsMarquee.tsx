@@ -46,10 +46,7 @@ function MarqueeItems({ hidden = false }: { hidden?: boolean }) {
 export default function ClientsMarquee() {
   return (
     <div className="pt-5 pb-5 overflow-hidden" role="region" aria-labelledby="clients-label">
-      {/* Not agency clients only: includes past employment, so the label says who the team worked with */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
-        <p id="clients-label" className="eyebrow">С кем работали Екатерина и команда</p>
-      </div>
+      <h2 id="clients-label" className="sr-only">С кем работали</h2>
       {/* Track doubled for a seamless loop; the copy is hidden from screen readers */}
       <div className="marquee-track flex w-max">
         <MarqueeItems />

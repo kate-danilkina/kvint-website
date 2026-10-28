@@ -9,12 +9,12 @@ const diagnosticItems = [
   'Ошибки в рекламе, на сайте и в работе с заявками',
   'Реальную цену заявки и срок окупаемости',
   'План по шагам: как выйти из просадки или вырасти',
-  '3–5 точек роста, которые можно внедрить сразу',
+  '3–5 точек роста, которые можно внедрить сразу',
   'Честный вердикт: берёмся, только если видим окупаемость. Нет, скажем прямо',
 ]
 
 const estimate = [
-  { label: 'Формат', value: 'созвон, 60 минут' },
+  { label: 'Формат', value: 'созвон, 60 минут' },
   { label: 'Ведёт', value: 'Екатерина Данилкина' },
   { label: 'Итог', value: 'план и честный вердикт' },
 ]
@@ -24,7 +24,7 @@ export default function MainCTA() {
     <section className="py-fluid-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <p className="eyebrow mb-4">Разбор с основательницей</p>
-        <SectionHeading className="section-title mb-fluid-l max-w-3xl">За 60 минут разберём, где вы теряете деньги</SectionHeading>
+        <SectionHeading className="section-title mb-fluid-l max-w-3xl">За 60 минут разберём, где вы теряете деньги</SectionHeading>
 
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-10 lg:gap-16 items-start">
           {/* What's included */}

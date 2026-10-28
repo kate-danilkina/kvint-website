@@ -9,7 +9,7 @@ export default function Team() {
   return (
     <section id="about" className="py-fluid-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading className="section-title mb-12 max-w-2xl">Проект ведёт основательница. Стратегию пишет она</SectionHeading>
+        <SectionHeading className="section-title mb-12 max-w-2xl">Стратегию каждого проекта ведёт основательница</SectionHeading>
 
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-10 lg:gap-16 items-start">
           {/* Photo */}

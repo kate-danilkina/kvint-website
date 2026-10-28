@@ -24,7 +24,7 @@ export default function ContactsPage() {
       <Breadcrumbs items={[{ name: 'Контакты', path: '/kontakty' }]} />
       <h1 className="section-title mb-6">Контакты</h1>
       <p className="text-text/85 text-lg leading-relaxed mb-fluid-l">
-        Быстрее всего отвечаем в Telegram. Чтобы записаться на разбор, оставьте заявку, и мы свяжемся с вами
+        Быстрее всего отвечаем в Telegram. Чтобы записаться на разбор, оставьте заявку, и мы свяжемся с вами
       </p>
       <dl className="border-t border-black/10 mb-fluid-l">
         {rows.map((r) => (

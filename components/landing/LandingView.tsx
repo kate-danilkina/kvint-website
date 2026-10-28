@@ -25,8 +25,8 @@ function linkTitle(path: string) {
 const H2 = 'section-title !text-step-3 mb-fluid-s'
 
 export const TRUST_POINTS = [
-  '54 проекта с августа 2024',
-  'Стратегию пишет основательница',
+  '54 проекта с августа 2024',
+  'Стратегию ведёт основательница',
   'Специалисты среднего и старшего уровня',
   'Отчёт каждую неделю',
   'Онлайн по всей России',
@@ -44,10 +44,10 @@ export function TrustStrip({ className = '' }: { className?: string }) {
   )
 }
 
-export function FinalCta({ title = 'Разберём вашу рекламу за 60 минут' }: { title?: string }) {
+export function FinalCta({ title = 'Разберём вашу рекламу за 60 минут' }: { title?: string }) {
   return (
     <section className="rounded-2xl bg-night text-white p-6 sm:p-10">
-      <p className="eyebrow !text-white/50 mb-3">Разбор с основательницей · 60 минут</p>
+      <p className="eyebrow !text-white/50 mb-3">Разбор с основательницей · 60 минут</p>
       <h2 className="section-title !text-step-3 !text-white mb-4 max-w-2xl">{title}</h2>
       <p className="text-white/70 leading-relaxed max-w-xl mb-6">
         Екатерина Данилкина по видеосвязи смотрит вашу рекламу, сайт и цифры. Через час вы знаете:
@@ -106,7 +106,7 @@ export default function LandingView({ page }: { page: Landing }) {
         <p className="text-text/85 text-lg sm:text-xl leading-relaxed max-w-3xl mb-8">{page.lead}</p>
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
           <DiagnosticButton />
-          <p className="text-sm text-muted max-w-xs">60 минут с основательницей, онлайн</p>
+          <p className="text-sm text-muted max-w-xs">60 минут с основательницей, онлайн</p>
         </div>
         <TrustStrip />
       </header>

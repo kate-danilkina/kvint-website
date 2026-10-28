@@ -16,7 +16,7 @@ export default function CasesPreview() {
             href="/cases"
             className="link-underline inline-flex items-center gap-1.5 text-sm text-text/75 hover:text-text transition-colors"
           >
-            Все кейсы <ArrowRight size={14} />
+            Все кейсы <ArrowRight size={14} />
           </Link>
         </div>
 
@@ -37,7 +37,7 @@ export default function CasesPreview() {
 
                   <dl className="grid grid-cols-3 gap-4 mt-6">
                     {c.results.map((r) => (
-                      <div key={r.label} className="min-w-0 flex flex-col-reverse">
+                      <div key={r.label} className="min-w-0 flex flex-col-reverse justify-end">
                         <dt className="text-xs text-muted mt-1 leading-snug">{r.label}</dt>
                         <dd className="font-display font-semibold text-sm sm:text-base text-text tabular-nums leading-tight">
                           {r.value}

@@ -67,7 +67,7 @@ export default function BlogPostPage({ params }: Props) {
               className="inline-flex items-center gap-2 text-sm text-muted hover:text-accent transition-colors"
             >
               <ArrowLeft size={15} />
-              Все статьи
+              Все статьи
             </Link>
           </AnimatedSection>
 
@@ -89,7 +89,7 @@ export default function BlogPostPage({ params }: Props) {
               <span>·</span>
               <span className="flex items-center gap-1">
                 <Clock size={13} />
-                {readMinutes(post)} мин чтения
+                {readMinutes(post)} мин чтения
               </span>
             </div>
           </AnimatedSection>
