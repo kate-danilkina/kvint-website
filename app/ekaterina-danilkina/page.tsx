@@ -24,7 +24,7 @@ const documents = [
   { src: '/certificates/itmo-marketing-lecture-thanks-2026.jpg', caption: 'Лекция «Автоматизация маркетинга» в программе «Бизнес-Тезис» ИТМО, 2026' },
   { src: '/certificates/itmo-eq-lecture-thanks-2025.jpg', caption: 'Лекция об эмоциональном интеллекте в бизнесе, «Бизнес-Тезис» ИТМО, 2025' },
   { src: '/certificates/itmo-accelerator-team-thanks-2026.jpg', caption: 'Мероприятие по командообразованию в Акселераторе ИТМО, 2026' },
-  { src: '/certificates/spbu-falcon-speaker-letter.jpg', caption: 'Спикер конференции ВШМ СПбГУ и Falcon Business Club' },
+  { src: '/certificates/spbu-falcon-speaker-letter.jpg', caption: 'Спикер конференции ВШМ СПбГУ и Falcon Business Club, 2026' },
 ]
 
 const public_ = [
