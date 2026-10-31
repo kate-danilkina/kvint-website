@@ -5,6 +5,8 @@ export interface BlogPost {
   content: string
   tags: string[]
   date: string
+  /** Last substantive update (YYYY-MM-DD), shown as «Обновлено» and used as dateModified */
+  updated?: string
   author: string
   /** Questions shown under the article and mirrored in FAQPage JSON-LD */
   faq?: { q: string; a: string }[]

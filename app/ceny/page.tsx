@@ -15,7 +15,7 @@ const rows = [
 ]
 
 export const metadata: Metadata = {
-  title: 'Цены на маркетинговые услуги',
+  title: 'Стоимость маркетинга для B2B: цены на услуги',
   description:
     'Цены агентства Квинт: разбор с основательницей — 10 000 ₽, аудит — от 5 000 ₽, стратегия — от 40 000 ₽, Яндекс Директ — от 45 000 ₽ в месяц без рекламного бюджета, Яндекс Карты — 20 000 ₽ в месяц, SEO — от 60 000 ₽ в месяц',
 }
@@ -24,7 +24,7 @@ export default function PricesPage() {
   return (
     <PageShell>
       <Breadcrumbs items={[{ name: 'Цены', path: '/ceny' }]} />
-      <h1 className="section-title mb-6">Цены</h1>
+      <h1 className="section-title mb-6">Цены на маркетинг для B2B</h1>
       <p className="text-text/85 text-lg leading-relaxed max-w-3xl mb-fluid-l">
         Начните с разбора с основательницей: 60 минут, 10 000 ₽. Точную стоимость услуг называем после
         разбора, когда понятен объём работы. Рекламный бюджет оплачиваете отдельно, от 60 000 ₽ в месяц.

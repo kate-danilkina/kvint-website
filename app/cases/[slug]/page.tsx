@@ -6,7 +6,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ContactSection from '@/components/sections/ContactSection'
 import { cases, getCaseBySlug, type Case, type CaseComparison, type CaseMonthly } from '@/lib/data/cases'
-import { JsonLd, SITE_URL, company, founder } from '@/lib/seo'
+import { breadcrumbLd, JsonLd, SITE_URL, company, founder } from '@/lib/seo'
 
 interface Props {
   params: { slug: string }
@@ -199,7 +199,16 @@ export default function CasePage({ params }: Props) {
   return (
     <>
       <Header />
-      <JsonLd data={articleLd(c)} />
+      <JsonLd
+        data={[
+          articleLd(c),
+          breadcrumbLd([
+            { name: 'Главная', path: '/' },
+            { name: 'Кейсы', path: '/cases' },
+            { name: c.title, path: `/cases/${c.slug}` },
+          ]),
+        ]}
+      />
       <main id="main-content" className="pt-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link

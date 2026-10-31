@@ -8,7 +8,7 @@ import Badge from '@/components/ui/Badge'
 import AnimatedSection from '@/components/shared/AnimatedSection'
 import { blogPosts, getPostBySlug, readMinutes } from '@/lib/data/blog'
 import { formatDate } from '@/lib/utils'
-import { faqLd, JsonLd, SITE_URL } from '@/lib/seo'
+import { breadcrumbLd, faqLd, JsonLd, SITE_URL } from '@/lib/seo'
 import { readAlsoPosts, serviceForPost } from '@/lib/related'
 import { landingPath } from '@/lib/data/landings'
 
@@ -53,15 +53,21 @@ export default function BlogPostPage({ params }: Props) {
     url: `${SITE_URL}/blog/${post.slug}`,
     mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updated ?? post.date,
     inLanguage: 'ru-RU',
     author: { '@type': 'Person', name: post.author, '@id': `${SITE_URL}/#founder` },
     publisher: { '@id': `${SITE_URL}/#organization` },
   }
 
+  const breadcrumbs = breadcrumbLd([
+    { name: 'Главная', path: '/' },
+    { name: 'Блог', path: '/blog' },
+    { name: post.title, path: `/blog/${post.slug}` },
+  ])
+
   return (
     <>
-      <JsonLd data={post.faq?.length ? [articleLd, faqLd(post.faq)] : articleLd} />
+      <JsonLd data={post.faq?.length ? [articleLd, breadcrumbs, faqLd(post.faq)] : [articleLd, breadcrumbs]} />
       <Header />
       <main id="main-content" className="pt-24 pb-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -91,6 +97,12 @@ export default function BlogPostPage({ params }: Props) {
               <span>{post.author}</span>
               <span>·</span>
               <span>{formatDate(post.date)}</span>
+              {post.updated && post.updated !== post.date && (
+                <>
+                  <span>·</span>
+                  <span>{'Обновлено '}{formatDate(post.updated)}</span>
+                </>
+              )}
               <span>·</span>
               <span className="flex items-center gap-1">
                 <Clock size={13} />
