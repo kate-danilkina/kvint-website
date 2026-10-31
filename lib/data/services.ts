@@ -21,20 +21,10 @@ export const audiences = [
     description: 'Сложный продукт, решение принимают несколько человек и месяцами',
   },
   {
-    id: 'retail',
-    title: 'Премиум-ритейл',
-    description: 'Дорогой товар, который покупают ради статуса',
-  },
-  {
     id: 'manufacturing',
     href: '/otrasli/proizvodstvo',
     title: 'Производство',
     description: 'Заявок мало, каждая — крупный заказ',
-  },
-  {
-    id: 'realty',
-    title: 'Недвижимость',
-    description: 'Покупатель выбирает месяцами и проверяет репутацию',
   },
 ]
 

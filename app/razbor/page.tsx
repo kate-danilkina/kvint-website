@@ -95,7 +95,7 @@ export default function RazborPage() {
       <section className="mb-fluid-l max-w-3xl">
         <h2 className="font-bold text-text text-2xl tracking-tight mb-4">Кому подходит</h2>
         <p className="text-muted leading-relaxed">
-          Собственникам компаний из IT B2B, производства, премиум-ритейла и недвижимости. Тем, кто тратит деньги
+          Собственникам компаний из IT B2B и производства. Тем, кто тратит деньги
           на рекламу и не понимает, что из этого окупается. Если рекламы пока нет, выберем канал, с которого стоит начать
         </p>
       </section>
