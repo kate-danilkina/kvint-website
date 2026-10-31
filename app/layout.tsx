@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Onest, JetBrains_Mono, Unbounded } from 'next/font/google'
 import MessengerWidget from '@/components/shared/MessengerWidget'
 import ClickGoals from '@/components/shared/ClickGoals'
+import FitHeadings from '@/components/shared/FitHeadings'
 import StickyCTA from '@/components/shared/StickyCTA'
 import LeadPanel from '@/components/shared/LeadPanel'
 import CookieConsent from '@/components/shared/CookieConsent'
@@ -17,7 +18,8 @@ const onest = Onest({
 
 const unbounded = Unbounded({
   subsets: ['latin', 'cyrillic'],
-  weight: ['500', '700', '800'],
+  // Only 700 is used: .section-title and font-display + font-bold/font-semibold (600 falls back to 700)
+  weight: ['700'],
   variable: '--font-display',
   display: 'swap',
 })
@@ -91,6 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <MessengerWidget />
         <ClickGoals />
+        <FitHeadings />
         <StickyCTA />
         <LeadPanel />
         <CookieConsent />

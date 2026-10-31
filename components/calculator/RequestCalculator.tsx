@@ -156,7 +156,7 @@ export default function RequestCalculator() {
             </span>
             <div>
               <p className="font-mono text-xs text-white/50 mb-2">ROMI, возврат на рекламу</p>
-              <p className="font-display font-bold text-step-5 leading-none break-words">
+              <p className="font-display font-bold text-step-5 leading-none">
                 {result.romi === null ? '—' : `${formatNum(Math.round(result.romi))}%`}
               </p>
             </div>
@@ -178,7 +178,7 @@ export default function RequestCalculator() {
           {metrics.map((m) => (
             <div key={m.label} className="min-w-0 border-t border-black/10 pt-3">
               <dt className="text-xs text-muted leading-snug">{m.label}</dt>
-              <dd className="font-mono text-text text-base sm:text-lg mt-1 break-words">{m.value}</dd>
+              <dd className="font-mono text-text text-base sm:text-lg mt-1">{m.value}</dd>
             </div>
           ))}
         </dl>

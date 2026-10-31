@@ -176,9 +176,6 @@ body {
     letter-spacing: -0.02em;
     text-transform: uppercase;
     color: var(--color-text);
-    /* Long Russian words in uppercase display type are wider than a phone screen: hyphenate them */
-    hyphens: auto;
-    overflow-wrap: break-word;
   }
   @media (max-width: 639px) {
     .section-title {

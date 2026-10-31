@@ -9,6 +9,8 @@ import AnimatedSection from '@/components/shared/AnimatedSection'
 import { blogPosts, getPostBySlug, readMinutes } from '@/lib/data/blog'
 import { formatDate } from '@/lib/utils'
 import { faqLd, JsonLd, SITE_URL } from '@/lib/seo'
+import { readAlsoPosts, serviceForPost } from '@/lib/related'
+import { landingPath } from '@/lib/data/landings'
 
 interface Props {
   params: { slug: string }
@@ -39,6 +41,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default function BlogPostPage({ params }: Props) {
   const post = getPostBySlug(params.slug)
   if (!post) notFound()
+
+  const readAlso = readAlsoPosts(post)
+  const service = serviceForPost(post)
 
   const articleLd = {
     '@context': 'https://schema.org',
@@ -136,6 +141,33 @@ export default function BlogPostPage({ params }: Props) {
               </div>
             </div>
           </AnimatedSection>
+          {/* Read also */}
+          {readAlso.length > 0 && (
+            <AnimatedSection delay={0.25} className="mt-12 pt-8 border-t border-black/5">
+              <h2 className="text-2xl font-bold text-text mb-6">Читайте также</h2>
+              <ul className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                {readAlso.map((item) => (
+                  <li key={item.slug}>
+                    <Link
+                      href={`/blog/${item.slug}`}
+                      className="group flex h-full flex-col gap-2 rounded-2xl bg-bg-2 p-5 border border-transparent hover:border-black/15 transition-colors"
+                    >
+                      <h3 className="font-semibold text-text leading-snug">{item.title}</h3>
+                      <p className="text-sm text-muted leading-relaxed">{item.excerpt}</p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              {service && (
+                <p className="mt-6 text-muted">
+                  Подробнее об услуге:{' '}
+                  <Link href={landingPath(service)} className="text-accent hover:underline">
+                    {service.navTitle}
+                  </Link>
+                </p>
+              )}
+            </AnimatedSection>
+          )}
         </div>
       </main>
       <Footer />

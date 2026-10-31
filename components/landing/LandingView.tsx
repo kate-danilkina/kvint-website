@@ -7,6 +7,7 @@ import { cases } from '@/lib/data/cases'
 import { type Landing, landingPath, landingByPath } from '@/lib/data/landings'
 import { JsonLd, serviceLd, faqLd } from '@/lib/seo'
 import { TELEGRAM_URL } from '@/lib/utils'
+import { relatedPostsForLanding } from '@/lib/related'
 
 const STATIC_TITLES: Record<string, string> = {
   '/razbor': 'Разбор с основательницей',
@@ -85,6 +86,7 @@ export default function LandingView({ page }: { page: Landing }) {
   const hub = page.kind === 'service' ? { name: 'Услуги', path: '/uslugi' } : { name: 'Отрасли', path: '/otrasli' }
   const pageCases = page.caseSlugs.map((s) => cases.find((c) => c.slug === s)).filter(Boolean) as typeof cases
   const hasItems = !!page.proof.items?.length
+  const relatedPosts = relatedPostsForLanding(page.slug)
 
   return (
     <PageShell>
@@ -265,6 +267,26 @@ export default function LandingView({ page }: { page: Landing }) {
           </div>
         </div>
       </section>
+
+      {/* Related articles: the section is hidden when no post matches */}
+      {relatedPosts.length > 0 && (
+        <section className="mb-fluid-xl" aria-labelledby="articles">
+          <h2 id="articles" className={H2}>Статьи по теме</h2>
+          <ul className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {relatedPosts.map((post) => (
+              <li key={post.slug}>
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="group flex h-full flex-col gap-3 rounded-2xl bg-bg-2 p-5 sm:p-6 border border-transparent hover:border-black/15 transition-colors"
+                >
+                  <h3 className="font-semibold text-text text-lg leading-snug">{post.title}</h3>
+                  <p className="text-sm text-muted leading-relaxed">{post.excerpt}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {/* 8. FAQ */}
       {page.faq.length > 0 && (
