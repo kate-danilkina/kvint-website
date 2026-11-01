@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import Button from '@/components/ui/Button'
+import Logo from '@/components/shared/Logo'
 import { openContact, PHONE, PHONE_HREF } from '@/lib/utils'
 
 const navLinks = [
@@ -63,10 +64,11 @@ export default function Header() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <span className="text-xl font-bold font-sans tracking-tight text-text group-hover:text-accent transition-colors duration-200">
-              КВИНТ
-            </span>
+          <Link href="/" className="flex items-center gap-2 group" aria-label="Квинт — на главную">
+            <Logo
+              tone="dark"
+              className="h-[18px] md:h-[22px] w-auto transition-opacity duration-200 group-hover:opacity-70"
+            />
           </Link>
 
           {/* Desktop nav */}

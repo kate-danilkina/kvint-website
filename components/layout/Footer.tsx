@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Mail, Send, Phone } from 'lucide-react'
 import { PHONE, PHONE_HREF, TELEGRAM_URL } from '@/lib/utils'
 import { openCookieSettings } from '@/components/shared/CookieConsent'
+import Logo from '@/components/shared/Logo'
 
 const legalLinkClass = 'link-underline hover:text-white transition-colors'
 
@@ -14,8 +15,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16 mb-10">
           {/* Brand */}
           <div>
-            <Link href="/" className="text-xl font-bold tracking-tight text-white hover:text-accent font-display transition-colors">
-              КВИНТ
+            <Link href="/" className="inline-block group" aria-label="Квинт — на главную">
+              <Logo
+                tone="light"
+                className="h-[18px] md:h-[22px] w-auto transition-opacity duration-200 group-hover:opacity-70"
+              />
             </Link>
             <p className="mt-3 text-sm text-white/60 leading-relaxed">
               Маркетинговое агентство для B2B

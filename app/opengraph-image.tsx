@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og'
+import Logo from '@/components/shared/Logo'
 
 export const alt = 'Квинт — маркетинговое агентство'
 export const size = { width: 1200, height: 630 }
@@ -41,7 +42,10 @@ export default async function OpengraphImage() {
           fontFamily: 'Onest',
         }}
       >
-        <div style={{ display: 'flex', fontSize: 34, fontWeight: 700, letterSpacing: -1 }}>КВИНТ</div>
+        <div style={{ display: 'flex' }}>
+          {/* Satori takes plain SVG elements, so call the component as a function instead of rendering it */}
+          {Logo({ tone: 'light', width: 336, height: 56 })}
+        </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', fontSize: 72, fontWeight: 700, lineHeight: 1.05, letterSpacing: -2, maxWidth: 900 }}>
             Реклама, сайт и аналитика одной командой

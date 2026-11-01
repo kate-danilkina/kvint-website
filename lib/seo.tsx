@@ -36,7 +36,7 @@ export function organizationLd() {
     legalName: company.legalName,
     taxID: company.inn,
     url: SITE_URL,
-    logo: `${SITE_URL}/icon-512.png`,
+    logo: `${SITE_URL}/brand/kvint-avatar-1000.png`,
     email: company.email,
     telephone: company.phone.replace(/\s/g, ''),
     foundingDate: company.foundingDate,
