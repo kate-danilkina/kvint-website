@@ -20,7 +20,7 @@ export default function Footer() {
             <p className="mt-3 text-sm text-white/60 leading-relaxed">
               Маркетинговое агентство для B2B
               <br />
-              IT B2B и производство
+              со сложным продуктом
             </p>
           </div>
 

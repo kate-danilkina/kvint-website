@@ -47,7 +47,7 @@ export default async function OpengraphImage() {
             Реклама, сайт и аналитика одной командой
           </div>
           <div style={{ display: 'flex', fontSize: 30, color: '#888899', marginTop: 28 }}>
-            IT B2B · производство
+            Маркетинг для B2B со сложным продуктом
           </div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 26, color: '#888899' }}>

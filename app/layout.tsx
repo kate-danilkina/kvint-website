@@ -34,7 +34,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://kvint.agency'),
   title: {
-    default: 'Квинт — маркетинговое агентство для B2B: IT и производство',
+    default: 'Квинт — маркетинговое агентство для B2B со сложным продуктом',
     template: '%s | Квинт',
   },
   description:
