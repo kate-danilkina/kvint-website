@@ -64,7 +64,7 @@ export default function Header() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group" aria-label="Квинт — на главную">
+          <Link href="/" className="flex items-center gap-2 group" aria-label="Квинт — на главную">
             <Logo
               tone="dark"
               className="h-[18px] md:h-[22px] w-auto transition-opacity duration-200 group-hover:opacity-70"

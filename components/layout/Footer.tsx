@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16 mb-10">
           {/* Brand */}
           <div>
-            <Link href="/" className="inline-block group" aria-label="Квинт — на главную">
+            <Link href="/" className="inline-block group" aria-label="Квинт — на главную">
               <Logo
                 tone="light"
                 className="h-[18px] md:h-[22px] w-auto transition-opacity duration-200 group-hover:opacity-70"

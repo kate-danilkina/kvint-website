@@ -7,7 +7,7 @@ export default function ForWho() {
     <section className="py-fluid-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading className="section-title mb-3">С кем работаем</SectionHeading>
-        <p className="text-muted mb-fluid-l">Если у вас дорогой продукт, долгая сделка и решение принимают несколько человек, это наш формат. Ниша может быть любой</p>
+        <p className="text-muted mb-fluid-l">Если у вас дорогой продукт, долгая сделка и решение принимают несколько человек, это наш формат. Ниша может быть любой</p>
 
         <p className="eyebrow mb-3">Например</p>
 
