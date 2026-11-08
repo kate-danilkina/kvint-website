@@ -85,7 +85,17 @@ export default function Hero() {
                 Написать в Telegram
               </a>
             </div>
-            <p className="text-xs text-muted mt-3 font-mono">Разбор: 60 минут с основательницей, итог — план и вердикт</p>
+            <p className="text-xs text-muted mt-3 font-mono">
+              Разбор: 60 минут с основательницей, 10 000 ₽ · Или{' '}
+              <button
+                type="button"
+                onClick={() => openContact('project')}
+                className="text-text underline underline-offset-2 hover:text-accent"
+              >
+                бесплатно
+              </button>{' '}
+              пришлите ссылку на сайт — ответим за 15 минут
+            </p>
           </div>
 
           {/* Right: report card */}

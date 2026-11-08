@@ -26,14 +26,21 @@ export interface LeadPanelDetail {
   tab: ContactTab
   /** Element to return focus to when the panel closes */
   trigger: HTMLElement | null
+  /** Text that goes into the request's task field (e.g. numbers from the calculator) */
+  prefill?: string
+}
+
+export interface LeadPanelOptions {
+  prefill?: string
 }
 
 /** Answer options for the optional «Откуда узнали о нас» field (also whitelisted in /api/send-form). */
 export const LEAD_SOURCES = ['Telegram', 'Поиск', 'Алиса или другая нейросеть', 'Рекомендация', 'Соцсети', 'Другое'] as const
 
 /** Opens the side lead panel (bottom sheet on mobile) on the given tab. Works on every page. */
-export function openLeadPanel(tab: ContactTab = 'strategy') {
+export function openLeadPanel(tab: ContactTab = 'strategy', options: LeadPanelOptions = {}) {
   if (typeof window === 'undefined') return
+  trackGoal('lead_panel_open')
   // LeadPanel is mounted in the root layout and flags itself; fall back to the contact section otherwise
   if (!(window as any).__kvintLeadPanel) {
     const contact = document.getElementById('contact')
@@ -48,14 +55,18 @@ export function openLeadPanel(tab: ContactTab = 'strategy') {
   const active = document.activeElement
   window.dispatchEvent(
     new CustomEvent<LeadPanelDetail>(LEAD_PANEL_EVENT, {
-      detail: { tab, trigger: active instanceof HTMLElement && active !== document.body ? active : null },
+      detail: {
+        tab,
+        trigger: active instanceof HTMLElement && active !== document.body ? active : null,
+        prefill: options.prefill,
+      },
     })
   )
 }
 
 /** Primary CTA entry point — kept for existing callers; opens the lead panel. */
-export function openContact(tab: ContactTab = 'strategy') {
-  openLeadPanel(tab)
+export function openContact(tab: ContactTab = 'strategy', options: LeadPanelOptions = {}) {
+  openLeadPanel(tab, options)
 }
 
 export function formatDate(date: string): string {

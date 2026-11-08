@@ -216,6 +216,9 @@ export default function LandingView({ page }: { page: Landing }) {
             ))}
           </div>
         )}
+        <div className="mt-6">
+          <DiagnosticButton />
+        </div>
       </section>
 
       {page.note && (

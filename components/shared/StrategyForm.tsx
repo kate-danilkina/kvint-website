@@ -7,7 +7,7 @@ import Link from 'next/link'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
 import ConsentCheckbox from '@/components/shared/ConsentCheckbox'
-import { trackGoal, LEAD_SOURCES } from '@/lib/utils'
+import { trackGoal, LEAD_SOURCES, PHONE, PHONE_HREF, TELEGRAM_URL } from '@/lib/utils'
 
 interface FormData {
   name: string
@@ -15,6 +15,8 @@ interface FormData {
   niche: string
   budget: string
   source: string
+  /** Honeypot: hidden from people, bots fill it */
+  website?: string
   consent: boolean
 }
 
@@ -32,9 +34,11 @@ const budgets = ['до 50 000 ₽', '50 000 – 150 000 ₽', '150 000 �
 interface Props {
   /** Prefix for element ids, so the form can be rendered twice on a page (contact section + lead panel) */
   idPrefix?: string
+  /** Text for the task field, e.g. the numbers from the calculator. Sent along with the form, not shown */
+  prefill?: string
 }
 
-export default function StrategyForm({ idPrefix = '' }: Props = {}) {
+export default function StrategyForm({ idPrefix = '', prefill = '' }: Props = {}) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   const {
@@ -50,9 +54,10 @@ export default function StrategyForm({ idPrefix = '' }: Props = {}) {
       const res = await fetch('/api/send-form', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...fields, formType: 'strategy' }),
+        body: JSON.stringify({ ...fields, message: prefill || undefined, formType: 'strategy' }),
       })
-      if (!res.ok) throw new Error()
+      const data = await res.json().catch(() => null)
+      if (!res.ok || !data?.success) throw new Error()
       setStatus('success')
       trackGoal('form_session')
       reset()
@@ -75,12 +80,20 @@ export default function StrategyForm({ idPrefix = '' }: Props = {}) {
             кейсы <ArrowRight size={12} />
           </Link>
         </p>
+        <p className="text-muted text-sm mt-3">
+          Ответим в течение 15 минут в рабочее время (пн–сб, 9:00–20:00). Срочно — напишите в{' '}
+          <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Telegram</a>{' '}
+          или позвоните:{' '}
+          <a href={PHONE_HREF} className="text-accent hover:underline font-mono whitespace-nowrap">{PHONE}</a>
+        </p>
       </div>
     )
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="ym-hide-content flex flex-col gap-4">
+      {/* Honeypot: hidden from people and screen readers, bots tend to fill it */}
+      <input type="text" tabIndex={-1} autoComplete="off" aria-hidden className="sr-only" {...register('website')} />
       <Input
         id={`${idPrefix}s-name`}
         label="Имя"
@@ -180,10 +193,15 @@ export default function StrategyForm({ idPrefix = '' }: Props = {}) {
         {...register('consent', { required: 'Нужно согласие, чтобы мы могли связаться с вами' })}
       />
 
-      {status === 'error' && (
-        <div role="alert" className="flex items-center gap-2 text-red-700 text-sm">
-          <AlertCircle size={16} aria-hidden />
-          Что-то пошло не так. Попробуйте позже
+            {status === 'error' && (
+        <div role="alert" className="flex items-start gap-2 text-red-700 text-sm">
+          <AlertCircle size={16} className="mt-0.5 flex-shrink-0" aria-hidden />
+          <p>
+            Не получилось отправить заявку. Напишите нам в{' '}
+            <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className="underline">Telegram</a>{' '}
+            или позвоните:{' '}
+            <a href={PHONE_HREF} className="underline font-mono whitespace-nowrap">{PHONE}</a>
+          </p>
         </div>
       )}
 
@@ -200,6 +218,7 @@ export default function StrategyForm({ idPrefix = '' }: Props = {}) {
           </>
         )}
       </Button>
+      <p className="text-xs text-muted font-mono text-center">60 минут · 10 000 ₽ · оплата 50/50</p>
     </form>
   )
 }

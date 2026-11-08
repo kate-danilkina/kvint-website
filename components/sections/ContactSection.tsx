@@ -8,7 +8,7 @@ import { PHONE, PHONE_HREF, type ContactTab } from '@/lib/utils'
 
 const tabs: { id: ContactTab; label: string }[] = [
   { id: 'strategy', label: 'Разбор с основательницей' },
-  { id: 'project', label: 'Обсудить проект' },
+  { id: 'project', label: 'Бесплатная проверка сайта' },
 ]
 
 export default function ContactSection() {

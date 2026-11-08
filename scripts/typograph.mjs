@@ -23,6 +23,9 @@ const shortRe = new RegExp(
 const dashRe = / (—)/g
 // Number stays with the next word or digit group: «604 ₽», «27 октября», «20 227»
 const unitRe = /(\d) (?=[А-Яа-яЁё₽%]|\d{3}(?!\d))/gu
+// Abbreviation compounds never split at the hyphen: «HR‑консалтинг», «B2B‑компании», «SEO‑продвижение»
+const NBHY = '\u2011'
+const abbrHyphenRe = /(?<![A-Za-zА-ЯЁа-яё0-9])([A-ZА-ЯЁ0-9]{2,4})-(?=[а-яё])/gu
 
 function walk(dir, out = []) {
   for (const name of readdirSync(dir)) {
@@ -43,7 +46,7 @@ function fix(text) {
     prev = next
     next = next.replace(shortRe, (_, pre, word) => `${pre}${word}${NBSP}`)
   } while (next !== prev)
-  return next.replace(dashRe, `${NBSP}$1`).replace(unitRe, `$1${NBSP}`)
+  return next.replace(dashRe, `${NBSP}$1`).replace(unitRe, `$1${NBSP}`).replace(abbrHyphenRe, `$1${NBHY}`)
 }
 
 const check = process.argv.includes('--check')

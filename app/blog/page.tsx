@@ -26,7 +26,7 @@ export default function BlogPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="mb-14">
             <h1 className="section-title mb-4">Блог</h1>
-            <p className="text-muted max-w-xl">Пишем о рекламе, SEO и аналитике для B2B-компаний</p>
+            <p className="text-muted max-w-xl">Пишем о рекламе, SEO и аналитике для B2B‑компаний</p>
           </AnimatedSection>
 
           <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

@@ -10,7 +10,7 @@ import { LEAD_PANEL_EVENT, PHONE, PHONE_HREF, type ContactTab, type LeadPanelDet
 
 const tabs: { id: ContactTab; label: string }[] = [
   { id: 'strategy', label: 'Разбор с основательницей' },
-  { id: 'project', label: 'Обсудить проект' },
+  { id: 'project', label: 'Бесплатная проверка сайта' },
 ]
 
 const FOCUSABLE =
@@ -25,6 +25,7 @@ const EASE = [0.22, 1, 0.36, 1] as const
 export default function LeadPanel() {
   const [open, setOpen] = useState(false)
   const [tab, setTab] = useState<ContactTab>('strategy')
+  const [prefill, setPrefill] = useState<string>('')
   const panelRef = useRef<HTMLDivElement>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
   const triggerRef = useRef<HTMLElement | null>(null)
@@ -44,14 +45,16 @@ export default function LeadPanel() {
     ;(window as any).__kvintLeadPanel = true
 
     const onOpen = (e: Event) => {
-      const { tab: t, trigger } = (e as CustomEvent<LeadPanelDetail>).detail
+      const { tab: t, trigger, prefill: p } = (e as CustomEvent<LeadPanelDetail>).detail
       triggerRef.current = trigger
+      setPrefill(p ?? '')
       setTab(t)
       setOpen(true)
     }
     const fromHash = () => {
       if (window.location.hash === '#strategy') {
         triggerRef.current = null
+        setPrefill('')
         setTab('strategy')
         setOpen(true)
       }
@@ -196,7 +199,7 @@ export default function LeadPanel() {
               </div>
 
               <div id="lead-panel-body" role="tabpanel" aria-labelledby={`lead-tab-${tab}`}>
-                {tab === 'strategy' ? <StrategyForm idPrefix="lp-" /> : <ContactForm idPrefix="lp-" />}
+                {tab === 'strategy' ? <StrategyForm idPrefix="lp-" prefill={prefill} /> : <ContactForm idPrefix="lp-" />}
               </div>
 
               <p className="text-sm text-muted mt-6">

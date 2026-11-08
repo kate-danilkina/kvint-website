@@ -54,7 +54,7 @@ export default function MessengerWidget() {
     <div
       ref={containerRef}
       className="messenger-widget-root"
-      style={{ position: 'fixed', bottom: 'calc(env(safe-area-inset-bottom, 0px) + 32px)', right: 32, zIndex: 50 }}
+      style={{ position: 'fixed', zIndex: 50 }}
     >
       {/* Messenger buttons */}
       <AnimatePresence>

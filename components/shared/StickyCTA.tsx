@@ -20,6 +20,11 @@ export default function StickyCTA() {
     return () => window.removeEventListener('scroll', check)
   }, [])
 
+  // Lets the messenger widget lift itself above the bar on phones (see .messenger-widget-root in globals.css)
+  useEffect(() => {
+    document.documentElement.toggleAttribute('data-sticky-cta', visible)
+  }, [visible])
+
   return (
     <AnimatePresence>
       {visible && (

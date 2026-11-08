@@ -3,6 +3,7 @@ import { sendFormNotification } from '@/lib/email'
 import { sendTelegramNotification } from '@/lib/telegram'
 import { appendToSheet } from '@/lib/sheets'
 import { LEAD_SOURCES } from '@/lib/utils'
+import { escapeHtml } from '@/lib/escape'
 
 export async function POST(req: NextRequest) {
   console.log('[send-form] handler fired')
@@ -14,6 +15,12 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json()
+    // Honeypot: the hidden `website` field is empty for people. A bot that fills it gets a fake success and nothing is sent
+    if (typeof body.website === 'string' && body.website.trim() !== '') {
+      console.log('[send-form] honeypot filled, dropped')
+      return NextResponse.json({ success: true })
+    }
+
     const { name, company, contact, message, niche, budget, formType } = body
     // Optional «Откуда узнали о нас»: only accept known options (value is inserted into HTML/Telegram markup)
     const source: string | undefined = (LEAD_SOURCES as readonly string[]).includes(body.source) ? body.source : undefined
@@ -27,35 +34,40 @@ export async function POST(req: NextRequest) {
     }
 
     // 1. Email — primary notification channel
+    let emailOk = false
     try {
       await sendFormNotification({ name, company, contact, message: messageWithSource, niche, budget, formType })
+      emailOk = true
       console.log('[send-form] email sent')
     } catch (emailErr) {
       console.error('[send-form] email error:', emailErr)
     }
 
-    // 2. Telegram — secondary, best-effort
+    // 2. Telegram — the library skips silently without env vars, so check them here to not count a skip as delivered
     const isStrategy = formType === 'strategy'
     const emoji = isStrategy ? '📅' : '📩'
     const tgText =
-      `${emoji} <b>${isStrategy ? 'Заявка: Диагностика (10 000 ₽)' : 'Заявка: Обсудить проект'}</b>\n\n` +
-      `👤 Имя: ${name}\n` +
-      (company ? `🏢 Компания: ${company}\n` : '') +
-      `📱 Контакт: ${contact}\n` +
-      (niche ? `🎯 Ниша: ${niche}\n` : '') +
-      (budget ? `💰 Бюджет: ${budget}\n` : '') +
+      `${emoji} <b>${isStrategy ? 'Заявка: Разбор (10 000 ₽)' : 'Заявка: Обсудить проект'}</b>\n\n` +
+      `👤 Имя: ${escapeHtml(name)}\n` +
+      (company ? `🏢 Компания: ${escapeHtml(company)}\n` : '') +
+      `📱 Контакт: ${escapeHtml(contact)}\n` +
+      (niche ? `🎯 Ниша: ${escapeHtml(niche)}\n` : '') +
+      (budget ? `💰 Бюджет: ${escapeHtml(budget)}\n` : '') +
       (source ? `🧭 Откуда узнали: ${source}\n` : '') +
-      (message ? `\n💬 Задача:\n${message}\n` : '') +
+      (message ? `\n💬 Задача:\n${escapeHtml(message)}\n` : '') +
       `\n🕐 ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}`
 
+    let telegramOk = false
+    const tgConfigured = !!process.env.TELEGRAM_BOT_TOKEN && !!process.env.TELEGRAM_CHAT_ID
     try {
       await sendTelegramNotification(tgText)
+      telegramOk = tgConfigured
       console.log('[send-form] telegram sent')
     } catch (tgErr) {
       console.error('[send-form] Telegram error:', tgErr)
     }
 
-    // 3. Sheets — fire-and-forget
+    // 3. Sheets — fire-and-forget, keeps a copy of every lead that reached the server
     appendToSheet([
       new Date().toISOString(),
       formType,
@@ -64,6 +76,16 @@ export async function POST(req: NextRequest) {
       company || '',
       [message || niche, sourceLine].filter(Boolean).join(' · '),
     ]).catch((err) => console.error('[send-form] sheets error:', err))
+
+    // Sheets swallows its own errors, so a configured sheet is the best signal that the lead is stored
+    const sheetsConfigured = !!process.env.GOOGLE_SHEET_ID && !!process.env.GOOGLE_SERVICE_ACCOUNT_KEY
+    if (!emailOk && !telegramOk && !sheetsConfigured) {
+      console.error('[send-form] all channels failed', { name, formType })
+      return NextResponse.json(
+        { success: false, message: 'Не получилось отправить заявку. Напишите нам в Telegram или позвоните' },
+        { status: 502 }
+      )
+    }
 
     return NextResponse.json({ success: true, message: 'Заявка отправлена!' })
   } catch (error) {

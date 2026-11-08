@@ -109,6 +109,12 @@ export default function RequestCalculator() {
   const result = useMemo(() => calculate(input), [input])
   const verdict = verdictOf(result.romi)
   const hint = useMemo(() => weakestLink(input, result), [input, result])
+  // Short text with the client's numbers; it goes into the task field of the lead form
+  const prefill =
+    `Цифры из калькулятора: бюджет ${formatNum(input.budget)} ₽ в месяц, цена клика ${formatNum(input.cpc)} ₽, ` +
+    `конверсия сайта в заявку ${input.siteConv}%, конверсия заявки в сделку ${input.dealConv}%, ` +
+    `средний чек ${formatNum(input.check)} ₽, маржинальность ${input.margin}%. ` +
+    `ROMI ${result.romi === null ? 'не посчитан' : `${formatNum(Math.round(result.romi))}%`}`
 
   const set = (key: keyof CalcInput) => (n: number) => setInput((prev) => ({ ...prev, [key]: n }))
 
@@ -171,7 +177,11 @@ export default function RequestCalculator() {
             </div>
           )}
 
-          <DiagnosticButton label="Разобрать мои цифры с основательницей" className="mt-6 w-full sm:w-auto" />
+          <DiagnosticButton
+            label="Разобрать мои цифры с основательницей"
+            className="mt-6 w-full sm:w-auto"
+            prefill={prefill}
+          />
         </section>
 
         <dl className="grid grid-cols-2 sm:grid-cols-4 gap-x-5 gap-y-5 rounded-2xl bg-bg-2 p-5 sm:p-6 border border-black/[0.08]">

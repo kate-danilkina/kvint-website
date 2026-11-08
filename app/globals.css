@@ -257,3 +257,25 @@ body {
     max-width: 100% !important;
   }
 }
+
+/* Messenger button: on phones it hugs the corner, and lifts above the StickyCTA bar while that bar is shown */
+.messenger-widget-root {
+  right: 8px;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 28px);
+}
+html[data-sticky-cta] .messenger-widget-root {
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 96px);
+}
+@media (min-width: 640px) {
+  html[data-sticky-cta] .messenger-widget-root,
+  .messenger-widget-root {
+    right: 32px;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 32px);
+  }
+}
+
+/* Wide blog tables scroll inside their own box instead of stretching the page on mobile */
+.prose .table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}

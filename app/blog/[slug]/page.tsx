@@ -5,6 +5,7 @@ import { ArrowLeft, Clock } from 'lucide-react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Badge from '@/components/ui/Badge'
+import CtaBlock from '@/components/landing/CtaBlock'
 import AnimatedSection from '@/components/shared/AnimatedSection'
 import { blogPosts, getPostBySlug, readMinutes } from '@/lib/data/blog'
 import { formatDate } from '@/lib/utils'
@@ -153,6 +154,10 @@ export default function BlogPostPage({ params }: Props) {
               </div>
             </div>
           </AnimatedSection>
+          {/* Call to action: one block between the author and the related posts */}
+          <AnimatedSection delay={0.2} className="mt-12">
+            <CtaBlock />
+          </AnimatedSection>
           {/* Read also */}
           {readAlso.length > 0 && (
             <AnimatedSection delay={0.25} className="mt-12 pt-8 border-t border-black/5">
@@ -187,10 +192,16 @@ export default function BlogPostPage({ params }: Props) {
   )
 }
 
-type MdBlock = { tag: 'h2' | 'h3' | 'p' | 'ul' | 'ol'; lines: string[] }
+type MdBlock = { tag: 'h2' | 'h3' | 'p' | 'ul' | 'ol' | 'table'; lines: string[] }
 
-// Line-based parser for our own trusted content: h2/h3, paragraphs,
-// ordered and unordered lists, **bold** and [text](/internal/path) links
+// Line-based parser for our own trusted content. Supported syntax:
+// - ## and ### headings (h2/h3)
+// - paragraphs (consecutive lines are joined with a space; blank line ends a paragraph)
+// - ordered lists ("1. item") and unordered lists ("- item")
+// - tables: consecutive lines that start and end with "|"; first row is the header (th),
+//   a separator row like |---|:---:| is skipped, the rest are body rows (td); wrapped in .table-wrap
+// - inline: **bold**, [text](/internal/path) internal links,
+//   [text](https://… or http://…) external links (target="_blank", rel="noopener noreferrer")
 function markdownToHtml(md: string): string {
   const blocks: MdBlock[] = []
   let afterBlank = true
@@ -208,6 +219,8 @@ function markdownToHtml(md: string): string {
     if (heading) {
       tag = heading[1] === '##' ? 'h2' : 'h3'
       text = heading[2]
+    } else if (/^\|.*\|$/.test(line)) {
+      tag = 'table'
     } else if (/^\d+\. /.test(line)) {
       tag = 'ol'
       text = line.replace(/^\d+\. /, '')
@@ -217,7 +230,7 @@ function markdownToHtml(md: string): string {
     }
 
     const last = blocks[blocks.length - 1]
-    const mergeable = !afterBlank && last && last.tag === tag && (tag === 'p' || tag === 'ul' || tag === 'ol')
+    const mergeable = !afterBlank && last && last.tag === tag && (tag === 'p' || tag === 'ul' || tag === 'ol' || tag === 'table')
     if (mergeable) last.lines.push(text)
     else blocks.push({ tag, lines: [text] })
     afterBlank = false
@@ -225,6 +238,7 @@ function markdownToHtml(md: string): string {
 
   return blocks
     .map(({ tag, lines }) => {
+      if (tag === 'table') return renderTable(lines)
       if (tag === 'h2' || tag === 'h3') return `<${tag}>${inline(lines[0])}</${tag}>`
       if (tag === 'p') return `<p>${inline(lines.join(' '))}</p>`
       return `<${tag}>${lines.map((l) => `<li>${inline(l)}</li>`).join('')}</${tag}>`
@@ -232,8 +246,26 @@ function markdownToHtml(md: string): string {
     .join('\n')
 }
 
+// lines: raw trimmed table rows, e.g. "| a | b |"; the separator row is dropped
+function renderTable(lines: string[]): string {
+  const isSeparator = (cells: string[]) => cells.every((c) => /^:?-+:?$/.test(c))
+  const rows = lines
+    .map((l) => l.slice(1, -1).split('|').map((c) => c.trim()))
+    .filter((cells) => !isSeparator(cells))
+  const [head, ...body] = rows
+  const th = head.map((c) => `<th>${inline(c)}</th>`).join('')
+  const trs = body
+    .map((r) => `<tr>${r.map((c) => `<td>${inline(c)}</td>`).join('')}</tr>`)
+    .join('')
+  return `<div class="table-wrap"><table><thead><tr>${th}</tr></thead><tbody>${trs}</tbody></table></div>`
+}
+
 function inline(s: string): string {
   return s
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\[([^\]]+)\]\((\/[^)\s]*)\)/g, '<a href="$2">$1</a>')
+    .replace(
+      /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g,
+      '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>',
+    )
 }

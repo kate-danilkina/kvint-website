@@ -3,9 +3,18 @@
 import Button, { buttonClass } from '@/components/ui/Button'
 import { openContact, TELEGRAM_URL } from '@/lib/utils'
 
-export function DiagnosticButton({ label = 'Записаться на разбор', className }: { label?: string; className?: string }) {
+export function DiagnosticButton({
+  label = 'Записаться на разбор',
+  className,
+  prefill,
+}: {
+  label?: string
+  className?: string
+  /** Pre-filled task text for the lead form */
+  prefill?: string
+}) {
   return (
-    <Button variant="primary" size="lg" className={className} onClick={() => openContact('strategy')}>
+    <Button variant="primary" size="lg" className={className} onClick={() => openContact('strategy', { prefill })}>
       {label}
     </Button>
   )
@@ -24,6 +33,11 @@ export default function CtaBlock({ title = 'Начните с разбора' }
           Написать в Telegram
         </a>
       </div>
+      <p className="mt-4 text-sm">
+        <button type="button" onClick={() => openContact('project')} className="text-accent font-medium hover:underline">
+          Бесплатно: где теряете заявки
+        </button>
+      </p>
     </section>
   )
 }

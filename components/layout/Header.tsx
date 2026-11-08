@@ -159,6 +159,18 @@ export default function Header() {
                   </Link>
                 </motion.div>
               ))}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navLinks.length * 0.08 }}
+              >
+                <a
+                  href={PHONE_HREF}
+                  className="text-2xl font-semibold text-text hover:text-accent transition-colors whitespace-nowrap"
+                >
+                  {PHONE}
+                </a>
+              </motion.div>
             </nav>
 
             <motion.div

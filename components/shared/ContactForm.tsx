@@ -8,13 +8,15 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
 import ConsentCheckbox from '@/components/shared/ConsentCheckbox'
-import { trackGoal, LEAD_SOURCES } from '@/lib/utils'
+import { trackGoal, LEAD_SOURCES, PHONE, PHONE_HREF, TELEGRAM_URL } from '@/lib/utils'
 
 interface FormData {
   name: string
   contact: string
   message: string
   source: string
+  /** Honeypot: hidden from people, bots fill it */
+  website?: string
   consent: boolean
 }
 
@@ -69,7 +71,8 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...fields, formType: 'project' }),
       })
-      if (!res.ok) throw new Error()
+      const data = await res.json().catch(() => null)
+      if (!res.ok || !data?.success) throw new Error()
       setStatus('success')
       trackGoal('form_project')
       reset()
@@ -92,12 +95,23 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
             кейсы <ArrowRight size={12} />
           </Link>
         </p>
+        <p className="text-muted text-sm mt-3">
+          Ответим в течение 15 минут в рабочее время (пн–сб, 9:00–20:00). Срочно — напишите в{' '}
+          <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Telegram</a>{' '}
+          или позвоните:{' '}
+          <a href={PHONE_HREF} className="text-accent hover:underline font-mono whitespace-nowrap">{PHONE}</a>
+        </p>
       </div>
     )
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="ym-hide-content flex flex-col gap-5">
+      {/* Honeypot: hidden from people and screen readers, bots tend to fill it */}
+      <input type="text" tabIndex={-1} autoComplete="off" aria-hidden className="sr-only" {...register('website')} />
+      <p className="text-sm font-medium text-text">
+        Бесплатно: пришлите ссылку на сайт или рекламный кабинет — ответим, где теряете заявки
+      </p>
       {/* Progress bar */}
       <div className="flex gap-1.5 mb-1" aria-hidden>
         {Array.from({ length: STEPS }).map((_, i) => (
@@ -171,7 +185,7 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
                 <textarea
                   id={`${idPrefix}message`}
                   rows={3}
-                  placeholder="Что сейчас не работает и чего хотите добиться"
+                  placeholder="Ссылка на сайт или кабинет и пара слов о задаче"
                   className="ym-disable-keys w-full px-4 py-3 rounded-xl bg-black/5 border border-black/10 text-text placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent focus:bg-black/[0.07] transition-all duration-200 text-base resize-none"
                   {...register('message')}
                 />
@@ -231,10 +245,15 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
                 error={errors.consent?.message}
                 {...register('consent', { required: 'Нужно согласие, чтобы мы могли связаться с вами' })}
               />
-              {status === 'error' && (
-                <div role="alert" className="flex items-center gap-2 text-red-700 text-sm">
-                  <AlertCircle size={16} aria-hidden />
-                  Что-то пошло не так. Попробуйте позже
+                {status === 'error' && (
+                <div role="alert" className="flex items-start gap-2 text-red-700 text-sm">
+                  <AlertCircle size={16} className="mt-0.5 flex-shrink-0" aria-hidden />
+                  <p>
+                    Не получилось отправить заявку. Напишите нам в{' '}
+                    <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className="underline">Telegram</a>{' '}
+                    или позвоните:{' '}
+                    <a href={PHONE_HREF} className="underline font-mono whitespace-nowrap">{PHONE}</a>
+                  </p>
                 </div>
               )}
             </motion.div>

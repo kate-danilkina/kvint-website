@@ -8,6 +8,7 @@ import { landingByPath, type Landing } from '@/lib/data/landings'
  */
 export const LANDING_KEYWORDS: Record<string, string[]> = {
   'yandex-direct': ['Директ', 'Яндекс Директ', 'реклам'],
+  'kontekstnaya-reklama': ['контекст', 'РСЯ'],
   'prodvizhenie-na-kartah': ['Карт', '2ГИС'],
   'seo-i-geo': ['SEO', 'нейросет', 'GEO'],
   'marketingovyj-audit': ['аудит'],

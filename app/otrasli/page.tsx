@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function IndustriesHub() {
   return (
     <HubView
-      title="Маркетинг для производства и IT-компаний"
+      title="Маркетинг для производства и IT‑компаний"
       crumb="Отрасли"
       path="/otrasli"
       lead="Работаем там, где ошибка в рекламе стоит дорого: сложный продукт, мало заявок, долгая сделка. Отраслевую страницу делаем, только когда есть кейс с цифрами"
