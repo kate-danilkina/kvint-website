@@ -112,3 +112,33 @@ export function JsonLd({ data }: { data: object | object[] }) {
     />
   )
 }
+
+// Short prepositions, conjunctions and particles that must not end a cut meta description
+const DANGLING = new Set([
+  'в', 'во', 'и', 'а', 'с', 'со', 'к', 'ко', 'у', 'о', 'об', 'на', 'по', 'за', 'от', 'до', 'из', 'для', 'не', 'ни',
+  'но', 'да', 'или', 'при', 'про', 'над', 'под', 'без', 'же', 'ли', 'бы', 'то', 'что', 'как',
+])
+
+// Trims a meta description to `max` characters, cutting at a word boundary.
+// A non-breaking space (U+00A0) counts as a word separator (JS \s matches it). No ellipsis, no trailing period.
+// After a cut, drops trailing dangling words (1-3 letters, see DANGLING) and trailing dashes, commas, colons.
+export function metaDescription(text: string, max = 160): string {
+  const t = text.replace(/\s+/g, ' ').trim()
+  if (t.length <= max) return t.replace(/[.\s]+$/, '')
+  // Look one char past the limit: if that char is a separator, the whole text up to `max` fits
+  const head = t.slice(0, max + 1)
+  let cut = -1
+  for (let i = head.length - 1; i > 0; i--) {
+    if (/\s/.test(head[i])) {
+      cut = i
+      break
+    }
+  }
+  let out = (cut > 0 ? head.slice(0, cut) : t.slice(0, max)).replace(/[\s.,;:—–-]+$/, '')
+  for (;;) {
+    const m = out.match(/([А-Яа-яЁёA-Za-z]+)$/)
+    if (!m || m[1].length > 3 || !DANGLING.has(m[1].toLowerCase())) break
+    out = out.slice(0, out.length - m[1].length).replace(/[\s.,;:—–-]+$/, '')
+  }
+  return out
+}

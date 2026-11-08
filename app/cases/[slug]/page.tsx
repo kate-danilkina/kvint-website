@@ -6,7 +6,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ContactSection from '@/components/sections/ContactSection'
 import { cases, getCaseBySlug, type Case, type CaseComparison, type CaseMonthly } from '@/lib/data/cases'
-import { breadcrumbLd, JsonLd, SITE_URL, company, founder } from '@/lib/seo'
+import { breadcrumbLd, JsonLd, SITE_URL, company, founder, metaDescription } from '@/lib/seo'
 
 interface Props {
   params: { slug: string }
@@ -19,13 +19,14 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const c = getCaseBySlug(params.slug)
   if (!c) return {}
+  const description = metaDescription(c.description)
   return {
     title: `${c.title} — кейс`,
-    description: c.description,
+    description,
     alternates: { canonical: `/cases/${c.slug}` },
     openGraph: {
       title: c.title,
-      description: c.description,
+      description,
       type: 'article',
     },
   }
