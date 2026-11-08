@@ -13,7 +13,7 @@ const link = (title: string, path: string, note?: string) =>
 const SUMMARY =
   'Квинт — маркетинговое агентство для B2B со сложным продуктом. ' +
   'Считаем окупаемость до старта. Стратегию ведёт основательница Екатерина Данилкина. ' +
-  `Работаем онлайн по всей России. Юридическое лицо: ${company.legalName}, г. Самара`
+  `Работаем онлайн по всей России. Юридическое лицо: ${company.legalName}`
 
 // Static pages have no data file, so their titles are the ones in each page's metadata
 const STATIC_PAGES: { title: string; path: string }[] = [
