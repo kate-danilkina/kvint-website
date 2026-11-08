@@ -219,6 +219,7 @@ export default function StrategyForm({ idPrefix = '', prefill = '' }: Props = {}
         )}
       </Button>
       <p className="text-xs text-muted font-mono text-center">60 минут · 10 000 ₽ · оплата 50/50</p>
+      <p className="text-xs text-muted font-mono text-center">Не найдём ни одного места, где вы теряете деньги, — разбор бесплатный</p>
     </form>
   )
 }
