@@ -23,8 +23,11 @@ export default function VideorazborPage() {
         очередь. Без обязательств
       </p>
       <FreeVideoButton className="mb-2" />
-      <p className="text-xs text-muted font-mono mb-fluid-l">
+      <p className="text-xs text-muted font-mono mb-1">
         Ответ на заявку в течение 15 минут в рабочее время: пн–сб, 9:00–20:00
+      </p>
+      <p className="text-xs text-muted font-mono mb-fluid-l">
+        Берём 3 видеоразбора в неделю, чтобы успевать за 48 часов
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-fluid-l mb-fluid-l">
