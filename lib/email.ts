@@ -16,7 +16,7 @@ export async function sendFormNotification(data: {
 
   const subject =
     data.formType === 'project'
-      ? `Новая заявка «Обсудить проект» от ${data.name}`
+      ? `Новая заявка «Видеоразбор (бесплатно)» от ${data.name}`
       : `Новая заявка «Разбор» от ${data.name}`
 
   const html = `

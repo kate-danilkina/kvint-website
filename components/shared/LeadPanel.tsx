@@ -10,7 +10,7 @@ import { LEAD_PANEL_EVENT, PHONE, PHONE_HREF, type ContactTab, type LeadPanelDet
 
 const tabs: { id: ContactTab; label: string }[] = [
   { id: 'strategy', label: 'Разбор с основательницей' },
-  { id: 'project', label: 'Бесплатная проверка сайта' },
+  { id: 'project', label: 'Бесплатный видеоразбор' },
 ]
 
 const FOCUSABLE =

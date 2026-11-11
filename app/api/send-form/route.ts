@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
     const isStrategy = formType === 'strategy'
     const emoji = isStrategy ? '📅' : '📩'
     const tgText =
-      `${emoji} <b>${isStrategy ? 'Заявка: Разбор (10 000 ₽)' : 'Заявка: Обсудить проект'}</b>\n\n` +
+      `${emoji} <b>${isStrategy ? 'Заявка: Разбор (10 000 ₽)' : 'Заявка: Видеоразбор (бесплатно)'}</b>\n\n` +
       `👤 Имя: ${escapeHtml(name)}\n` +
       (company ? `🏢 Компания: ${escapeHtml(company)}\n` : '') +
       `📱 Контакт: ${escapeHtml(contact)}\n` +

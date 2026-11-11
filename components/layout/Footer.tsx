@@ -38,6 +38,7 @@ export default function Footer() {
                 { href: '/cases', label: 'Кейсы' },
                 { href: '/ceny', label: 'Цены' },
                 { href: '/razbor', label: 'Разбор с основательницей' },
+                { href: '/videorazbor', label: 'Бесплатный видеоразбор' },
                 { href: '/kalkulyator-zayavki', label: 'Калькулятор заявки' },
                 { href: '/o-kompanii', label: 'О компании' },
                 { href: '/ekaterina-danilkina', label: 'Екатерина Данилкина' },

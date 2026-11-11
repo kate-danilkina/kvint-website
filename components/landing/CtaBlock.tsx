@@ -20,6 +20,14 @@ export function DiagnosticButton({
   )
 }
 
+export function FreeVideoButton({ label = 'Получить бесплатный видеоразбор', className }: { label?: string; className?: string }) {
+  return (
+    <Button variant="primary" size="lg" className={className} onClick={() => openContact('project')}>
+      {label}
+    </Button>
+  )
+}
+
 export default function CtaBlock({ title = 'Начните с разбора' }: { title?: string }) {
   return (
     <section className="rounded-2xl border border-transparent bg-bg-2 p-6 sm:p-10">
@@ -35,7 +43,7 @@ export default function CtaBlock({ title = 'Начните с разбора' }
       </div>
       <p className="mt-4 text-sm">
         <button type="button" onClick={() => openContact('project')} className="text-accent font-medium hover:underline">
-          Бесплатно: где теряете заявки
+          Бесплатно: видеоразбор вашей рекламы за 48 часов
         </button>
       </p>
     </section>

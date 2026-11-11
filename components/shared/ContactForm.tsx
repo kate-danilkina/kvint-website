@@ -110,7 +110,7 @@ export default function ContactForm({ idPrefix = '' }: Props = {}) {
       {/* Honeypot: hidden from people and screen readers, bots tend to fill it */}
       <input type="text" tabIndex={-1} autoComplete="off" aria-hidden className="sr-only" {...register('website')} />
       <p className="text-sm font-medium text-text">
-        Бесплатно: пришлите ссылку на сайт или рекламный кабинет — ответим, где теряете заявки
+        Бесплатно: видеоразбор вашей рекламы за 48 часов — пришлите ссылку на сайт или кабинет
       </p>
       {/* Progress bar */}
       <div className="flex gap-1.5 mb-1" aria-hidden>

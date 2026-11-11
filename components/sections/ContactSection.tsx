@@ -8,7 +8,7 @@ import { PHONE, PHONE_HREF, type ContactTab } from '@/lib/utils'
 
 const tabs: { id: ContactTab; label: string }[] = [
   { id: 'strategy', label: 'Разбор с основательницей' },
-  { id: 'project', label: 'Бесплатная проверка сайта' },
+  { id: 'project', label: 'Бесплатный видеоразбор' },
 ]
 
 export default function ContactSection() {
@@ -39,7 +39,7 @@ export default function ContactSection() {
         <div className="mb-fluid-l">
           <SectionHeading className="section-title mb-4">Расскажите, где теряете заявки</SectionHeading>
           <p className="text-muted">
-            Выберите разбор с основательницей или обсуждение проекта. Или позвоните:{' '}
+            Выберите разбор с основательницей или бесплатный видеоразбор рекламы. Или позвоните:{' '}
             <a href={PHONE_HREF} className="link-underline text-text font-mono whitespace-nowrap">
               {PHONE}
             </a>

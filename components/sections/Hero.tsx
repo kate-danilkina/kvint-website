@@ -92,9 +92,8 @@ export default function Hero() {
                 onClick={() => openContact('project')}
                 className="text-text underline underline-offset-2 hover:text-accent"
               >
-                бесплатно
-              </button>{' '}
-              пришлите ссылку на сайт — ответим за 15 минут
+                бесплатный видеоразбор рекламы за 48 часов
+              </button>
             </p>
           </div>
 
