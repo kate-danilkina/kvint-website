@@ -9,7 +9,7 @@ import CtaBlock from '@/components/landing/CtaBlock'
 import AnimatedSection from '@/components/shared/AnimatedSection'
 import { blogPosts, getPostBySlug, readMinutes } from '@/lib/data/blog'
 import { formatDate } from '@/lib/utils'
-import { breadcrumbLd, faqLd, JsonLd, SITE_URL } from '@/lib/seo'
+import { breadcrumbLd, company, faqLd, JsonLd, SITE_URL } from '@/lib/seo'
 import { readAlsoPosts, serviceForPost } from '@/lib/related'
 import { landingPath } from '@/lib/data/landings'
 
@@ -151,6 +151,14 @@ export default function BlogPostPage({ params }: Props) {
               <div>
                 <p className="font-semibold text-text">{post.author}</p>
                 <p className="text-sm text-muted">Основательница агентства «Квинт»</p>
+                <a
+                  href={company.founderTelegram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-accent hover:underline"
+                >
+                  Telegram-канал Екатерины
+                </a>
               </div>
             </div>
           </AnimatedSection>

@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { Mail, Send, Phone } from 'lucide-react'
 import { PHONE, PHONE_HREF, TELEGRAM_URL } from '@/lib/utils'
+import { company } from '@/lib/seo'
 import { openCookieSettings } from '@/components/shared/CookieConsent'
 import Logo from '@/components/shared/Logo'
 
@@ -71,6 +72,15 @@ export default function Footer() {
               >
                 <Send size={15} />
                 @kvint_agency
+              </a>
+              <a
+                href={company.founderTelegram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-underline self-start inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors"
+              >
+                <Send size={15} />
+                Канал основательницы в Telegram
               </a>
               <a href={PHONE_HREF} className="link-underline self-start inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
                 <Phone size={15} />
