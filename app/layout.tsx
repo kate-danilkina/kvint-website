@@ -41,7 +41,12 @@ export const metadata: Metadata = {
     'Маркетинговое агентство для B2B. Считаем окупаемость до старта и показываем, сколько приносит каждый рубль рекламы. Стратегию ведёт основательница Екатерина Данилкина',
   // Each page gets a self-canonical resolved against metadataBase
   alternates: { canonical: './' },
-  verification: { other: { 'msvalidate.01': '269C5DB1E3644ECDE492CE7B447803BD' } },
+  verification: {
+    other: {
+      'msvalidate.01': '269C5DB1E3644ECDE492CE7B447803BD',
+      'p:domain_verify': '7292f612d1d433f08c0943cb78382c08',
+    },
+  },
   authors: [{ name: 'Квинт' }],
   creator: 'Квинт',
   openGraph: {
