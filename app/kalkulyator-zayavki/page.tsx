@@ -3,6 +3,7 @@ import PageShell from '@/components/landing/PageShell'
 import Breadcrumbs from '@/components/landing/Breadcrumbs'
 import CtaBlock from '@/components/landing/CtaBlock'
 import RequestCalculator from '@/components/calculator/RequestCalculator'
+import OtherCalculators from '@/components/calculator/OtherCalculators'
 import { JsonLd, faqLd } from '@/lib/seo'
 
 const PATH = '/kalkulyator-zayavki'
@@ -94,6 +95,8 @@ export default function CalculatorPage() {
           ))}
         </dl>
       </section>
+
+      <OtherCalculators current={PATH} />
 
       <CtaBlock title="Разберём ваши цифры вместе" />
     </PageShell>

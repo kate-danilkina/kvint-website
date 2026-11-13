@@ -17,6 +17,11 @@ export const LANDING_KEYWORDS: Record<string, string[]> = {
   proizvodstvo: ['производ', 'мебел'],
   'mebelnoe-proizvodstvo': ['производ', 'мебел'],
   'it-b2b': ['IT', 'ИТ', 'SaaS'],
+  'hr-autsorsing': ['HR', 'кадр', 'аутсорс'],
+  'buhgalterskij-autsorsing': ['бухгалт', 'аутсорс', 'юрист'],
+  'it-integratory': ['интегратор', '1С', 'CRM'],
+  'promyshlennaya-avtomatizaciya': ['автоматизац', 'промышлен'],
+  kiberbezopasnost: ['кибербезопас', 'информацион'],
 }
 
 function escapeRegExp(s: string): string {
